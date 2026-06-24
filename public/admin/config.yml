@@ -1,0 +1,118 @@
+backend:
+  name: github
+  repo: mysticalcode/KEAS-India
+  branch: main
+
+local_backend: true
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: site_data
+    label: Site Data
+    files:
+      - name: content
+        label: KEAS Website Content
+        file: src/content/siteData.json
+        fields:
+          - label: Site
+            name: site
+            widget: object
+            fields:
+              - { label: Domain, name: domain, widget: string }
+              - { label: Phone, name: phone, widget: string }
+              - { label: Emails, name: emails, widget: list, field: { label: Email, name: email, widget: string } }
+              - { label: Hero Image, name: heroImage, widget: image, required: false }
+          - label: Navigation
+            name: navigation
+            widget: list
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: Link, name: href, widget: string }
+          - label: Categories
+            name: categories
+            widget: list
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Slug, name: slug, widget: string }
+              - { label: Image, name: image, widget: image, required: false }
+              - { label: Description, name: description, widget: text }
+              - label: Details
+                name: details
+                widget: list
+                field: { label: Detail, name: detail, widget: text }
+          - label: Destinations
+            name: destinations
+            widget: list
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Count, name: count, widget: string }
+              - { label: Image, name: image, widget: image, required: false }
+              - { label: Copy, name: copy, widget: text }
+          - label: Experiences
+            name: experiences
+            widget: list
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Slug, name: slug, widget: string }
+              - { label: Category, name: category, widget: string }
+              - { label: Duration, name: duration, widget: string }
+              - { label: Group, name: group, widget: string }
+              - { label: Price, name: price, widget: string }
+              - { label: Rating, name: rating, widget: string }
+              - { label: Reviews, name: reviews, widget: string }
+              - { label: Image, name: image, widget: image, required: false }
+              - { label: Summary, name: summary, widget: text }
+              - label: Itinerary
+                name: itinerary
+                widget: list
+                field: { label: Day, name: day, widget: text }
+          - label: Expeditions
+            name: expeditions
+            widget: list
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Slug, name: slug, widget: string }
+              - { label: Region, name: region, widget: string }
+              - { label: Altitude, name: altitude, widget: string }
+              - { label: Duration, name: duration, widget: string }
+              - { label: Difficulty, name: difficulty, widget: string }
+              - { label: Best Season, name: bestSeason, widget: string }
+              - { label: Group, name: group, widget: string }
+              - { label: Price, name: price, widget: string }
+              - { label: Rating, name: rating, widget: string }
+              - { label: Reviews, name: reviews, widget: string }
+              - { label: Summary, name: summary, widget: text }
+              - label: Gallery
+                name: gallery
+                widget: list
+                field: { label: Image, name: image, widget: image, required: false }
+              - label: Highlights
+                name: highlights
+                widget: list
+                field: { label: Highlight, name: highlight, widget: string }
+              - label: Things to Pack
+                name: packing
+                widget: list
+                field: { label: Item, name: item, widget: string }
+              - label: Itinerary
+                name: itinerary
+                widget: list
+                field: { label: Day, name: day, widget: text }
+          - label: Custom Services
+            name: customServices
+            widget: list
+            field: { label: Service, name: service, widget: string }
+          - label: Journal Posts
+            name: journalPosts
+            widget: list
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Slug, name: slug, widget: string }
+              - { label: Date, name: date, widget: string }
+              - { label: Image, name: image, widget: image, required: false }
+              - { label: Excerpt, name: excerpt, widget: text }
+              - label: Body
+                name: body
+                widget: list
+                field: { label: Paragraph, name: paragraph, widget: text }

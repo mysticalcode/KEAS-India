@@ -1,0 +1,14 @@
+node_modules/
+.pnpm-store/
+.agents/
+
+assets-raw/
+references/
+public/uploads/
+dist/uploads/
+
+*.log
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
