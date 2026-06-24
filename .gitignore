@@ -6,6 +6,7 @@ assets-raw/
 references/
 public/uploads/
 dist/uploads/
+deploy-dist/
 
 *.log
 __pycache__/
