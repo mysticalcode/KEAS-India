@@ -1,0 +1,349 @@
+{
+  "site": {
+    "domain": "keasindia.com",
+    "phone": "+91 87199 62147",
+    "emails": ["info@keasindia.com", "support@keasindia.com", "sales@keasindia.com"],
+    "heroImage": "/images/drive-optimized/hero-pin-parvati.webp"
+  },
+  "navigation": [
+    { "label": "Experiences", "href": "#experiences" },
+    { "label": "Expeditions", "href": "#expeditions" },
+    { "label": "Destinations", "href": "#destinations" },
+    { "label": "Contact", "href": "#contact" },
+    { "label": "Journal", "href": "#journal" }
+  ],
+  "categories": [
+    {
+      "title": "Rock Craft",
+      "slug": "rock-craft",
+      "image": "/images/drive-optimized/experience-rock.webp",
+      "description": "Introductory climbing days with gear orientation, belay practice, movement coaching, and safety-first progression.",
+      "details": [
+        "Best for first-time climbers, school groups, corporate teams, and trekkers preparing for alpine terrain.",
+        "Sessions cover helmets, harnesses, knots, belay communication, top-rope movement, route reading, and basic rescue awareness.",
+        "Programs can be run as one-day tasters, three-day foundations, or custom skill clinics before expeditions."
+      ]
+    },
+    {
+      "title": "Workation",
+      "slug": "workation",
+      "image": "/images/drive-optimized/hero-pin-parvati.webp",
+      "description": "WFH-compatible mountain stays with activity windows, reliable planning, recovery blocks, and community time.",
+      "details": [
+        "Designed for remote teams and solo professionals who need predictable work hours without losing the mountain experience.",
+        "Typical days use morning activity windows, midday work blocks, evening recovery, and optional community meals.",
+        "KEAS helps plan stay style, connectivity expectations, local transport, group rhythm, and add-on activities."
+      ]
+    },
+    {
+      "title": "Eco Learning",
+      "slug": "eco-learning",
+      "image": "/images/drive-optimized/experience-culture.webp",
+      "description": "Interpretive walks around forests, geology, flora, fauna, village architecture, and low-impact travel habits.",
+      "details": [
+        "Built for schools, colleges, families, and curious travellers who want context, not just sightseeing.",
+        "Modules can include forest ecology, local food systems, Kath-Kuni architecture, geology, waste behaviour, and village walks.",
+        "The pace stays gentle so groups can observe, ask questions, journal, and reflect."
+      ]
+    },
+    {
+      "title": "Wellness",
+      "slug": "wellness",
+      "image": "/images/drive-optimized/destination-sainj.webp",
+      "description": "Slow-paced retreats with breathwork, mobility, sound therapy, forest bathing, and guided decompression.",
+      "details": [
+        "For guests who want recovery, nervous-system reset, and nature immersion rather than a packed sightseeing schedule.",
+        "Programs may include breathwork, mobility, guided forest time, sound therapy, reflective circles, and slow walks.",
+        "Works well as a private retreat, post-expedition recovery block, or creator/community reset."
+      ]
+    },
+    {
+      "title": "Creator Trips",
+      "slug": "creator-trips",
+      "image": "/images/drive-optimized/experience-pottery.webp",
+      "description": "Hosted trips for creators, studios, educators, and communities that need access, logistics, and story-ready routes.",
+      "details": [
+        "For hosts who already have an audience and need a reliable mountain operating partner.",
+        "KEAS supports route design, local access, stays, activity modules, cultural connections, and contingency planning.",
+        "Useful for photography cohorts, learning communities, wellness hosts, studios, and brand trips."
+      ]
+    }
+  ],
+  "destinations": [
+    {
+      "name": "Sainj Valley",
+      "count": "Base hub",
+      "image": "/images/drive-optimized/destination-sainj.webp",
+      "copy": "A quieter base for GHNP ecozone access, forest trails, village stays, rock craft, and slow travel programs."
+    },
+    {
+      "name": "Kullu",
+      "count": "Skill routes",
+      "image": "/images/drive-optimized/hero-pin-parvati.webp",
+      "copy": "A practical valley hub for technical learning, roadhead logistics, river-valley access, and custom expedition support."
+    },
+    {
+      "name": "Manali",
+      "count": "Training gateway",
+      "image": "/images/drive-optimized/destination-manali.webp",
+      "copy": "A gateway for acclimatization days, alpine preparation, training culture, and pre-expedition staging."
+    },
+    {
+      "name": "Shimla",
+      "count": "Heritage circuits",
+      "image": "/images/drive-optimized/destination-alpine.webp",
+      "copy": "A good fit for heritage walks, forest immersion, mindful retreats, creator cohorts, and cultural workshop formats."
+    }
+  ],
+  "experiences": [
+    {
+      "title": "Vertical Foundation",
+      "slug": "vertical-foundation",
+      "category": "Rock Craft",
+      "duration": "3 days",
+      "group": "8 guests max",
+      "price": "From INR 9,500",
+      "rating": "4.9",
+      "reviews": "18",
+      "image": "/images/drive-optimized/experience-rock.webp",
+      "summary": "A beginner-friendly rock craft program covering equipment use, knots, belay mechanics, movement drills, route reading, and outdoor risk culture.",
+      "itinerary": [
+        "Day 1: Arrival, gear fit, risk briefing, Figure-8 and Clove Hitch practice.",
+        "Day 2: Top-rope belay mechanics, movement drills, edging, smearing, and route reading.",
+        "Day 3: Guided climb session, rescue awareness, debrief, and onward skill plan."
+      ]
+    },
+    {
+      "title": "Kinetic Ascent Workation",
+      "slug": "kinetic-ascent-workation",
+      "category": "Workation",
+      "duration": "4 days",
+      "group": "10 guests max",
+      "price": "Custom quote",
+      "rating": "4.8",
+      "reviews": "12",
+      "image": "/images/drive-optimized/hero-pin-parvati.webp",
+      "summary": "A WFH-compatible mountain program with planned work blocks, morning outdoor sessions, bandwidth-aware stays, and evening recovery practices.",
+      "itinerary": [
+        "Day 1: Check-in, bandwidth check, valley orientation, and evening decompression.",
+        "Day 2: Morning rock craft, noon work block, and guided mobility reset.",
+        "Day 3: Forest immersion, remote-work window, sound therapy, and community dinner.",
+        "Day 4: Reflection walk, custom next-trip planning, and departure."
+      ]
+    },
+    {
+      "title": "Eco-Naturalist Immersion",
+      "slug": "eco-naturalist-immersion",
+      "category": "Eco Learning",
+      "duration": "3 days",
+      "group": "10 guests max",
+      "price": "From INR 8,500",
+      "rating": "4.9",
+      "reviews": "15",
+      "image": "/images/drive-optimized/experience-culture.webp",
+      "summary": "A slow interpretive field program around forests, geology, indigenous architecture, conservation behavior, and mountain ecology.",
+      "itinerary": [
+        "Day 1: Sainj orientation, local food, forest safety, and ecological context.",
+        "Day 2: Flora/fauna walk, rock and soil interpretation, and Kath-Kuni heritage study.",
+        "Day 3: Conservation practice, nature journaling, and community-led closing circle."
+      ]
+    },
+    {
+      "title": "Earth Mastery Retreat",
+      "slug": "earth-mastery-retreat",
+      "category": "Custom / Creator",
+      "duration": "7 days",
+      "group": "12 guests max",
+      "price": "Custom quote",
+      "rating": "5.0",
+      "reviews": "9",
+      "image": "/images/drive-optimized/experience-pottery.webp",
+      "summary": "A creator-ready retreat combining climbing, forest bathing, clay craft, local culture, community time, and recovery practices.",
+      "itinerary": [
+        "Day 1: Arrival, cohort alignment, and mountain safety orientation.",
+        "Day 2: Rock craft foundations and somatic recovery.",
+        "Day 3: Forest ecology, nature meditation, and local food.",
+        "Day 4: Clay craft or creative workshop module.",
+        "Day 5: Guided hike, creator community session, and fireside circle.",
+        "Day 6: Custom skill module selected by the host.",
+        "Day 7: Integration, content capture window, and departure."
+      ]
+    }
+  ],
+  "expeditions": [
+    {
+      "title": "Friendship Peak",
+      "slug": "friendship-peak",
+      "region": "Pir Panjal / Manali",
+      "altitude": "5,287 m",
+      "duration": "7-8 days",
+      "difficulty": "Advanced beginner to intermediate alpine",
+      "bestSeason": "May-June and September-October",
+      "group": "6-10 climbers",
+      "price": "Custom",
+      "rating": "4.9",
+      "reviews": "21",
+      "summary": "A Manali-side snow objective for fit trekkers ready to progress into crampon movement, rope-team discipline, snow-slope judgement, and a guided summit attempt.",
+      "gallery": [
+        "https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?auto=format&fit=crop&w=1400&q=82",
+        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1400&q=82",
+        "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1400&q=82"
+      ],
+      "highlights": ["Summit training", "Roped snow travel", "Acclimatization hike", "Midnight summit window"],
+      "packing": ["Insulated mountaineering boots", "Crampons and ice axe", "Helmet and harness", "Down jacket and layered clothing", "Headlamp with spare batteries", "Personal medication and sun protection"],
+      "itinerary": [
+        "Day 1: Arrive Manali, equipment audit, medical screening, and expedition briefing.",
+        "Day 2: Acclimatization hike toward Solang / Patalsu side and snow craft orientation.",
+        "Day 3: Trek to approach camp via Dhundi and Bakarthach meadows.",
+        "Day 4: Move to Lady Leg / advance base; crampon, ice axe, and rope-team practice.",
+        "Day 5: Summit attempt on Friendship Peak and return to base camp.",
+        "Day 6: Reserve weather day for summit or recovery.",
+        "Day 7: Descend to roadhead, debrief, certificate, and depart Manali."
+      ]
+    },
+    {
+      "title": "Pin Bhaba Pass",
+      "slug": "pin-bhaba-pass",
+      "region": "Kinnaur to Spiti crossover",
+      "altitude": "4,890 m",
+      "duration": "7-8 days",
+      "difficulty": "Moderate to difficult crossover trek",
+      "bestSeason": "July-September",
+      "group": "8-12 trekkers",
+      "price": "Custom",
+      "rating": "4.9",
+      "reviews": "17",
+      "summary": "A dramatic crossover from the green Bhaba Valley to the stark Pin Valley, built around Kafnu approach days, meadow camps, moraine travel, pass-day pacing, and the exit to Mudh.",
+      "gallery": [
+        "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=82",
+        "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1400&q=82",
+        "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1400&q=82"
+      ],
+      "highlights": ["Kafnu approach", "Mulling meadows", "High pass crossing", "Pin Valley exit"],
+      "packing": ["Waterproof trekking boots", "Rain shell and pack cover", "Warm fleece and thermals", "Trekking poles", "Reusable water bottles", "Personal snacks and first-aid kit"],
+      "itinerary": [
+        "Day 1: Shimla / Rampur transfer to Kafnu, permits, briefing, and gear check.",
+        "Day 2: Trek Kafnu to Mulling through forest, river sections, and meadow camps.",
+        "Day 3: Mulling to Kara with gradual altitude gain and stream crossings.",
+        "Day 4: Kara to Phustirang, pass briefing, early dinner, and weather review.",
+        "Day 5: Cross Pin Bhaba Pass and descend toward Mangrungse / Baldar terrain.",
+        "Day 6: Trek to Mudh village in Pin Valley and transfer toward Kaza.",
+        "Day 7: Buffer / road contingency day for weather, roadblocks, or acclimatization."
+      ]
+    },
+    {
+      "title": "Hanuman Tibba",
+      "slug": "hanuman-tibba",
+      "region": "Dhauladhar / Manali side",
+      "altitude": "5,982 m",
+      "duration": "11-13 days",
+      "difficulty": "Technical alpine expedition",
+      "bestSeason": "May-June and September-October",
+      "group": "4-8 climbers",
+      "price": "Custom",
+      "rating": "5.0",
+      "reviews": "8",
+      "summary": "A serious pyramid-shaped alpine objective north-west of Manali, suitable only for trained climbers with snow, ice, rope, camp discipline, and altitude experience.",
+      "gallery": [
+        "https://images.unsplash.com/photo-1542662565-7e4b66bae529?auto=format&fit=crop&w=1400&q=82",
+        "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1400&q=82",
+        "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1400&q=82"
+      ],
+      "highlights": ["Beas Kund approach", "Technical camp systems", "Glacier travel", "Summit reserve days"],
+      "packing": ["Double boots or expedition-grade boots", "Technical ice axe and crampons", "Climbing harness and helmet", "Jumar / descender as advised", "High-altitude mitts and goggles", "Four-season sleeping bag"],
+      "itinerary": [
+        "Day 1: Arrive Manali, document check, medical screen, and technical gear issue.",
+        "Day 2: Skills refresh: knots, fixed rope movement, cramponing, and crevasse response.",
+        "Day 3: Drive to Solang / Dhundi and trek toward Beas Kund base zone.",
+        "Day 4: Establish base camp, acclimatization walk, and load planning.",
+        "Day 5: Ferry load to Camp 1 and return for recovery.",
+        "Day 6: Move to Camp 1; snow anchors and route condition assessment.",
+        "Day 7: Establish higher camp depending on snow and weather.",
+        "Day 8: Summit attempt with alpine start and descent to lower camp.",
+        "Day 9: Reserve summit / weather day.",
+        "Day 10: Descend to base camp and clear route loads.",
+        "Day 11: Trek out to roadhead and transfer to Manali for debrief."
+      ]
+    },
+    {
+      "title": "Deo Tibba",
+      "slug": "deo-tibba",
+      "region": "Pir Panjal / Jagatsukh-Manali",
+      "altitude": "6,001 m",
+      "duration": "11-12 days",
+      "difficulty": "Technical high-altitude expedition",
+      "bestSeason": "June and September-October",
+      "group": "4-8 climbers",
+      "price": "Custom",
+      "rating": "5.0",
+      "reviews": "11",
+      "summary": "A 6,001 m snow-dome objective above Jagatsukh that demands glacier travel, moraine negotiation, load-ferry planning, fixed-line judgement, and strong acclimatization.",
+      "gallery": [
+        "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1400&q=82",
+        "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1400&q=82",
+        "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?auto=format&fit=crop&w=1400&q=82"
+      ],
+      "highlights": ["Jagatsukh approach", "Glacier and moraine travel", "Advanced base camp", "Snow dome summit"],
+      "packing": ["Mountaineering boots and crampons", "Ice axe and helmet", "Harness and technical hardware as advised", "Layered cold-weather clothing", "Summit gloves and goggles", "Personal medical kit and hydration system"],
+      "itinerary": [
+        "Day 1: Arrive Manali, gear inspection, documentation, and expedition briefing.",
+        "Day 2: Acclimatization and technical refresh near Manali.",
+        "Day 3: Drive to Jagatsukh and trek to Chikka / Seri approach camp.",
+        "Day 4: Trek to Tenta / Deo Tibba base camp with gradual altitude gain.",
+        "Day 5: Load ferry and glacier travel practice.",
+        "Day 6: Establish advanced base camp; route opening and weather review.",
+        "Day 7: Move to summit camp depending on snow stability and team condition.",
+        "Day 8: Summit attempt on Deo Tibba and descend to safer camp.",
+        "Day 9: Reserve summit / weather day.",
+        "Day 10: Descend to base camp and clear all loads.",
+        "Day 11: Trek out to roadhead and return to Manali."
+      ]
+    }
+  ],
+  "customServices": [
+    "Corporate offsites and WFH cohorts with activity windows",
+    "Creator-led community trips with route and logistics support",
+    "School and college outdoor learning with safety briefings",
+    "Rock craft, navigation, and mountain readiness clinics",
+    "Wellness, breathwork, sound, and forest bathing retreats",
+    "Family-friendly slow adventure programs with flexible pacing"
+  ],
+  "journalPosts": [
+    {
+      "title": "Why Sainj Valley works for slower, deeper adventure",
+      "slug": "sainj-valley-slow-adventure",
+      "date": "Field notes",
+      "image": "/images/drive-optimized/destination-sainj.webp",
+      "excerpt": "Sainj rewards travellers who want forests, village rhythm, GHNP ecozone access, and enough quiet to actually notice the landscape.",
+      "body": [
+        "Sainj Valley is not designed for rushed checklist travel. That is exactly why it works for KEAS programs. The valley gives groups access to forest trails, village stays, rock craft, food systems, and slower conversations around ecology.",
+        "The operating advantage is rhythm. Groups can move in the morning, pause through the day, and use evenings for debrief, recovery, or community time. That makes Sainj especially strong for schools, creator retreats, WFH cohorts, and low-impact adventure programs.",
+        "KEAS treats Sainj as a base for learning and decompression rather than a backdrop. The route, stay, activity level, and cultural touchpoints are matched to the group."
+      ]
+    },
+    {
+      "title": "How KEAS builds safety briefings into every route",
+      "slug": "keas-safety-briefings",
+      "date": "Safety vault",
+      "image": "/images/drive-optimized/experience-rock-detail.webp",
+      "excerpt": "Good safety is not a paragraph in a brochure. It is a repeated habit before, during, and after every mountain day.",
+      "body": [
+        "Every KEAS route starts with expectation-setting. We look at fitness, prior experience, weather, terrain, gear, road conditions, and the purpose of the group before finalising the day plan.",
+        "In the field, safety is communicated in simple language: what the terrain asks of you, where the hazards are, how the group will move, and what changes if conditions shift. This is especially important for rock craft, high passes, and expedition approaches.",
+        "Post-activity debriefs help guests understand their own decision-making, recovery needs, hydration, and readiness for the next day."
+      ]
+    },
+    {
+      "title": "Designing Himalayan workations that still feel like travel",
+      "slug": "himalayan-workations",
+      "date": "Workation",
+      "image": "/images/drive-optimized/journal-culture.webp",
+      "excerpt": "A good workation protects work hours and travel energy. The trick is not doing everything; it is designing the day well.",
+      "body": [
+        "Most workations fail when the itinerary ignores work. KEAS designs these programs around predictable work blocks, morning movement, evening recovery, and realistic expectations around connectivity.",
+        "A good day may include a short forest walk, a rock craft session, or a village experience before work begins. The afternoon stays protected, while evenings are used for decompression, food, or community time.",
+        "The goal is not to squeeze a vacation around calls. It is to create a mountain rhythm that lets people work clearly and still return home with a real sense of place."
+      ]
+    }
+  ]
+}

@@ -1,12 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import data from './content/siteData.json';
 import './styles.css';
 
-const { categories, customServices, destinations, expeditions, experiences, journalPosts, navigation, site } = data;
+let currentData = data;
+let { categories, customServices, destinations, expeditions, experiences, journalPosts, navigation, site } = currentData;
+
+function applyContent(nextData) {
+  currentData = nextData;
+  ({ categories, customServices, destinations, expeditions, experiences, journalPosts, navigation, site } = currentData);
+}
 
 function slugify(value) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
+async function postJson(path, payload) {
+  const response = await fetch(path, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+  if (!response.ok) {
+    throw new Error('The CMS backend is not available yet.');
+  }
+  return response.json();
 }
 
 function ArrowIcon() {
@@ -321,9 +339,18 @@ function ExpeditionCard({ expedition }) {
 function BookingForm({ expedition }) {
   const [status, setStatus] = useState('');
 
-  function handleBookingSubmit(event) {
+  async function handleBookingSubmit(event) {
     event.preventDefault();
-    setStatus(`Booking enquiry noted for ${expedition.title}. We will connect this to the CMS/email workflow next.`);
+    const form = event.currentTarget;
+    const payload = Object.fromEntries(new FormData(form).entries());
+    payload.expeditionSlug = expedition.slug;
+    try {
+      await postJson('/api/booking', payload);
+      form.reset();
+      setStatus(`Thanks. Your ${expedition.title} enquiry has been saved and the KEAS team will respond soon.`);
+    } catch {
+      setStatus(`Please WhatsApp or call ${site.phone} for ${expedition.title}. The enquiry backend is not running on this host yet.`);
+    }
   }
 
   return (
@@ -715,9 +742,17 @@ function Journal() {
 function Newsletter() {
   const [status, setStatus] = useState('');
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    setStatus('Thanks. We will connect this to the CMS email list when the backend is selected.');
+    const form = event.currentTarget;
+    const payload = Object.fromEntries(new FormData(form).entries());
+    try {
+      await postJson('/api/newsletter', payload);
+      form.reset();
+      setStatus('Subscribed. You will receive KEAS route openings and field notes.');
+    } catch {
+      setStatus(`Thanks. The CMS backend is not running on this host yet, so please also email ${site.emails[0]}.`);
+    }
   }
 
   return (
@@ -738,9 +773,17 @@ function Newsletter() {
 function Contact() {
   const [status, setStatus] = useState('');
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    setStatus('Enquiry captured locally for now. Next step: connect this form to your CMS or email service.');
+    const form = event.currentTarget;
+    const payload = Object.fromEntries(new FormData(form).entries());
+    try {
+      await postJson('/api/contact', payload);
+      form.reset();
+      setStatus('Thanks. Your enquiry has been saved and the KEAS team will respond soon.');
+    } catch {
+      setStatus(`Please call ${site.phone} or email ${site.emails[0]}. The CMS backend is not running on this host yet.`);
+    }
   }
 
   return (
@@ -799,6 +842,7 @@ function Footer() {
 
 function App() {
   const [theme, setTheme] = useState(() => localStorage.getItem('keas-theme') || 'dark');
+  const [, setContentVersion] = useState(0);
   const categorySlug = window.location.hash.match(/^#\/categories\/([^/]+)/)?.[1];
   const experienceSlug = window.location.hash.match(/^#\/experiences\/([^/]+)/)?.[1];
   const expeditionSlug =
@@ -819,6 +863,21 @@ function App() {
       return nextTheme;
     });
   }
+
+  useEffect(() => {
+    fetch('/api/content')
+      .then((response) => {
+        if (!response.ok || !response.headers.get('content-type')?.includes('application/json')) {
+          throw new Error('No runtime content API.');
+        }
+        return response.json();
+      })
+      .then((runtimeContent) => {
+        applyContent(runtimeContent);
+        setContentVersion((version) => version + 1);
+      })
+      .catch(() => {});
+  }, []);
 
   if (selectedExpedition) {
     return (

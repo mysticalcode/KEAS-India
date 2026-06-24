@@ -5,8 +5,875 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>KEAS India CMS</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --bg: #090909;
+        --panel: #151515;
+        --panel-2: #202020;
+        --line: rgba(255, 255, 255, 0.14);
+        --ink: #f7f7f7;
+        --muted: #b8b8b8;
+        --accent: #ef4444;
+        --good: #2dd4bf;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at top left, rgba(239, 68, 68, 0.18), transparent 34rem),
+          linear-gradient(135deg, #050505, #101010 48%, #050505);
+        color: var(--ink);
+      }
+
+      button,
+      input,
+      textarea,
+      select {
+        font: inherit;
+      }
+
+      button {
+        border: 0;
+        cursor: pointer;
+      }
+
+      .shell {
+        display: grid;
+        min-height: 100vh;
+        grid-template-columns: 280px minmax(0, 1fr);
+      }
+
+      .sidebar {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        border-right: 1px solid var(--line);
+        padding: 24px;
+        background: rgba(10, 10, 10, 0.86);
+        backdrop-filter: blur(22px);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 30px;
+      }
+
+      .brand img {
+        width: 42px;
+        height: 42px;
+        object-fit: contain;
+        border-radius: 12px;
+        background: #fff;
+        padding: 5px;
+      }
+
+      .brand strong {
+        display: block;
+        font-size: 1.05rem;
+      }
+
+      .brand span,
+      .hint,
+      .meta {
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      .nav {
+        display: grid;
+        gap: 8px;
+      }
+
+      .nav button,
+      .logout {
+        min-height: 42px;
+        border-radius: 999px;
+        padding: 0 16px;
+        background: transparent;
+        color: var(--muted);
+        text-align: left;
+      }
+
+      .nav button.active,
+      .nav button:hover,
+      .logout:hover {
+        background: var(--panel-2);
+        color: var(--ink);
+      }
+
+      .logout {
+        position: absolute;
+        right: 24px;
+        bottom: 24px;
+        left: 24px;
+        border: 1px solid var(--line);
+      }
+
+      .main {
+        padding: 28px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 22px;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 4vw, 4.4rem);
+        letter-spacing: 0;
+        line-height: 0.96;
+      }
+
+      h2 {
+        margin-bottom: 12px;
+        font-size: 1.25rem;
+      }
+
+      h3 {
+        font-size: 1rem;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .btn {
+        display: inline-flex;
+        min-height: 42px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        padding: 0 18px;
+        background: #f7f7f7;
+        color: #080808;
+        font-weight: 700;
+      }
+
+      .btn.secondary {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        color: var(--ink);
+      }
+
+      .grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .stats {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .card,
+      .login-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(21, 21, 21, 0.88);
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.26);
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      .stat strong {
+        display: block;
+        margin-top: 8px;
+        font-size: 2rem;
+      }
+
+      .panel-grid {
+        display: grid;
+        grid-template-columns: 320px minmax(0, 1fr);
+        gap: 16px;
+        align-items: start;
+      }
+
+      .list {
+        display: grid;
+        gap: 8px;
+      }
+
+      .list button {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 12px;
+        background: var(--panel);
+        color: var(--ink);
+        text-align: left;
+      }
+
+      .list button.active,
+      .list button:hover {
+        border-color: rgba(239, 68, 68, 0.7);
+        background: #221313;
+      }
+
+      label {
+        display: grid;
+        gap: 7px;
+        color: var(--muted);
+        font-size: 0.86rem;
+        font-weight: 700;
+      }
+
+      input,
+      textarea,
+      select {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 12px;
+        background: #0d0d0d;
+        color: var(--ink);
+        outline: 0;
+      }
+
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      input:focus,
+      textarea:focus,
+      select:focus {
+        border-color: var(--accent);
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .full {
+        grid-column: 1 / -1;
+      }
+
+      .array-items {
+        display: grid;
+        gap: 8px;
+      }
+
+      .array-item {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 8px;
+        align-items: start;
+      }
+
+      .icon-btn {
+        width: 42px;
+        min-height: 42px;
+        border-radius: 8px;
+        background: #2a1717;
+        color: #fff;
+      }
+
+      .image-preview {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #0c0c0c;
+      }
+
+      .image-preview img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .table {
+        overflow: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 780px;
+      }
+
+      th,
+      td {
+        border-bottom: 1px solid var(--line);
+        padding: 12px;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        color: var(--muted);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+      }
+
+      .pill {
+        display: inline-flex;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 4px 9px;
+        background: var(--panel-2);
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      .notice {
+        min-height: 22px;
+        color: var(--good);
+        font-size: 0.9rem;
+      }
+
+      .login-wrap {
+        display: grid;
+        min-height: 100vh;
+        place-items: center;
+        padding: 24px;
+      }
+
+      .login-card {
+        width: min(440px, 100%);
+        padding: 26px;
+      }
+
+      .login-card img {
+        width: 70px;
+        margin-bottom: 18px;
+        border-radius: 16px;
+        background: #fff;
+        padding: 8px;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      @media (max-width: 900px) {
+        .shell {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+          position: static;
+          height: auto;
+        }
+
+        .logout {
+          position: static;
+          margin-top: 18px;
+        }
+
+        .stats,
+        .panel-grid,
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .topbar {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+    </style>
   </head>
   <body>
-    <script src="https://unpkg.com/decap-cms@^3.6.0/dist/decap-cms.js"></script>
+    <section id="login" class="login-wrap">
+      <form class="login-card" id="loginForm">
+        <img src="/brand/keas-icon.svg" alt="KEAS India" />
+        <h1>KEAS CMS</h1>
+        <p class="hint" style="margin: 12px 0 18px">Manage website content, media, enquiries, bookings, and newsletter leads.</p>
+        <label>
+          Admin password
+          <input name="password" type="password" autocomplete="current-password" placeholder="Enter password" required />
+        </label>
+        <div class="actions" style="margin-top: 16px">
+          <button class="btn" type="submit">Login</button>
+        </div>
+        <p class="notice" id="loginNotice" style="margin-top: 12px"></p>
+      </form>
+    </section>
+
+    <section id="app" class="shell hidden">
+      <aside class="sidebar">
+        <div class="brand">
+          <img src="/brand/keas-icon.svg" alt="" />
+          <div>
+            <strong>KEAS India</strong>
+            <span>Adventure CMS</span>
+          </div>
+        </div>
+        <div class="nav" id="nav"></div>
+        <button class="logout" id="logoutBtn" type="button">Logout</button>
+      </aside>
+      <main class="main">
+        <div class="topbar">
+          <div>
+            <p class="hint">keasindia.com</p>
+            <h1 id="pageTitle">Dashboard</h1>
+          </div>
+          <div class="actions">
+            <button class="btn secondary" id="reloadBtn" type="button">Reload</button>
+            <button class="btn" id="saveBtn" type="button">Save content</button>
+          </div>
+        </div>
+        <p class="notice" id="notice"></p>
+        <div id="view"></div>
+      </main>
+    </section>
+
+    <script>
+      const state = {
+        content: null,
+        submissions: [],
+        currentView: 'dashboard',
+        selected: {}
+      };
+
+      const collections = [
+        ['site', 'Site settings'],
+        ['categories', 'Categories'],
+        ['destinations', 'Destinations'],
+        ['experiences', 'Experiences'],
+        ['expeditions', 'Expeditions'],
+        ['journalPosts', 'Blog posts'],
+        ['customServices', 'Custom services'],
+        ['media', 'Media'],
+        ['submissions', 'Submissions'],
+        ['json', 'Raw JSON']
+      ];
+
+      const $ = (selector) => document.querySelector(selector);
+      const view = $('#view');
+      const notice = $('#notice');
+
+      function setNotice(message, isError = false) {
+        notice.textContent = message;
+        notice.style.color = isError ? '#fca5a5' : 'var(--good)';
+      }
+
+      async function api(path, options = {}) {
+        const response = await fetch(path, {
+          headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
+          credentials: 'same-origin',
+          ...options
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(data.error || 'Request failed');
+        return data;
+      }
+
+      function slugify(value) {
+        return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      }
+
+      function escapeHtml(value) {
+        return String(value ?? '').replace(/[&<>"']/g, (char) => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#039;'
+        })[char]);
+      }
+
+      function updateByPath(path, value) {
+        const parts = path.split('.');
+        let target = state.content;
+        for (let index = 0; index < parts.length - 1; index += 1) {
+          target = target[parts[index]];
+        }
+        target[parts.at(-1)] = value;
+      }
+
+      function field(label, path, value, type = 'text') {
+        const safe = escapeHtml(value);
+        if (type === 'textarea') {
+          return `<label>${label}<textarea data-path="${path}">${safe}</textarea></label>`;
+        }
+        return `<label>${label}<input data-path="${path}" value="${safe}" /></label>`;
+      }
+
+      function arrayEditor(label, path, items = [], multiline = false) {
+        return `
+          <label class="full">${label}</label>
+          <div class="array-items full" data-array="${path}" data-multiline="${multiline}">
+            ${items.map((item, index) => `
+              <div class="array-item">
+                ${multiline ? `<textarea data-array-item="${path}.${index}">${escapeHtml(item)}</textarea>` : `<input data-array-item="${path}.${index}" value="${escapeHtml(item)}" />`}
+                <button class="icon-btn" data-remove-item="${path}.${index}" type="button">x</button>
+              </div>
+            `).join('')}
+            <button class="btn secondary" data-add-item="${path}" type="button">Add ${label.toLowerCase()}</button>
+          </div>
+        `;
+      }
+
+      function renderNav() {
+        $('#nav').innerHTML = [
+          ['dashboard', 'Dashboard'],
+          ...collections
+        ].map(([id, label]) => `<button type="button" class="${state.currentView === id ? 'active' : ''}" data-view="${id}">${label}</button>`).join('');
+      }
+
+      function renderDashboard() {
+        $('#pageTitle').textContent = 'Dashboard';
+        const c = state.content;
+        view.innerHTML = `
+          <div class="grid stats">
+            <article class="card stat"><span class="hint">Experiences</span><strong>${c.experiences.length}</strong></article>
+            <article class="card stat"><span class="hint">Expeditions</span><strong>${c.expeditions.length}</strong></article>
+            <article class="card stat"><span class="hint">Blog posts</span><strong>${c.journalPosts.length}</strong></article>
+            <article class="card stat"><span class="hint">Leads</span><strong>${state.submissions.length}</strong></article>
+          </div>
+          <div class="grid" style="margin-top:16px">
+            <article class="card">
+              <h2>Editorial workflow</h2>
+              <p class="hint">Update content, upload media, save, then run a fresh build before pushing the dist-only public repo.</p>
+            </article>
+            <article class="card">
+              <h2>Latest submissions</h2>
+              ${renderSubmissionsTable(state.submissions.slice(0, 5))}
+            </article>
+          </div>
+        `;
+      }
+
+      function itemLabel(item) {
+        return item.title || item.name || item.label || item.slug || 'Untitled';
+      }
+
+      function renderCollection(key, title) {
+        $('#pageTitle').textContent = title;
+        const items = state.content[key] || [];
+        if (key === 'customServices') {
+          view.innerHTML = `<article class="card"><h2>Custom services</h2>${arrayEditor('Services', 'customServices', items, false)}</article>`;
+          return;
+        }
+        const selectedIndex = state.selected[key] ?? 0;
+        const item = items[selectedIndex];
+        view.innerHTML = `
+          <div class="panel-grid">
+            <aside class="card">
+              <div class="actions" style="margin-bottom:12px">
+                <button class="btn secondary" data-add-record="${key}" type="button">Add</button>
+                <button class="btn secondary" data-duplicate-record="${key}.${selectedIndex}" type="button">Duplicate</button>
+                <button class="btn secondary" data-delete-record="${key}.${selectedIndex}" type="button">Delete</button>
+              </div>
+              <div class="list">
+                ${items.map((entry, index) => `<button type="button" class="${index === selectedIndex ? 'active' : ''}" data-select="${key}.${index}">${escapeHtml(itemLabel(entry))}<br><span class="hint">${escapeHtml(entry.slug || entry.category || entry.region || '')}</span></button>`).join('')}
+              </div>
+            </aside>
+            <section class="card">
+              ${item ? renderItemForm(key, selectedIndex, item) : '<p class="hint">Add the first item.</p>'}
+            </section>
+          </div>
+        `;
+      }
+
+      function renderSite() {
+        $('#pageTitle').textContent = 'Site settings';
+        const site = state.content.site;
+        view.innerHTML = `
+          <article class="card">
+            <div class="form-grid">
+              ${field('Domain', 'site.domain', site.domain)}
+              ${field('Phone', 'site.phone', site.phone)}
+              ${field('Hero image', 'site.heroImage', site.heroImage)}
+              <div class="image-preview"><img src="${escapeHtml(site.heroImage)}" alt=""></div>
+              ${arrayEditor('Emails', 'site.emails', site.emails, false)}
+            </div>
+          </article>
+        `;
+      }
+
+      function renderItemForm(key, index, item) {
+        const base = `${key}.${index}`;
+        if (key === 'categories') {
+          return `<div class="form-grid">
+            ${field('Title', `${base}.title`, item.title)}
+            ${field('Slug', `${base}.slug`, item.slug)}
+            ${field('Image', `${base}.image`, item.image)}
+            <div class="image-preview"><img src="${escapeHtml(item.image)}" alt=""></div>
+            <div class="full">${field('Description', `${base}.description`, item.description, 'textarea')}</div>
+            ${arrayEditor('Details', `${base}.details`, item.details, true)}
+          </div>`;
+        }
+        if (key === 'destinations') {
+          return `<div class="form-grid">
+            ${field('Name', `${base}.name`, item.name)}
+            ${field('Count / label', `${base}.count`, item.count)}
+            ${field('Image', `${base}.image`, item.image)}
+            <div class="image-preview"><img src="${escapeHtml(item.image)}" alt=""></div>
+            <div class="full">${field('Copy', `${base}.copy`, item.copy, 'textarea')}</div>
+          </div>`;
+        }
+        if (key === 'experiences') {
+          return `<div class="form-grid">
+            ${field('Title', `${base}.title`, item.title)}
+            ${field('Slug', `${base}.slug`, item.slug)}
+            ${field('Category', `${base}.category`, item.category)}
+            ${field('Duration', `${base}.duration`, item.duration)}
+            ${field('Group', `${base}.group`, item.group)}
+            ${field('Price', `${base}.price`, item.price)}
+            ${field('Rating', `${base}.rating`, item.rating)}
+            ${field('Reviews', `${base}.reviews`, item.reviews)}
+            ${field('Image', `${base}.image`, item.image)}
+            <div class="image-preview"><img src="${escapeHtml(item.image)}" alt=""></div>
+            <div class="full">${field('Summary', `${base}.summary`, item.summary, 'textarea')}</div>
+            ${arrayEditor('Itinerary', `${base}.itinerary`, item.itinerary, true)}
+          </div>`;
+        }
+        if (key === 'expeditions') {
+          return `<div class="form-grid">
+            ${field('Title', `${base}.title`, item.title)}
+            ${field('Slug', `${base}.slug`, item.slug)}
+            ${field('Region', `${base}.region`, item.region)}
+            ${field('Altitude', `${base}.altitude`, item.altitude)}
+            ${field('Duration', `${base}.duration`, item.duration)}
+            ${field('Difficulty', `${base}.difficulty`, item.difficulty)}
+            ${field('Best season', `${base}.bestSeason`, item.bestSeason)}
+            ${field('Group', `${base}.group`, item.group)}
+            ${field('Price', `${base}.price`, item.price)}
+            ${field('Rating', `${base}.rating`, item.rating)}
+            ${field('Reviews', `${base}.reviews`, item.reviews)}
+            <div class="full">${field('Summary', `${base}.summary`, item.summary, 'textarea')}</div>
+            ${arrayEditor('Gallery', `${base}.gallery`, item.gallery, false)}
+            ${arrayEditor('Highlights', `${base}.highlights`, item.highlights, false)}
+            ${arrayEditor('Things to pack', `${base}.packing`, item.packing, true)}
+            ${arrayEditor('Itinerary', `${base}.itinerary`, item.itinerary, true)}
+          </div>`;
+        }
+        if (key === 'journalPosts') {
+          return `<div class="form-grid">
+            ${field('Title', `${base}.title`, item.title)}
+            ${field('Slug', `${base}.slug`, item.slug)}
+            ${field('Date', `${base}.date`, item.date)}
+            ${field('Image', `${base}.image`, item.image)}
+            <div class="image-preview"><img src="${escapeHtml(item.image)}" alt=""></div>
+            <div class="full">${field('Excerpt', `${base}.excerpt`, item.excerpt, 'textarea')}</div>
+            ${arrayEditor('Body paragraphs', `${base}.body`, item.body, true)}
+          </div>`;
+        }
+        return '<p class="hint">No editor configured.</p>';
+      }
+
+      function renderMedia() {
+        $('#pageTitle').textContent = 'Media';
+        view.innerHTML = `
+          <article class="card">
+            <h2>Upload image</h2>
+            <p class="hint" style="margin-bottom:14px">Images are copied to /uploads/cms and can be pasted into any image field.</p>
+            <input id="mediaInput" type="file" accept="image/*" />
+            <div class="actions" style="margin-top:14px">
+              <button class="btn" id="uploadBtn" type="button">Upload</button>
+            </div>
+            <p class="notice" id="mediaNotice" style="margin-top:12px"></p>
+          </article>
+        `;
+      }
+
+      function renderSubmissionsTable(items) {
+        if (!items.length) return '<p class="hint">No submissions yet.</p>';
+        return `<div class="table"><table>
+          <thead><tr><th>Type</th><th>Date</th><th>Name / Email</th><th>Phone</th><th>Message</th></tr></thead>
+          <tbody>${items.map((item) => `
+            <tr>
+              <td><span class="pill">${escapeHtml(item.type)}</span></td>
+              <td>${escapeHtml(new Date(item.createdAt).toLocaleString())}</td>
+              <td>${escapeHtml(item.name || item.email || '-')}</td>
+              <td>${escapeHtml(item.phone || '-')}</td>
+              <td>${escapeHtml(item.message || item.expedition || item.experience || '-')}</td>
+            </tr>
+          `).join('')}</tbody>
+        </table></div>`;
+      }
+
+      function renderSubmissions() {
+        $('#pageTitle').textContent = 'Submissions';
+        view.innerHTML = `<article class="card"><h2>Leads, bookings, and newsletter signups</h2>${renderSubmissionsTable(state.submissions)}</article>`;
+      }
+
+      function renderJson() {
+        $('#pageTitle').textContent = 'Raw JSON';
+        view.innerHTML = `
+          <article class="card">
+            <h2>Advanced editor</h2>
+            <textarea id="jsonEditor" style="min-height:60vh">${escapeHtml(JSON.stringify(state.content, null, 2))}</textarea>
+            <div class="actions" style="margin-top:12px">
+              <button class="btn secondary" id="applyJsonBtn" type="button">Apply JSON</button>
+            </div>
+          </article>
+        `;
+      }
+
+      function render() {
+        renderNav();
+        setNotice('');
+        if (state.currentView === 'dashboard') renderDashboard();
+        else if (state.currentView === 'site') renderSite();
+        else if (state.currentView === 'media') renderMedia();
+        else if (state.currentView === 'submissions') renderSubmissions();
+        else if (state.currentView === 'json') renderJson();
+        else renderCollection(state.currentView, collections.find(([id]) => id === state.currentView)?.[1] || 'Content');
+      }
+
+      async function load() {
+        state.content = await api('/api/content');
+        state.submissions = await api('/api/submissions');
+        $('#login').classList.add('hidden');
+        $('#app').classList.remove('hidden');
+        render();
+      }
+
+      async function save() {
+        await api('/api/content', { method: 'PUT', body: JSON.stringify(state.content) });
+        setNotice('Saved. Rebuild the site to publish static changes.');
+      }
+
+      function wireEvents() {
+        document.addEventListener('input', (event) => {
+          const path = event.target.dataset.path;
+          const arrayItem = event.target.dataset.arrayItem;
+          if (path) updateByPath(path, event.target.value);
+          if (arrayItem) updateByPath(arrayItem, event.target.value);
+        });
+
+        document.addEventListener('click', async (event) => {
+          const navButton = event.target.closest('[data-view]');
+          if (navButton) {
+            state.currentView = navButton.dataset.view;
+            render();
+          }
+
+          const select = event.target.closest('[data-select]');
+          if (select) {
+            const [key, index] = select.dataset.select.split('.');
+            state.selected[key] = Number(index);
+            render();
+          }
+
+          const add = event.target.closest('[data-add-record]');
+          if (add) {
+            const key = add.dataset.addRecord;
+            const source = state.content[key][state.content[key].length - 1] || {};
+            const clone = JSON.parse(JSON.stringify(source));
+            clone.title = clone.title ? `${clone.title} Copy` : clone.name ? `${clone.name} Copy` : 'New item';
+            clone.name = clone.name ? `${clone.name} Copy` : clone.name;
+            clone.slug = slugify(clone.title || clone.name || 'new-item');
+            state.content[key].push(clone);
+            state.selected[key] = state.content[key].length - 1;
+            render();
+          }
+
+          const duplicate = event.target.closest('[data-duplicate-record]');
+          if (duplicate) {
+            const [key, index] = duplicate.dataset.duplicateRecord.split('.');
+            const clone = JSON.parse(JSON.stringify(state.content[key][Number(index)]));
+            clone.title = clone.title ? `${clone.title} Copy` : clone.title;
+            clone.name = clone.name ? `${clone.name} Copy` : clone.name;
+            clone.slug = slugify(clone.title || clone.name || 'copy');
+            state.content[key].splice(Number(index) + 1, 0, clone);
+            state.selected[key] = Number(index) + 1;
+            render();
+          }
+
+          const del = event.target.closest('[data-delete-record]');
+          if (del) {
+            const [key, index] = del.dataset.deleteRecord.split('.');
+            state.content[key].splice(Number(index), 1);
+            state.selected[key] = Math.max(0, Number(index) - 1);
+            render();
+          }
+
+          const addItem = event.target.closest('[data-add-item]');
+          if (addItem) {
+            const parts = addItem.dataset.addItem.split('.');
+            let target = state.content;
+            for (const part of parts) target = target[part];
+            target.push('');
+            render();
+          }
+
+          const removeItem = event.target.closest('[data-remove-item]');
+          if (removeItem) {
+            const parts = removeItem.dataset.removeItem.split('.');
+            const index = Number(parts.pop());
+            let target = state.content;
+            for (const part of parts) target = target[part];
+            target.splice(index, 1);
+            render();
+          }
+
+          if (event.target.id === 'applyJsonBtn') {
+            state.content = JSON.parse($('#jsonEditor').value);
+            setNotice('JSON applied. Save to write it.');
+            render();
+          }
+
+          if (event.target.id === 'uploadBtn') {
+            const file = $('#mediaInput').files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = async () => {
+              const media = await api('/api/media', {
+                method: 'POST',
+                body: JSON.stringify({ filename: file.name, dataUrl: reader.result })
+              });
+              $('#mediaNotice').textContent = `Uploaded: ${media.url}`;
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+
+        $('#loginForm').addEventListener('submit', async (event) => {
+          event.preventDefault();
+          try {
+            await api('/api/auth/login', {
+              method: 'POST',
+              body: JSON.stringify({ password: new FormData(event.currentTarget).get('password') })
+            });
+            await load();
+          } catch (error) {
+            $('#loginNotice').textContent = error.message;
+          }
+        });
+
+        $('#saveBtn').addEventListener('click', () => save().catch((error) => setNotice(error.message, true)));
+        $('#reloadBtn').addEventListener('click', () => load().catch((error) => setNotice(error.message, true)));
+        $('#logoutBtn').addEventListener('click', async () => {
+          await api('/api/auth/logout', { method: 'POST', body: '{}' });
+          location.reload();
+        });
+      }
+
+      wireEvents();
+      load().catch(() => {
+        $('#login').classList.remove('hidden');
+        $('#app').classList.add('hidden');
+      });
+    </script>
   </body>
 </html>

@@ -7,6 +7,9 @@ references/
 public/uploads/
 dist/uploads/
 deploy-dist/
+server/data/submissions/*.json
+server/data/media/*
+!server/data/media/.gitkeep
 
 *.log
 __pycache__/
