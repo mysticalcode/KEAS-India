@@ -183,6 +183,12 @@ async function writeContent(content) {
       'INSERT INTO keas_content (id, data) VALUES (?, ?) ON DUPLICATE KEY UPDATE data = VALUES(data)',
       ['site', JSON.stringify(content)]
     );
+    try {
+      await syncContentFiles(content);
+    } catch (error) {
+      console.warn(`Content saved to MySQL, but file sync failed: ${error.message}`);
+    }
+    return;
   }
   await syncContentFiles(content);
 }
