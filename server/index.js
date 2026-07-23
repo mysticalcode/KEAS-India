@@ -21,6 +21,19 @@ const port = Number(process.env.PORT || 4174);
 const adminPassword = process.env.KEAS_CMS_PASSWORD || 'keas-admin';
 const sessionSecret = process.env.KEAS_CMS_SECRET || 'keas-local-secret-change-me';
 const isProduction = process.env.NODE_ENV === 'production';
+const databaseUrl = process.env.DATABASE_URL || process.env.MYSQL_URL || '';
+const mysqlConfig = {
+  host: process.env.MYSQL_HOST || process.env.DB_HOST,
+  port: Number(process.env.MYSQL_PORT || process.env.DB_PORT || 3306),
+  user: process.env.MYSQL_USER || process.env.DB_USER,
+  password: process.env.MYSQL_PASSWORD || process.env.DB_PASSWORD,
+  database: process.env.MYSQL_DATABASE || process.env.DB_NAME,
+  waitForConnections: true,
+  connectionLimit: Number(process.env.MYSQL_CONNECTION_LIMIT || 5),
+  namedPlaceholders: true
+};
+const hasMysqlConfig = Boolean(databaseUrl || (mysqlConfig.host && mysqlConfig.user && mysqlConfig.database));
+let dbPool = null;
 
 const mimeTypes = {
   '.html': 'text/html; charset=utf-8',
@@ -103,9 +116,60 @@ async function ensureStorage() {
   } catch {
     await fs.copyFile(sourceContentFile, contentFile);
   }
+  if (hasMysqlConfig) {
+    await ensureDatabase();
+  }
 }
 
-async function writeContent(content) {
+async function ensureDatabase() {
+  const mysql = await import('mysql2/promise');
+  dbPool = databaseUrl
+    ? mysql.createPool(`${databaseUrl}${databaseUrl.includes('?') ? '&' : '?'}waitForConnections=true&connectionLimit=${mysqlConfig.connectionLimit}`)
+    : mysql.createPool(mysqlConfig);
+  await dbPool.execute(`
+    CREATE TABLE IF NOT EXISTS keas_content (
+      id VARCHAR(64) PRIMARY KEY,
+      data JSON NOT NULL,
+      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    )
+  `);
+  await dbPool.execute(`
+    CREATE TABLE IF NOT EXISTS keas_submissions (
+      id VARCHAR(64) PRIMARY KEY,
+      type VARCHAR(32) NOT NULL,
+      status VARCHAR(32) NOT NULL DEFAULT 'new',
+      payload JSON NOT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      INDEX idx_type_created (type, created_at)
+    )
+  `);
+  await dbPool.execute(`
+    CREATE TABLE IF NOT EXISTS keas_media (
+      id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+      filename VARCHAR(255) NOT NULL,
+      url VARCHAR(500) NOT NULL,
+      size_bytes INT UNSIGNED NOT NULL DEFAULT 0,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+  const [rows] = await dbPool.execute('SELECT id FROM keas_content WHERE id = ?', ['site']);
+  if (!rows.length) {
+    const initial = JSON.parse(await fs.readFile(contentFile, 'utf8'));
+    await dbPool.execute('INSERT INTO keas_content (id, data) VALUES (?, ?)', ['site', JSON.stringify(initial)]);
+  }
+}
+
+async function readContent() {
+  if (dbPool) {
+    const [rows] = await dbPool.execute('SELECT data FROM keas_content WHERE id = ?', ['site']);
+    if (rows[0]?.data) {
+      return typeof rows[0].data === 'string' ? JSON.parse(rows[0].data) : rows[0].data;
+    }
+  }
+  return JSON.parse(await fs.readFile(contentFile, 'utf8'));
+}
+
+async function syncContentFiles(content) {
   const formatted = `${JSON.stringify(content, null, 2)}\n`;
   await fs.writeFile(contentFile, formatted, 'utf8');
   await fs.writeFile(sourceContentFile, formatted, 'utf8');
@@ -113,14 +177,17 @@ async function writeContent(content) {
   await fs.writeFile(distContentFile, formatted, 'utf8');
 }
 
-async function appendSubmission(type, payload) {
-  const file = path.join(submissionsDir, `${type}.json`);
-  let list = [];
-  try {
-    list = JSON.parse(await fs.readFile(file, 'utf8'));
-  } catch {
-    list = [];
+async function writeContent(content) {
+  if (dbPool) {
+    await dbPool.execute(
+      'INSERT INTO keas_content (id, data) VALUES (?, ?) ON DUPLICATE KEY UPDATE data = VALUES(data)',
+      ['site', JSON.stringify(content)]
+    );
   }
+  await syncContentFiles(content);
+}
+
+async function appendSubmission(type, payload) {
   const record = {
     id: `${Date.now()}-${randomBytes(4).toString('hex')}`,
     type,
@@ -128,12 +195,36 @@ async function appendSubmission(type, payload) {
     status: 'new',
     ...payload
   };
+  if (dbPool) {
+    await dbPool.execute(
+      'INSERT INTO keas_submissions (id, type, status, payload, created_at) VALUES (?, ?, ?, ?, ?)',
+      [record.id, type, record.status, JSON.stringify(payload), new Date(record.createdAt)]
+    );
+    return record;
+  }
+  const file = path.join(submissionsDir, `${type}.json`);
+  let list = [];
+  try {
+    list = JSON.parse(await fs.readFile(file, 'utf8'));
+  } catch {
+    list = [];
+  }
   list.unshift(record);
   await fs.writeFile(file, `${JSON.stringify(list, null, 2)}\n`, 'utf8');
   return record;
 }
 
 async function listSubmissions() {
+  if (dbPool) {
+    const [rows] = await dbPool.execute('SELECT id, type, status, payload, created_at FROM keas_submissions ORDER BY created_at DESC LIMIT 500');
+    return rows.map((row) => ({
+      id: row.id,
+      type: row.type,
+      status: row.status,
+      createdAt: new Date(row.created_at).toISOString(),
+      ...(typeof row.payload === 'string' ? JSON.parse(row.payload) : row.payload)
+    }));
+  }
   const names = ['contact', 'booking', 'newsletter'];
   const entries = await Promise.all(
     names.map(async (name) => {
@@ -169,12 +260,16 @@ async function saveMedia({ filename, dataUrl }) {
     path.join(distUploadDir, safeName)
   ];
   await Promise.all(targets.map((target) => fs.writeFile(target, buffer)));
-  return {
+  const media = {
     filename: safeName,
     url: `/uploads/cms/${safeName}`,
     size: buffer.length,
     createdAt: new Date().toISOString()
   };
+  if (dbPool) {
+    await dbPool.execute('INSERT INTO keas_media (filename, url, size_bytes) VALUES (?, ?, ?)', [media.filename, media.url, media.size]);
+  }
+  return media;
 }
 
 async function serveStatic(request, response) {
@@ -242,8 +337,18 @@ async function handleApi(request, response) {
     return;
   }
 
+  if (request.method === 'GET' && url.pathname === '/api/health') {
+    sendJson(response, 200, {
+      ok: true,
+      storage: dbPool ? 'mysql' : 'file',
+      databaseConfigured: hasMysqlConfig,
+      uptime: Math.round(process.uptime())
+    });
+    return;
+  }
+
   if (request.method === 'GET' && url.pathname === '/api/content') {
-    sendJson(response, 200, JSON.parse(await fs.readFile(contentFile, 'utf8')));
+    sendJson(response, 200, await readContent());
     return;
   }
 

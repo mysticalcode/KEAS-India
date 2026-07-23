@@ -3,10 +3,13 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "cms": "node server/index.js",
-    "start": "node server/index.js",
+    "cms": "node app.js",
+    "start": "node app.js",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1"
   },
@@ -15,7 +18,8 @@
     "vite": "^7.0.0",
     "typescript": "^5.8.0",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "mysql2": "^3.14.3"
   },
   "devDependencies": {}
 }

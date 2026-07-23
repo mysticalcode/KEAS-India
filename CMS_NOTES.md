@@ -28,6 +28,8 @@ KEAS_CMS_SECRET=<long random session secret>
 PORT=<host provided port>
 ```
 
+Hostinger MySQL is supported. Add either `DATABASE_URL` or the separate `MYSQL_HOST`, `MYSQL_USER`, `MYSQL_PASSWORD`, and `MYSQL_DATABASE` variables. When these are present, the app automatically creates the SQL tables for content, submissions, and media records.
+
 The CMS can manage:
 
 - Navigation
@@ -43,11 +45,11 @@ The CMS can manage:
 - Expedition booking enquiries
 - Newsletter leads
 
-Content is stored in `server/data/siteData.json` and synced to `src/content/siteData.json` whenever it is saved from the CMS. The public website also fetches `/api/content` at runtime when the backend is running, so edits can appear immediately on the Node-served site.
+Content is stored in MySQL when database variables are configured. Without MySQL, content falls back to `server/data/siteData.json` and syncs to `src/content/siteData.json` whenever it is saved from the CMS. The public website also fetches `/api/content` at runtime when the backend is running, so edits can appear immediately on the Node-served site.
 
 Important hosting note:
 
-The current public deployment repo contains only static `dist` files. That is correct for fast static hosting, but the CMS backend requires Node hosting. Use Hostinger's Node.js app option for the CMS/backend version, or keep the static public repo for the website and run the CMS on a separate Node app.
+The current public deployment repo contains only static `dist` files. That is correct for fast static hosting, but the CMS backend requires Node hosting. Use Hostinger's Node.js app option with the source repo for the CMS/backend version. See `HOSTINGER_NODE_DEPLOYMENT.md`.
 
 Content still needed:
 
