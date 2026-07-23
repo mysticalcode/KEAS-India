@@ -1,6 +1,8 @@
 node_modules/
 .pnpm-store/
 .agents/
+.env
+.env.*
 
 assets-raw/
 references/

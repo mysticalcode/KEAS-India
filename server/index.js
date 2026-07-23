@@ -17,7 +17,29 @@ const distContentFile = path.join(rootDir, 'dist', 'content', 'siteData.json');
 const distDir = path.join(rootDir, 'dist');
 const publicDir = path.join(rootDir, 'public');
 
-const port = Number(process.env.PORT || 4174);
+async function loadEnvFile() {
+  const envFile = path.join(rootDir, '.env');
+  try {
+    const text = await fs.readFile(envFile, 'utf8');
+    for (const line of text.split(/\r?\n/)) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith('#') || !trimmed.includes('=')) continue;
+      const index = trimmed.indexOf('=');
+      const key = trimmed.slice(0, index).trim();
+      const value = trimmed.slice(index + 1).trim().replace(/^['"]|['"]$/g, '');
+      if (key && process.env[key] === undefined) {
+        process.env[key] = value;
+      }
+    }
+  } catch {
+    // Hostinger usually injects env vars from hPanel; .env is optional.
+  }
+}
+
+await loadEnvFile();
+
+const portValue = process.env.PORT || '4174';
+const listenTarget = /^\d+$/.test(portValue) ? Number(portValue) : portValue;
 const adminPassword = process.env.KEAS_CMS_PASSWORD || 'keas-admin';
 const sessionSecret = process.env.KEAS_CMS_SECRET || 'keas-local-secret-change-me';
 const isProduction = process.env.NODE_ENV === 'production';
@@ -108,14 +130,19 @@ async function readJson(request, limit) {
 }
 
 async function ensureStorage() {
-  await fs.mkdir(submissionsDir, { recursive: true });
-  await fs.mkdir(mediaDir, { recursive: true });
-  await fs.mkdir(publicUploadDir, { recursive: true });
-  await fs.mkdir(distUploadDir, { recursive: true });
+  await ensureDirectory(dataDir);
+  await ensureDirectory(submissionsDir);
+  await ensureDirectory(mediaDir);
+  await ensureDirectory(publicUploadDir);
+  await ensureDirectory(distUploadDir);
   try {
     await fs.access(contentFile);
   } catch {
-    await fs.copyFile(sourceContentFile, contentFile);
+    try {
+      await fs.copyFile(sourceContentFile, contentFile);
+    } catch (error) {
+      console.warn(`Content seed copy failed: ${error.message}`);
+    }
   }
   if (hasMysqlConfig) {
     try {
@@ -125,6 +152,14 @@ async function ensureStorage() {
       databaseError = error.message || 'Database connection failed.';
       console.warn(`MySQL unavailable, using file storage fallback: ${databaseError}`);
     }
+  }
+}
+
+async function ensureDirectory(directory) {
+  try {
+    await fs.mkdir(directory, { recursive: true });
+  } catch (error) {
+    console.warn(`Could not create directory ${directory}: ${error.message}`);
   }
 }
 
@@ -161,8 +196,16 @@ async function ensureDatabase() {
   `);
   const [rows] = await dbPool.execute('SELECT id FROM keas_content WHERE id = ?', ['site']);
   if (!rows.length) {
-    const initial = JSON.parse(await fs.readFile(contentFile, 'utf8'));
+    const initial = await readSeedContent();
     await dbPool.execute('INSERT INTO keas_content (id, data) VALUES (?, ?)', ['site', JSON.stringify(initial)]);
+  }
+}
+
+async function readSeedContent() {
+  try {
+    return JSON.parse(await fs.readFile(contentFile, 'utf8'));
+  } catch {
+    return JSON.parse(await fs.readFile(sourceContentFile, 'utf8'));
   }
 }
 
@@ -173,7 +216,7 @@ async function readContent() {
       return typeof rows[0].data === 'string' ? JSON.parse(rows[0].data) : rows[0].data;
     }
   }
-  return JSON.parse(await fs.readFile(contentFile, 'utf8'));
+  return readSeedContent();
 }
 
 async function syncContentFiles(content) {
@@ -427,8 +470,8 @@ http
       sendJson(response, 500, { error: error.message || 'Server error.' });
     }
   })
-  .listen(port, () => {
-    console.log(`KEAS backend running at http://127.0.0.1:${port}`);
+  .listen(listenTarget, () => {
+    console.log(`KEAS backend running on ${typeof listenTarget === 'number' ? `port ${listenTarget}` : listenTarget}`);
     console.log('Admin CMS: /admin');
     if (!process.env.KEAS_CMS_PASSWORD) {
       console.log('Default CMS password: keas-admin');
