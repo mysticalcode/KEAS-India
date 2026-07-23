@@ -34,6 +34,7 @@ const mysqlConfig = {
 };
 const hasMysqlConfig = Boolean(databaseUrl || (mysqlConfig.host && mysqlConfig.user && mysqlConfig.database));
 let dbPool = null;
+let databaseError = '';
 
 const mimeTypes = {
   '.html': 'text/html; charset=utf-8',
@@ -117,7 +118,13 @@ async function ensureStorage() {
     await fs.copyFile(sourceContentFile, contentFile);
   }
   if (hasMysqlConfig) {
-    await ensureDatabase();
+    try {
+      await ensureDatabase();
+    } catch (error) {
+      dbPool = null;
+      databaseError = error.message || 'Database connection failed.';
+      console.warn(`MySQL unavailable, using file storage fallback: ${databaseError}`);
+    }
   }
 }
 
@@ -299,6 +306,11 @@ async function serveStatic(request, response) {
     });
     createReadStream(targetPath).pipe(response);
   } catch {
+    if (path.extname(targetPath)) {
+      response.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+      response.end('Not found');
+      return;
+    }
     const fallback = path.join(distDir, 'index.html');
     try {
       response.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-cache' });
@@ -348,6 +360,7 @@ async function handleApi(request, response) {
       ok: true,
       storage: dbPool ? 'mysql' : 'file',
       databaseConfigured: hasMysqlConfig,
+      databaseError,
       uptime: Math.round(process.uptime())
     });
     return;
