@@ -1,5 +1,5 @@
 import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
-import { createReadStream, promises as fs } from 'node:fs';
+import { createReadStream, promises as fs, readFileSync } from 'node:fs';
 import http from 'node:http';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -17,10 +17,10 @@ const distContentFile = path.join(rootDir, 'dist', 'content', 'siteData.json');
 const distDir = path.join(rootDir, 'dist');
 const publicDir = path.join(rootDir, 'public');
 
-async function loadEnvFile() {
+function loadEnvFile() {
   const envFile = path.join(rootDir, '.env');
   try {
-    const text = await fs.readFile(envFile, 'utf8');
+    const text = readFileSync(envFile, 'utf8');
     for (const line of text.split(/\r?\n/)) {
       const trimmed = line.trim();
       if (!trimmed || trimmed.startsWith('#') || !trimmed.includes('=')) continue;
@@ -36,7 +36,7 @@ async function loadEnvFile() {
   }
 }
 
-await loadEnvFile();
+loadEnvFile();
 
 const portValue = process.env.PORT || '3000';
 const listenTarget = /^\d+$/.test(portValue) ? Number(portValue) : portValue;
@@ -462,31 +462,38 @@ async function handleApi(request, response) {
   sendJson(response, 404, { error: 'API route not found.' });
 }
 
-await ensureLocalStorage();
+async function startServer() {
+  await ensureLocalStorage();
 
-const server = http
-  .createServer(async (request, response) => {
-    try {
-      if (request.url.startsWith('/api/')) {
-        await handleApi(request, response);
-      } else {
-        await serveStatic(request, response);
+  const server = http
+    .createServer(async (request, response) => {
+      try {
+        if (request.url.startsWith('/api/')) {
+          await handleApi(request, response);
+        } else {
+          await serveStatic(request, response);
+        }
+      } catch (error) {
+        sendJson(response, 500, { error: error.message || 'Server error.' });
       }
-    } catch (error) {
-      sendJson(response, 500, { error: error.message || 'Server error.' });
-    }
-  })
-  .listen(listenTarget, () => {
-    console.log(`KEAS backend running on ${typeof listenTarget === 'number' ? `port ${listenTarget}` : listenTarget}`);
-    console.log('Admin CMS: /admin');
-    if (!process.env.KEAS_CMS_PASSWORD) {
-      console.log('Default CMS password: keas-admin');
-    }
+    })
+    .listen(listenTarget, () => {
+      console.log(`KEAS backend running on ${typeof listenTarget === 'number' ? `port ${listenTarget}` : listenTarget}`);
+      console.log('Admin CMS: /admin');
+      if (!process.env.KEAS_CMS_PASSWORD) {
+        console.log('Default CMS password: keas-admin');
+      }
+    });
+
+  server.on('error', (error) => {
+    console.error(`Server failed to start: ${error.message}`);
+    process.exitCode = 1;
   });
 
-server.on('error', (error) => {
-  console.error(`Server failed to start: ${error.message}`);
+  initializeDatabaseInBackground();
+}
+
+startServer().catch((error) => {
+  console.error(`Startup failed: ${error.message}`);
   process.exitCode = 1;
 });
-
-initializeDatabaseInBackground();
