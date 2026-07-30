@@ -853,14 +853,15 @@ function Footer() {
 
 function App() {
   const [theme, setTheme] = useState(() => localStorage.getItem('keas-theme') || 'dark');
+  const [route, setRoute] = useState(() => ({ hash: window.location.hash, pathname: window.location.pathname }));
   const [, setContentVersion] = useState(0);
-  const categorySlug = window.location.hash.match(/^#\/categories\/([^/]+)/)?.[1];
-  const experienceSlug = window.location.hash.match(/^#\/experiences\/([^/]+)/)?.[1];
+  const categorySlug = route.hash.match(/^#\/categories\/([^/]+)/)?.[1];
+  const experienceSlug = route.hash.match(/^#\/experiences\/([^/]+)/)?.[1];
   const expeditionSlug =
-    window.location.hash.match(/^#\/expeditions\/([^/]+)/)?.[1] ||
-    window.location.pathname.match(/^\/expeditions\/([^/]+)/)?.[1];
-  const destinationSlug = window.location.hash.match(/^#\/destinations\/([^/]+)/)?.[1];
-  const blogSlug = window.location.hash.match(/^#\/blog\/([^/]+)/)?.[1];
+    route.hash.match(/^#\/expeditions\/([^/]+)/)?.[1] ||
+    route.pathname.match(/^\/expeditions\/([^/]+)/)?.[1];
+  const destinationSlug = route.hash.match(/^#\/destinations\/([^/]+)/)?.[1];
+  const blogSlug = route.hash.match(/^#\/blog\/([^/]+)/)?.[1];
   const selectedCategory = categories.find((category) => category.slug === categorySlug);
   const selectedExperience = experiences.find((experience) => experience.slug === experienceSlug);
   const selectedExpedition = expeditions.find((expedition) => expedition.slug === expeditionSlug);
@@ -874,6 +875,20 @@ function App() {
       return nextTheme;
     });
   }
+
+  useEffect(() => {
+    function syncRoute() {
+      setRoute({ hash: window.location.hash, pathname: window.location.pathname });
+    }
+
+    window.addEventListener('hashchange', syncRoute);
+    window.addEventListener('popstate', syncRoute);
+
+    return () => {
+      window.removeEventListener('hashchange', syncRoute);
+      window.removeEventListener('popstate', syncRoute);
+    };
+  }, []);
 
   useEffect(() => {
     fetch('/api/content')
