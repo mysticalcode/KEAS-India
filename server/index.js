@@ -38,7 +38,7 @@ async function loadEnvFile() {
 
 await loadEnvFile();
 
-const portValue = process.env.PORT || '4174';
+const portValue = process.env.PORT || '3000';
 const listenTarget = /^\d+$/.test(portValue) ? Number(portValue) : portValue;
 const adminPassword = process.env.KEAS_CMS_PASSWORD || 'keas-admin';
 const sessionSecret = process.env.KEAS_CMS_SECRET || 'keas-local-secret-change-me';
@@ -52,6 +52,7 @@ const mysqlConfig = {
   database: process.env.MYSQL_DATABASE || process.env.DB_NAME,
   waitForConnections: true,
   connectionLimit: Number(process.env.MYSQL_CONNECTION_LIMIT || 5),
+  connectTimeout: Number(process.env.MYSQL_CONNECT_TIMEOUT || 2500),
   namedPlaceholders: true
 };
 const hasMysqlConfig = Boolean(databaseUrl || (mysqlConfig.host && mysqlConfig.user && mysqlConfig.database));
@@ -129,7 +130,7 @@ async function readJson(request, limit) {
   return body ? JSON.parse(body) : {};
 }
 
-async function ensureStorage() {
+async function ensureLocalStorage() {
   await ensureDirectory(dataDir);
   await ensureDirectory(submissionsDir);
   await ensureDirectory(mediaDir);
@@ -144,9 +145,14 @@ async function ensureStorage() {
       console.warn(`Content seed copy failed: ${error.message}`);
     }
   }
+}
+
+async function initializeDatabaseInBackground() {
   if (hasMysqlConfig) {
     try {
       await ensureDatabase();
+      databaseError = '';
+      console.log('MySQL storage connected.');
     } catch (error) {
       dbPool = null;
       databaseError = error.message || 'Database connection failed.';
@@ -456,9 +462,9 @@ async function handleApi(request, response) {
   sendJson(response, 404, { error: 'API route not found.' });
 }
 
-await ensureStorage();
+await ensureLocalStorage();
 
-http
+const server = http
   .createServer(async (request, response) => {
     try {
       if (request.url.startsWith('/api/')) {
@@ -477,3 +483,10 @@ http
       console.log('Default CMS password: keas-admin');
     }
   });
+
+server.on('error', (error) => {
+  console.error(`Server failed to start: ${error.message}`);
+  process.exitCode = 1;
+});
+
+initializeDatabaseInBackground();

@@ -25,10 +25,10 @@ For hosting, set these environment variables:
 ```text
 KEAS_CMS_PASSWORD=<strong private password>
 KEAS_CMS_SECRET=<long random session secret>
-PORT=<host provided port>
+PORT=<host provided port, optional>
 ```
 
-Hostinger MySQL is supported. Add either `DATABASE_URL` or the separate `MYSQL_HOST`, `MYSQL_USER`, `MYSQL_PASSWORD`, and `MYSQL_DATABASE` variables. When these are present, the app automatically creates the SQL tables for content, submissions, and media records.
+Hostinger MySQL is supported. Add either `DATABASE_URL` or the separate `MYSQL_HOST`, `MYSQL_USER`, `MYSQL_PASSWORD`, and `MYSQL_DATABASE` variables. When these are present, the app automatically creates the SQL tables for content, submissions, and media records. If Hostinger does not provide a `PORT` value, the app listens on `3000`, which matches Hostinger's Node.js guidance.
 
 The CMS can manage:
 

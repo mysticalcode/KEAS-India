@@ -42,7 +42,7 @@ KEAS_CMS_PASSWORD=<strong admin password>
 KEAS_CMS_SECRET=<long random session secret>
 ```
 
-Hostinger usually provides `PORT` automatically. Add `PORT` only if the Node.js panel explicitly asks for it.
+Hostinger usually provides `PORT` automatically. Add `PORT` only if the Node.js panel explicitly asks for it. If no `PORT` value is provided, the app listens on `3000`, which matches Hostinger's Node.js guidance.
 
 ## Optional Hostinger MySQL Variables
 
