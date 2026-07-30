@@ -86,15 +86,26 @@ function Hero() {
       <div className="hero-overlay" />
       <div className="hero-inner">
         <div className="hero-title">
+          <p className="hero-kicker">Kinetic Earth Adventure Sports</p>
           <h1>
-            <span>Find</span>
-            <span>your next</span>
+            <span>Himalayan</span>
+            <span>field craft.</span>
           </h1>
-          <p>Curated Himalayan expeditions, treks, retreats, and skill programs with transparent planning and field support.</p>
-          <a className="primary-button" href="#experiences">
-            Discover now
-            <ArrowIcon />
-          </a>
+          <p>Premium expeditions, rock craft, creator retreats, and slow adventure programs designed around safety, culture, and terrain intelligence.</p>
+          <div className="hero-actions">
+            <a className="primary-button" href="#expeditions">
+              Explore expeditions
+              <ArrowIcon />
+            </a>
+            <a className="primary-button ghost hero-secondary" href="#contact">
+              Build custom trip
+            </a>
+          </div>
+          <div className="hero-metrics" aria-label="KEAS India highlights">
+            <span><strong>6K m</strong> alpine objectives</span>
+            <span><strong>Private</strong> cohorts</span>
+            <span><strong>Sainj</strong> valley base</span>
+          </div>
         </div>
         <div className="hero-trust" aria-label="KEAS rating">
           <div className="avatar-row">
@@ -106,8 +117,8 @@ function Hero() {
           <p>Trusted by adventure, creator, and learning cohorts</p>
         </div>
         <h2 className="hero-script">
-          <span>equilibrium</span>
-          <span>journey.</span>
+          <span>move with</span>
+          <span>mountains.</span>
         </h2>
       </div>
     </section>

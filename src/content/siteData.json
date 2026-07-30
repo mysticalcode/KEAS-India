@@ -3,7 +3,7 @@
     "domain": "keasindia.com",
     "phone": "+91 87199 62147",
     "emails": ["info@keasindia.com", "support@keasindia.com", "sales@keasindia.com"],
-    "heroImage": "/images/drive-optimized/hero-pin-parvati.webp"
+    "heroImage": "/images/keas-hero-himalayan.webp"
   },
   "navigation": [
     { "label": "Experiences", "href": "#experiences" },
