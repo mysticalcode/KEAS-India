@@ -984,6 +984,16 @@ li + li {
   gap: 8px;
 }
 
+.primary-button.whatsapp-offer {
+  background: #25d366;
+  color: #07120b;
+}
+
+.contact-whatsapp {
+  width: max-content;
+  margin-top: 24px;
+}
+
 .process {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;

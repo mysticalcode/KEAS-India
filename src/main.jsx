@@ -27,6 +27,11 @@ async function postJson(path, payload) {
   return response.json();
 }
 
+function whatsappUrl(message) {
+  const phone = site.phone.replace(/\D/g, '');
+  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+}
+
 function ArrowIcon() {
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24">
@@ -666,6 +671,8 @@ function Expeditions() {
 }
 
 function TripCta() {
+  const offerMessage = 'Hi KEAS India, I want to enquire on WhatsApp about current offers and custom experiences.';
+
   return (
     <section className="section trip-cta">
       <div>
@@ -680,6 +687,10 @@ function TripCta() {
         </a>
         <a className="primary-button ghost" href="#experiences">
           Explore experiences
+          <ArrowIcon />
+        </a>
+        <a className="primary-button whatsapp-offer" href={whatsappUrl(offerMessage)} target="_blank" rel="noreferrer">
+          Enquire on WhatsApp for offers
           <ArrowIcon />
         </a>
       </div>
@@ -783,6 +794,7 @@ function Newsletter() {
 
 function Contact() {
   const [status, setStatus] = useState('');
+  const offerMessage = 'Hi KEAS India, I want to enquire on WhatsApp about offers, custom experiences, and suitable dates.';
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -803,11 +815,15 @@ function Contact() {
         <p className="eyebrow">Contact us</p>
         <h2>Plan your KEAS India trip with the right level of support.</h2>
         <div className="contact-lines">
-          <a href="tel:+918719962147">{site.phone}</a>
+          <a href={`tel:+${site.phone.replace(/\D/g, '')}`}>{site.phone}</a>
           {site.emails.map((email) => (
             <a href={`mailto:${email}`} key={email}>{email}</a>
           ))}
         </div>
+        <a className="primary-button whatsapp-offer contact-whatsapp" href={whatsappUrl(offerMessage)} target="_blank" rel="noreferrer">
+          Enquire on WhatsApp for offers
+          <ArrowIcon />
+        </a>
       </div>
       <form className="contact-form" aria-label="Contact form" onSubmit={handleSubmit}>
         <div className="form-row">
