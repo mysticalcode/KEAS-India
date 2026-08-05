@@ -424,6 +424,106 @@ p {
   font-weight: 700;
 }
 
+.trust-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.8fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.trust-copy,
+.human-proof,
+.proof-card {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--panel);
+}
+
+.trust-copy {
+  display: grid;
+  align-content: center;
+  gap: 20px;
+  padding: clamp(24px, 4vw, 54px);
+}
+
+.trust-copy h2 {
+  max-width: 720px;
+  color: var(--ink);
+  font-size: clamp(2.6rem, 5vw, 5.7rem);
+  line-height: 0.9;
+}
+
+.trust-copy p:not(.eyebrow) {
+  max-width: 640px;
+  color: color-mix(in srgb, var(--muted) 88%, var(--ink));
+  font-size: clamp(0.98rem, 1.4vw, 1.1rem);
+  line-height: 1.65;
+}
+
+.trust-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.human-proof {
+  display: grid;
+  gap: 8px;
+  padding: 8px;
+}
+
+.proof-photo {
+  position: relative;
+  min-height: 360px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.proof-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.proof-photo span {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.52);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  backdrop-filter: blur(14px);
+}
+
+.proof-card {
+  display: grid;
+  gap: 10px;
+  padding: 18px;
+}
+
+.proof-card strong {
+  color: var(--ink);
+  font-size: 1.1rem;
+  line-height: 1.25;
+}
+
+.trust-grid {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.trust-grid .feature-card {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 22px;
+  background: var(--panel);
+}
+
 .section-heading {
   display: grid;
   grid-template-columns: 1fr 342px;
@@ -1530,7 +1630,8 @@ textarea {
   .about,
   .process,
   .custom-block,
-  .contact {
+  .contact,
+  .trust-section {
     grid-template-columns: 1fr;
   }
 
@@ -1564,6 +1665,10 @@ textarea {
 
   .manifesto-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .trust-grid {
+    grid-template-columns: 1fr;
   }
 
   .expedition-card {
@@ -2332,6 +2437,16 @@ nav {
 
   .hero-trust {
     display: none;
+  }
+
+  .proof-photo {
+    min-height: 280px;
+  }
+
+  .trust-copy,
+  .trust-grid .feature-card,
+  .proof-card {
+    border-radius: 10px;
   }
 
   .hero-script {

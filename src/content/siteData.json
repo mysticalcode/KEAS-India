@@ -8,7 +8,7 @@
       "sales@keasindia.com"
     ],
     "heroImage": "/images/keas-real/img-20260612-wa0054.jpg",
-    "packageLaunchVersion": "2026-08-05-about-page-v1"
+    "packageLaunchVersion": "2026-08-05-sales-home-v1"
   },
   "navigation": [
     {
@@ -22,10 +22,6 @@
     {
       "label": "Expeditions",
       "href": "#expeditions"
-    },
-    {
-      "label": "Destinations",
-      "href": "#destinations"
     },
     {
       "label": "Contact",

@@ -119,20 +119,20 @@ function Hero() {
             <span>Himalayan</span>
             <span>field craft.</span>
           </h1>
-          <p>Premium expeditions, rock craft, creator retreats, and slow adventure programs designed around safety, culture, and terrain intelligence.</p>
+          <p>Book skill-led Himalayan packages with clear prices, real KEAS field support, small teams, and WhatsApp-first planning before you commit.</p>
           <div className="hero-actions">
-            <a className="primary-button" href="#expeditions">
-              Explore expeditions
+            <a className="primary-button" href="#experiences">
+              View packages
               <ArrowIcon />
             </a>
             <a className="primary-button ghost hero-secondary" href="#contact">
-              Build custom trip
+              Talk to KEAS
             </a>
           </div>
           <div className="hero-metrics" aria-label="KEAS India highlights">
-            <span><strong>6K m</strong> alpine objectives</span>
-            <span><strong>Private</strong> cohorts</span>
-            <span><strong>Sainj</strong> valley base</span>
+            <span><strong>5</strong> launch packages</span>
+            <span><strong>4-6</strong> guests per team</span>
+            <span><strong>Aut</strong> pickup options</span>
           </div>
         </div>
         <div className="hero-trust" aria-label="KEAS rating">
@@ -142,7 +142,7 @@ function Hero() {
             <img src="/images/keas-real/img-20260619-wa0001.jpg" alt="" />
           </div>
           <strong>4.9 <span>/ 5</span></strong>
-          <p>Trusted by adventure, creator, and learning cohorts</p>
+          <p>Real field teams, transparent itineraries, and direct booking support</p>
         </div>
         <h2 className="hero-script">
           <span>move with</span>
@@ -193,7 +193,7 @@ function SectionHeading({ eyebrow, title, action, href }) {
       </div>
       {action ? (
         <div className="heading-action">
-          <p>{eyebrow === 'Top destinations' ? 'Pick a base region, then let KEAS shape the route, stay style, activity intensity, and support model.' : 'Every KEAS program can be converted into a private departure with custom dates, route support, and add-on services.'}</p>
+          <p>Every KEAS program can be converted into a private departure with custom dates, route support, and add-on services.</p>
           <a className="primary-button inverted" href={href}>
             {action}
             <ArrowIcon />
@@ -350,11 +350,62 @@ function ExperienceCard({ experience }) {
 function Experiences() {
   return (
     <section className="section experiences" id="experiences">
-      <SectionHeading eyebrow="Launch packages" title="Priced KEAS programs with clear route plans, team sizes, and field support" />
+      <SectionHeading eyebrow="Bookable packages" title="Choose your KEAS experience, then speak directly with the field team" />
       <CategoryTabs />
       <div className="experience-grid">
         {experiences.map((experience) => (
           <ExperienceCard experience={experience} key={experience.slug} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function TrustSection() {
+  const trustPoints = [
+    ['Talk before you pay', `Call or WhatsApp ${site.phone} to confirm dates, fitness, route fit, and available offers.`],
+    ['Small guided teams', 'Most launch packages are built around 4-6 participants so the guide can actually watch the group.'],
+    ['Real mountain systems', 'Each booking includes route briefing, gear check, safety expectations, inclusions, exclusions, and packing guidance.']
+  ];
+
+  return (
+    <section className="section trust-section">
+      <div className="trust-copy">
+        <p className="eyebrow">Why people book KEAS</p>
+        <h2>Human planning before the mountain day begins.</h2>
+        <p>KEAS is not a faceless checkout page. You can speak with the team, understand difficulty honestly, ask what to pack, and choose the package that fits your group instead of guessing from a brochure.</p>
+        <div className="trust-actions">
+          <a className="primary-button" href={whatsappUrl('Hi KEAS India, I want help choosing the right package and current offers.')} target="_blank" rel="noreferrer">
+            Ask on WhatsApp
+            <ArrowIcon />
+          </a>
+          <a className="primary-button ghost" href="#contact">
+            Request a call
+          </a>
+        </div>
+      </div>
+      <div className="human-proof">
+        <div className="proof-photo">
+          <img src="/images/keas-real/img-20260619-wa0000.jpg" alt="KEAS India field team preparing rock craft equipment" loading="lazy" />
+          <span>KEAS field team</span>
+        </div>
+        <div className="proof-card">
+          <div className="avatar-row">
+            <img src="/images/keas-real/img-20260619-wa0000.jpg" alt="" />
+            <img src="/images/keas-real/img-20260612-wa0011.jpg" alt="" />
+            <img src="/images/keas-real/img-20260619-wa0001.jpg" alt="" />
+          </div>
+          <strong>Small teams. Clear calls. Real routes.</strong>
+          <p>Before booking, KEAS helps you match the route to your experience level, comfort, dates, and group profile.</p>
+        </div>
+      </div>
+      <div className="trust-grid">
+        {trustPoints.map(([title, copy], index) => (
+          <article className="feature-card reveal" key={title}>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <h3>{title}</h3>
+            <p>{copy}</p>
+          </article>
         ))}
       </div>
     </section>
@@ -1124,13 +1175,11 @@ function App() {
   const expeditionSlug =
     route.hash.match(/^#\/expeditions\/([^/]+)/)?.[1] ||
     route.pathname.match(/^\/expeditions\/([^/]+)/)?.[1];
-  const destinationSlug = route.hash.match(/^#\/destinations\/([^/]+)/)?.[1];
   const blogSlug = route.hash.match(/^#\/blog\/([^/]+)/)?.[1];
   const isAboutPage = route.hash === '#/about' || route.pathname === '/about';
   const selectedCategory = categories.find((category) => category.slug === categorySlug);
   const selectedExperience = experiences.find((experience) => experience.slug === experienceSlug);
   const selectedExpedition = expeditions.find((expedition) => expedition.slug === expeditionSlug);
-  const selectedDestination = destinations.find((destination) => slugify(destination.name) === destinationSlug);
   const selectedPost = journalPosts.find((post) => post.slug === blogSlug);
 
   function toggleTheme() {
@@ -1197,15 +1246,6 @@ function App() {
     );
   }
 
-  if (selectedDestination) {
-    return (
-      <main data-theme={theme}>
-        <Header theme={theme} onToggleTheme={toggleTheme} />
-        <DestinationDetail destination={selectedDestination} />
-      </main>
-    );
-  }
-
   if (selectedPost) {
     return (
       <main data-theme={theme}>
@@ -1228,11 +1268,11 @@ function App() {
     <main data-theme={theme}>
       <Header theme={theme} onToggleTheme={toggleTheme} />
       <Hero />
+      <Experiences />
+      <TrustSection />
       <About />
-      <Destinations />
       <VideoTour />
       <Expeditions />
-      <Experiences />
       <TripCta />
       <Process />
       <CustomExperiences />
