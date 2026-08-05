@@ -8,7 +8,7 @@
       "sales@keasindia.com"
     ],
     "heroImage": "/images/keas-real/img-20260612-wa0054.jpg",
-    "packageLaunchVersion": "2026-08-05-mobile-real-images-v1"
+    "packageLaunchVersion": "2026-08-05-package-data-v2"
   },
   "navigation": [
     {
@@ -104,11 +104,12 @@
       "rating": "4.9",
       "reviews": "24",
       "difficulty": "Beginner to intermediate",
-      "location": "Sainj Valley",
+      "location": "Sainj Valley wilderness learning zone",
       "pickupDrop": "Aut to Aut",
       "image": "/images/keas-real/img-20260612-wa0011.jpg",
-      "summary": "A hands-on wilderness immersion in Sainj Valley designed to help participants disconnect from comfort and reconnect with nature while learning practical mountain survival skills.",
+      "summary": "A hands-on wilderness workshop in Sainj Valley where participants spend 4 nights and 5 days living with minimal excess while learning mountain survival, camp systems, teamwork, and Leave No Trace habits.",
       "highlights": [
+        "Wilderness survival",
         "Shelter building",
         "Fire making",
         "Water purification",
@@ -129,11 +130,34 @@
         "Insurance or evacuation costs"
       ],
       "itinerary": [
-        "Day 1: Aut pickup, arrival at KEAS base, wilderness briefing, gear orientation, group roles, and low-impact camp discipline.",
-        "Day 2: Shelter building, knot basics, fire-making methods, safe stove use, and evening reflection circle.",
+        "Day 1: Pickup from Aut, arrival at KEAS base, safety briefing, gear check, camp discipline, and introduction to low-impact wilderness living.",
+        "Day 2: Shelter building, knot practice, tarp systems, fire-making methods, stove safety, and evening reflection around decision-making in the wild.",
         "Day 3: Water sourcing, filtration and purification, emergency signalling, basic wilderness first aid, and team problem-solving drills.",
-        "Day 4: Jungle navigation, river-crossing basics, route choice, leadership rotation, and Leave No Trace field practice.",
-        "Day 5: Scenario-based survival challenge, debrief, personal preparedness plan, and drop at Aut."
+        "Day 4: Jungle navigation, river-crossing basics, route choice, leadership rotation, Leave No Trace field practice, and a guided survival scenario.",
+        "Day 5: Final scenario debrief, personal preparedness plan, certificate/closing circle, pack-out audit, and drop at Aut."
+      ],
+      "totalDistance": "Field walks and drills around KEAS base",
+      "startEnd": "Aut pickup, KEAS base program, Aut drop",
+      "skillsCovered": [
+        "Wilderness survival",
+        "Fire making",
+        "Jungle navigation",
+        "Emergency signalling",
+        "Teamwork and leadership",
+        "Shelter building",
+        "Water purification",
+        "River crossing basics",
+        "Basic wilderness first aid",
+        "Leave No Trace principles"
+      ],
+      "thingsToPack": [
+        "Comfortable trekking shoes with good grip",
+        "Warm layer, rain jacket, sun cap, and quick-dry clothing",
+        "One litre water bottle, personal snacks, and small daypack",
+        "Headlamp or torch with spare batteries",
+        "Notebook, pencil, phone, and power bank",
+        "Personal medicines, toiletries, and reusable hygiene items",
+        "Government ID and emergency contact details"
       ]
     },
     {
@@ -146,10 +170,10 @@
       "rating": "4.8",
       "reviews": "19",
       "difficulty": "Beginner to intermediate",
-      "location": "Sainj Valley forest, meadow and open alpine terrain",
+      "location": "Sainj Valley forest, meadow terrain, and open alpine areas",
       "pickupDrop": "Aut to Aut",
       "image": "/images/keas-real/img-20260612-wa0052.jpg",
-      "summary": "A map, compass, and route-planning workshop for participants who want confidence in independent wilderness navigation across forest, meadow, and alpine terrain.",
+      "summary": "A map, compass, and route-planning course built for beginners and improving trekkers who want real confidence reading terrain, following bearings, estimating time, and navigating without depending only on phone signal.",
       "highlights": [
         "Topographic map reading",
         "Compass bearings",
@@ -171,12 +195,33 @@
         "Insurance or evacuation costs"
       ],
       "itinerary": [
-        "Day 1: Aut pickup, Sainj orientation, navigation mindset, map symbols, scale, contour lines, and route-safety briefing.",
-        "Day 2: Compass handling, bearings, back-bearings, pacing, timing, and simple relocation drills near base.",
-        "Day 3: Follow bearings through mixed forest, identify prominent terrain features, and build route confidence in pairs.",
-        "Day 4: Plan a safe route using map, compass, GPS and smartphone cross-checks; estimate distance and travel time.",
-        "Day 5: Team-led navigation exercise over forest and meadow terrain with instructor observation and decision reviews.",
-        "Day 6: Final route-planning assessment, emergency navigation scenarios, debrief, and drop at Aut."
+        "Day 1: Pickup from Aut, Sainj orientation, map symbols, scale, contour lines, route-risk briefing, and field notebook setup.",
+        "Day 2: Compass handling, bearings, back-bearings, pacing, timing, handrails, catching features, and short relocation drills near base.",
+        "Day 3: Follow bearings through mixed forest and meadow terrain, identify prominent terrain features, and review route choices in pairs.",
+        "Day 4: Build a safe route plan using map, compass, GPS, and smartphone cross-checks; estimate distance, height gain, and travel time.",
+        "Day 5: Team-led navigation exercise over forest and open terrain with instructor observation, emergency scenarios, and decision reviews.",
+        "Day 6: Final route-planning assessment, debrief, individual improvement notes, certificate/closing circle, and drop at Aut."
+      ],
+      "totalDistance": "Progressive field navigation routes",
+      "startEnd": "Aut pickup, KEAS base field course, Aut drop",
+      "courseObjectives": [
+        "Read and interpret topographic maps",
+        "Use a compass accurately",
+        "Take and follow bearings",
+        "Navigate using terrain features",
+        "Plan a safe route",
+        "Estimate distance and travel time",
+        "Use GPS and smartphone navigation wisely",
+        "Build confidence in independent wilderness navigation"
+      ],
+      "thingsToPack": [
+        "Comfortable trekking shoes with good grip",
+        "Warm layer, rain jacket, sun cap, and quick-dry clothing",
+        "One litre water bottle, personal snacks, and small daypack",
+        "Headlamp or torch with spare batteries",
+        "Notebook, pencil, phone, and power bank",
+        "Personal medicines, toiletries, and reusable hygiene items",
+        "Government ID and emergency contact details"
       ]
     },
     {
@@ -189,16 +234,16 @@
       "rating": "4.9",
       "reviews": "31",
       "difficulty": "Moderate to difficult",
-      "location": "Shimla to Kinnaur crossover",
+      "location": "Shimla to Kinnaur crossover route",
       "pickupDrop": "Shimla to Shimla",
       "image": "/images/keas-real/img-20260612-wa0049.jpg",
-      "summary": "A post-monsoon crossover trek from the Shimla side toward Kinnaur, shaped for fit trekkers who want forests, meadows, high-pass drama, and a clean route plan.",
+      "summary": "A post-monsoon crossover trek from the Shimla side toward Kinnaur, combining old villages, forests, Dayara meadows, Chandranahan-side acclimatization, a high pass crossing, and a dramatic descent toward Barua.",
       "highlights": [
-        "Janglik start",
-        "High-pass crossing",
-        "Kinnaur exit",
-        "37-40 km route",
-        "Post-monsoon window"
+        "Janglik village start",
+        "Dayara and Litham meadows",
+        "Buran Pass crossing",
+        "Barua village exit",
+        "37-40 km route"
       ],
       "inclusions": [
         "Meals on trek",
@@ -214,18 +259,31 @@
         "Insurance, rescue, or evacuation costs"
       ],
       "itinerary": [
-        "Day 1: Pickup from Shimla, drive to Janglik side, team briefing, document check, and overnight stay.",
-        "Day 2: Trek through village trails and forest sections toward the first meadow camp.",
-        "Day 3: Gradual ascent through open meadows, stream crossings, route briefings, and acclimatization pacing.",
-        "Day 4: Move toward high camp with weather review, pass-day briefing, and early rest.",
-        "Day 5: Cross Buran Pass with controlled pacing and descend toward the Kinnaur side.",
-        "Day 6: Trek toward Barua / exit village, transfer support, closing debrief, and rest.",
-        "Day 7: Buffer or return transfer to Shimla depending on road and weather conditions."
+        "Day 1: Pickup from Shimla and drive toward Janglik. Check documents, settle into the stay, review weather, gear, layering, and the route plan.",
+        "Day 2: Trek from Janglik through village paths, forest sections, and open meadows toward Dayara. Focus on easy pacing and hydration.",
+        "Day 3: Move from Dayara toward Litham through rolling meadows and stream sections. Use the day to acclimatize and prepare for higher camps.",
+        "Day 4: Acclimatization and exploration day around the Chandranahan side, then return/rest near Litham as per weather and team condition.",
+        "Day 5: Trek from Litham toward Dunda high camp. Review pass-day timing, snow/terrain conditions, and early-rest protocol.",
+        "Day 6: Cross Buran Pass with controlled pacing and leader-managed descent. Continue toward Munirang / Barua-side camp depending on conditions.",
+        "Day 7: Trek/drive out via Barua side and return transfer toward Shimla. Final debrief, buffer handling, and drop as per road conditions."
+      ],
+      "totalDistance": "37-40 km trekking route",
+      "maxAltitude": "Approx. 15,000 ft / 4,550 m",
+      "startEnd": "Shimla - Janglik - Buran Pass - Barua - Shimla",
+      "thingsToPack": [
+        "Trekking shoes with good grip and broken-in fit",
+        "Warm layers, fleece, down jacket, and rain shell",
+        "Quick-dry trekking pants, thermal base layer, socks, gloves, and cap",
+        "Headlamp with spare batteries, sunglasses, sunscreen, and lip balm",
+        "Two reusable water bottles or hydration bladder",
+        "Personal medicines, toiletries, towel, and basic hygiene kit",
+        "Small daypack, dry bags, and personal snacks",
+        "Government ID, emergency contacts, and any required medical notes"
       ]
     },
     {
-      "title": "Kaktasar Trek",
-      "slug": "kaktasar-trek-ghnp",
+      "title": "Raktisar Trek",
+      "slug": "raktisar-trek-ghnp",
       "category": "Trekking Packages",
       "duration": "9N / 10D",
       "group": "6 guests per team",
@@ -236,12 +294,12 @@
       "location": "Great Himalayan National Park core zone",
       "pickupDrop": "Aut to Aut",
       "image": "/images/keas-real/img-20260612-wa0042.jpg",
-      "summary": "A deeper GHNP core-zone trek starting and ending from the KEAS base, built for teams who want a longer, quieter, field-supported mountain route.",
+      "summary": "A longer GHNP core-zone trek toward Raktisar, shaped around the KEAS base route noted at roughly 70 km with remote camps, forest-to-alpine transitions, permit-aware movement, and slower pacing for a small six-person team.",
       "highlights": [
         "GHNP core zone",
-        "70 km total route",
+        "Raktisar objective",
+        "70 km KEAS route",
         "Remote camps",
-        "Forest to alpine terrain",
         "KEAS base start/end"
       ],
       "inclusions": [
@@ -258,21 +316,34 @@
         "Insurance, rescue, or evacuation costs"
       ],
       "itinerary": [
-        "Day 1: Aut pickup, KEAS base arrival, permit briefing, gear audit, and route overview.",
-        "Day 2: Trek from base into forest approach trails with movement discipline and ecology briefing.",
-        "Day 3: Continue through GHNP valley terrain, stream sections, and first remote camp setup.",
-        "Day 4: Gain altitude through mixed terrain; hydration, pacing, and weather checks through the day.",
-        "Day 5: Move toward Kaktasar approach zone with slower pacing and terrain-awareness drills.",
-        "Day 6: Exploration / objective day around Kaktasar side depending on weather and team condition.",
-        "Day 7: Begin return route with campsite clean-up and Leave No Trace audit.",
-        "Day 8: Descend through forest sections, local interpretation, and recovery camp.",
-        "Day 9: Trek back toward KEAS base, closing circle, and team debrief.",
-        "Day 10: Breakfast, contingency wrap-up, and drop at Aut."
+        "Day 1: Pickup from Aut, arrival at KEAS base, permit and safety briefing, medical disclosure, gear audit, and route overview.",
+        "Day 2: Begin the approach from KEAS base into forested Sainj Valley trails. Practice steady pacing, hydration discipline, and camp routines.",
+        "Day 3: Continue through GHNP valley terrain toward remote camp. Expect forest, stream sections, and a clear Leave No Trace campsite system.",
+        "Day 4: Gain altitude gradually through mixed forest and meadow terrain. Review weather, route options, and team health before upper camps.",
+        "Day 5: Move toward higher alpine approach terrain with slower pacing, terrain-awareness drills, and early rest for the objective section.",
+        "Day 6: Raktisar / Rakti Sar objective day as permitted by weather, trail, and team condition. Explore the high basin and return to camp safely.",
+        "Day 7: Begin the return route with campsite clean-up, waste audit, and careful descent through alpine-to-meadow sections.",
+        "Day 8: Descend through forest and river-valley terrain, using recovery pacing and local ecology interpretation through the day.",
+        "Day 9: Trek back toward KEAS base, close the field loop, dry gear, debrief decisions, and celebrate the team finish.",
+        "Day 10: Breakfast, contingency wrap-up, feedback circle, and drop at Aut."
+      ],
+      "totalDistance": "70 km KEAS base route",
+      "maxAltitude": "Approx. 4,500 m at Rakti Sar",
+      "startEnd": "KEAS Base to KEAS Base",
+      "thingsToPack": [
+        "Trekking shoes with good grip and broken-in fit",
+        "Warm layers, fleece, down jacket, and rain shell",
+        "Quick-dry trekking pants, thermal base layer, socks, gloves, and cap",
+        "Headlamp with spare batteries, sunglasses, sunscreen, and lip balm",
+        "Two reusable water bottles or hydration bladder",
+        "Personal medicines, toiletries, towel, and basic hygiene kit",
+        "Small daypack, dry bags, and personal snacks",
+        "Government ID, emergency contacts, and any required medical notes"
       ]
     },
     {
-      "title": "Thinni Top Trek",
-      "slug": "thinni-top-trek",
+      "title": "Thini Top Trek",
+      "slug": "thini-top-trek",
       "category": "Trekking Packages",
       "duration": "4N / 5D",
       "group": "6 guests per team",
@@ -283,7 +354,7 @@
       "location": "Sainj Valley / KEAS base route",
       "pickupDrop": "Aut to Aut",
       "image": "/images/keas-real/img-20260619-wa0001.jpg",
-      "summary": "A compact Sainj Valley trek starting and ending from the KEAS base, ideal for first-timers, families, and groups wanting a gentler post-monsoon mountain route.",
+      "summary": "A compact Sainj Valley trek for first-timers, families, and small groups who want a gentler mountain route with KEAS base support, viewpoint walking, forest sections, and enough time to move slowly.",
       "highlights": [
         "KEAS base start/end",
         "Easy-moderate route",
@@ -305,11 +376,21 @@
         "Insurance or evacuation costs"
       ],
       "itinerary": [
-        "Day 1: Aut pickup, KEAS base arrival, route briefing, gear check, and gentle acclimatization walk.",
-        "Day 2: Trek through Sainj Valley village and forest trails toward the first camp / stay.",
-        "Day 3: Ascend toward Thinni Top viewpoint with slow pacing, photography pauses, and field lunch.",
-        "Day 4: Descent via alternate forest route, recovery, local food, and closing debrief at base.",
-        "Day 5: Breakfast, optional short walk, and drop at Aut."
+        "Day 1: Pickup from Aut, arrival at KEAS base, route briefing, gear check, safety orientation, and a gentle acclimatization walk.",
+        "Day 2: Walk through Sainj Valley village and forest trails toward the first stay/camp. Keep the pace relaxed for first-time trekkers.",
+        "Day 3: Ascend toward Thini Top viewpoint with photography pauses, packed lunch, and ridge/valley interpretation from the guide.",
+        "Day 4: Descend through an alternate forest route where possible, return to base, recover, enjoy local food, and complete the closing debrief.",
+        "Day 5: Breakfast, optional short walk or skills recap, pack-up support, and drop at Aut."
+      ],
+      "totalDistance": "Approx. 9-12 km walking route",
+      "startEnd": "KEAS Base to KEAS Base",
+      "thingsToPack": [
+        "Comfortable trekking shoes with good grip",
+        "Warm layer, light rain jacket, sun cap, and quick-dry clothing",
+        "One litre water bottle, personal snacks, and small daypack",
+        "Headlamp or torch with spare batteries",
+        "Personal medicines, toiletries, and reusable hygiene items",
+        "Government ID and emergency contact details"
       ]
     }
   ],

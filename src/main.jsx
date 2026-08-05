@@ -296,6 +296,12 @@ function AnimatedItinerary({ items, compact = false }) {
 }
 
 function ExperienceCard({ experience }) {
+  const quickFacts = [
+    experience.totalDistance ? ['Distance', experience.totalDistance] : null,
+    experience.maxAltitude ? ['Altitude', experience.maxAltitude] : null,
+    experience.startEnd ? ['Route', experience.startEnd] : null
+  ].filter(Boolean);
+
   return (
     <article className="experience-card package-card reveal">
       <div className="experience-media">
@@ -308,7 +314,7 @@ function ExperienceCard({ experience }) {
       <div className="experience-body">
         <div>
           <h3>{experience.title}</h3>
-          <p>{experience.category} · {experience.location}</p>
+          <p>{experience.category} - {experience.location}</p>
         </div>
         <div className="experience-meta">
           <span>{experience.difficulty}</span>
@@ -316,7 +322,16 @@ function ExperienceCard({ experience }) {
           <span>{experience.pickupDrop}</span>
         </div>
         <p>{experience.summary}</p>
-        <AnimatedItinerary items={experience.itinerary.slice(0, 2)} compact />
+        {quickFacts.length ? (
+          <div className="package-facts" aria-label={`${experience.title} quick facts`}>
+            {quickFacts.map(([label, value]) => (
+              <span key={label}>
+                <strong>{label}</strong>
+                {value}
+              </span>
+            ))}
+          </div>
+        ) : null}
         <div className="highlight-row package-highlights">
           {(experience.highlights || []).slice(0, 4).map((highlight) => (
             <span key={highlight}>{highlight}</span>
@@ -597,6 +612,16 @@ function CategoryDetail({ category }) {
 }
 
 function ExperienceDetail({ experience }) {
+  const quickFacts = [
+    ['Duration', experience.duration],
+    ['Group', experience.group],
+    ['Difficulty', experience.difficulty],
+    ['Pickup/drop', experience.pickupDrop],
+    experience.totalDistance ? ['Distance', experience.totalDistance] : null,
+    experience.maxAltitude ? ['Altitude', experience.maxAltitude] : null,
+    experience.startEnd ? ['Start/end', experience.startEnd] : null
+  ].filter(Boolean);
+
   return (
     <>
       <section className="detail-hero">
@@ -615,6 +640,8 @@ function ExperienceDetail({ experience }) {
             <span>{experience.group}</span>
             <span>{experience.difficulty}</span>
             <span>{experience.pickupDrop}</span>
+            {experience.totalDistance ? <span>{experience.totalDistance}</span> : null}
+            {experience.maxAltitude ? <span>{experience.maxAltitude}</span> : null}
             <span>{experience.price}</span>
             <span>{experience.rating} rating</span>
           </div>
@@ -631,7 +658,18 @@ function ExperienceDetail({ experience }) {
             <div className="detail-panel price-panel">
               <p className="eyebrow">Package price</p>
               <strong>{experience.price}</strong>
-              <p>{experience.duration} · {experience.group} · {experience.pickupDrop}</p>
+              <p>{experience.duration} - {experience.group} - {experience.pickupDrop}</p>
+            </div>
+            <div className="detail-panel">
+              <h3>Quick facts</h3>
+              <dl className="fact-list">
+                {quickFacts.map(([label, value]) => (
+                  <div key={label}>
+                    <dt>{label}</dt>
+                    <dd>{value}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
             <div className="detail-panel">
               <h3>Package highlights</h3>
@@ -641,6 +679,26 @@ function ExperienceDetail({ experience }) {
                 ))}
               </div>
             </div>
+            {experience.skillsCovered ? (
+              <div className="detail-panel">
+                <h3>Skills covered</h3>
+                <ul className="packing-list">
+                  {experience.skillsCovered.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+            {experience.courseObjectives ? (
+              <div className="detail-panel">
+                <h3>Course objectives</h3>
+                <ul className="packing-list">
+                  {experience.courseObjectives.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
             <div className="detail-panel">
               <h3>Inclusions</h3>
               <ul className="packing-list">
@@ -657,6 +715,16 @@ function ExperienceDetail({ experience }) {
                 ))}
               </ul>
             </div>
+            {experience.thingsToPack ? (
+              <div className="detail-panel">
+                <h3>Things to pack</h3>
+                <ul className="packing-list">
+                  {experience.thingsToPack.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
             <BookingForm program={experience} />
           </aside>
         </div>

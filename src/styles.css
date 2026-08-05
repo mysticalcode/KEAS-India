@@ -984,6 +984,32 @@ li + li {
   color: color-mix(in srgb, var(--muted) 92%, var(--ink));
 }
 
+.package-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.package-facts span {
+  display: grid;
+  min-height: 72px;
+  align-content: start;
+  gap: 6px;
+  border: 1px solid color-mix(in srgb, var(--line) 82%, transparent);
+  border-radius: 12px;
+  padding: 10px;
+  background: color-mix(in srgb, var(--panel-2) 78%, transparent);
+  color: var(--ink);
+  font-size: 0.73rem;
+  line-height: 1.35;
+}
+
+.package-facts strong {
+  color: var(--gold);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+}
+
 .package-highlights {
   margin-top: -2px;
 }
@@ -1089,6 +1115,38 @@ li + li {
   color: var(--ink);
   font-size: clamp(2rem, 3.2vw, 3rem);
   line-height: 0.95;
+}
+
+.fact-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.fact-list div {
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  gap: 14px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 10px;
+}
+
+.fact-list div:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.fact-list dt {
+  color: var(--muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.fact-list dd {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.9rem;
+  line-height: 1.45;
 }
 
 @keyframes itineraryStep {
@@ -2213,6 +2271,15 @@ nav {
     min-height: 0;
   }
 
+  .package-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .package-facts span {
+    min-height: 62px;
+    padding: 9px;
+  }
+
   .program-actions {
     gap: 7px;
   }
@@ -2350,6 +2417,19 @@ nav {
   .experience-body,
   .journal-card div {
     padding: 14px 8px 8px;
+  }
+
+  .package-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .package-facts span {
+    min-height: 0;
+  }
+
+  .fact-list div {
+    grid-template-columns: 1fr;
+    gap: 3px;
   }
 
   .expedition-copy {
