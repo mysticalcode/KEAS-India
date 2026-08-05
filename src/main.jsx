@@ -230,7 +230,7 @@ function VideoTour() {
 function CategoryTabs() {
   return (
     <div className="category-tabs" aria-label="Experience filters">
-      <a className="active" href="#experiences">All</a>
+      <a className="active" href="#experiences">All packages</a>
       {categories.map((category) => (
         <a href={`/#/categories/${category.slug}`} key={category.slug}>{category.title}</a>
       ))}
@@ -238,49 +238,81 @@ function CategoryTabs() {
   );
 }
 
+function ProgramActions({ program, kind = 'package' }) {
+  const message = `Hi KEAS India, I want to enquire about ${program.title} (${program.price}). Please share available dates, offers, and booking details.`;
+
+  return (
+    <div className="program-actions">
+      <a className="primary-button" href="/#contact">
+        Instant booking
+        <ArrowIcon />
+      </a>
+      <a className="primary-button whatsapp-offer" href={whatsappUrl(message)} target="_blank" rel="noreferrer">
+        WhatsApp offer
+        <ArrowIcon />
+      </a>
+      <a className="primary-button ghost" href={`/#/${kind === 'expedition' ? 'expeditions' : 'experiences'}/${program.slug}`}>
+        Full itinerary
+        <ArrowIcon />
+      </a>
+    </div>
+  );
+}
+
+function AnimatedItinerary({ items, compact = false }) {
+  return (
+    <ol className={`animated-itinerary${compact ? ' compact' : ''}`}>
+      {items.map((item, index) => (
+        <li key={item} style={{ '--step-delay': `${index * 90}ms` }}>
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          <p>{item}</p>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
 function ExperienceCard({ experience }) {
   return (
-    <a className="experience-card reveal" href={`/#/experiences/${experience.slug}`}>
+    <article className="experience-card package-card reveal">
       <div className="experience-media">
         <img src={experience.image} alt="" loading="lazy" />
         <div className="experience-top">
-          <span>Popular</span>
-          <span className="round-action"><ArrowIcon /></span>
+          <span>{experience.duration}</span>
+          <a className="round-action" href={`/#/experiences/${experience.slug}`} aria-label={`View ${experience.title} itinerary`}><ArrowIcon /></a>
         </div>
       </div>
       <div className="experience-body">
         <div>
           <h3>{experience.title}</h3>
-          <p>{experience.category}</p>
+          <p>{experience.category} · {experience.location}</p>
         </div>
         <div className="experience-meta">
-          <span>{experience.duration}</span>
+          <span>{experience.difficulty}</span>
           <span>{experience.group}</span>
+          <span>{experience.pickupDrop}</span>
         </div>
-        <details>
-          <summary>
-            Detailed itinerary
-            <ArrowIcon />
-          </summary>
-          <ol>
-            {experience.itinerary.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ol>
-        </details>
+        <p>{experience.summary}</p>
+        <AnimatedItinerary items={experience.itinerary.slice(0, 2)} compact />
+        <div className="highlight-row package-highlights">
+          {(experience.highlights || []).slice(0, 4).map((highlight) => (
+            <span key={highlight}>{highlight}</span>
+          ))}
+        </div>
         <div className="experience-foot">
           <strong>{experience.price}</strong>
           <span>{experience.rating} ({experience.reviews})</span>
         </div>
+        <ProgramActions program={experience} />
       </div>
-    </a>
+    </article>
   );
 }
 
 function Experiences() {
   return (
     <section className="section experiences" id="experiences">
-      <SectionHeading eyebrow="Our popular experiences" title="Find the right pace, terrain, and purpose" />
+      <SectionHeading eyebrow="Launch packages" title="Priced KEAS programs with clear route plans, team sizes, and field support" />
       <CategoryTabs />
       <div className="experience-grid">
         {experiences.map((experience) => (
@@ -347,31 +379,35 @@ function ExpeditionCard({ expedition }) {
           <strong>{expedition.price}</strong>
           <span>{expedition.rating} ({expedition.reviews})</span>
         </div>
+        <ProgramActions program={expedition} kind="expedition" />
       </div>
     </article>
   );
 }
 
-function BookingForm({ expedition }) {
+function BookingForm({ expedition, program }) {
   const [status, setStatus] = useState('');
+  const selectedProgram = expedition || program;
+  const programType = expedition ? 'expedition' : 'package';
 
   async function handleBookingSubmit(event) {
     event.preventDefault();
     const form = event.currentTarget;
     const payload = Object.fromEntries(new FormData(form).entries());
-    payload.expeditionSlug = expedition.slug;
+    payload.programSlug = selectedProgram.slug;
+    payload.programType = programType;
     try {
       await postJson('/api/booking', payload);
       form.reset();
-      setStatus(`Thanks. Your ${expedition.title} enquiry has been saved and the KEAS team will respond soon.`);
+      setStatus(`Thanks. Your ${selectedProgram.title} enquiry has been saved and the KEAS team will respond soon.`);
     } catch {
-      setStatus(`Please WhatsApp or call ${site.phone} for ${expedition.title}. The enquiry backend is not running on this host yet.`);
+      setStatus(`Please WhatsApp or call ${site.phone} for ${selectedProgram.title}. The enquiry backend is not running on this host yet.`);
     }
   }
 
   return (
-    <form className="booking-form" aria-label={`${expedition.title} booking enquiry`} onSubmit={handleBookingSubmit}>
-      <h4>Enquire / book this expedition</h4>
+    <form className="booking-form" aria-label={`${selectedProgram.title} booking enquiry`} onSubmit={handleBookingSubmit}>
+      <h4>Instant booking enquiry</h4>
       <div className="form-row">
         <label>
           Name
@@ -387,14 +423,18 @@ function BookingForm({ expedition }) {
         <input name="email" type="email" placeholder="you@example.com" />
       </label>
       <label>
-        Expedition
-        <input name="expedition" type="text" value={expedition.title} readOnly />
+        Program
+        <input name="program" type="text" value={selectedProgram.title} readOnly />
       </label>
       <label>
         Message
         <textarea name="message" rows="5" placeholder="Preferred dates, group size, experience level, and questions." />
       </label>
       <button type="submit">Send booking enquiry</button>
+      <a className="primary-button whatsapp-offer booking-whatsapp" href={whatsappUrl(`Hi KEAS India, I want to book/enquire about ${selectedProgram.title} (${selectedProgram.price}).`)} target="_blank" rel="noreferrer">
+        Enquire on WhatsApp
+        <ArrowIcon />
+      </a>
       {status ? <p className="form-note dark-note">{status}</p> : null}
     </form>
   );
@@ -434,13 +474,14 @@ function ExpeditionDetail({ expedition }) {
           <div className="detail-main">
             <p className="eyebrow">Detailed itinerary</p>
             <h2>Route plan and summit rhythm</h2>
-            <ol className="detail-itinerary">
-              {expedition.itinerary.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ol>
+            <AnimatedItinerary items={expedition.itinerary} />
           </div>
           <aside className="detail-aside">
+            <div className="detail-panel price-panel">
+              <p className="eyebrow">Expedition quote</p>
+              <strong>{expedition.price}</strong>
+              <p>{expedition.duration} · {expedition.group} · {expedition.bestSeason}</p>
+            </div>
             <div className="detail-panel">
               <h3>Things to pack</h3>
               <ul className="packing-list">
@@ -549,6 +590,8 @@ function ExperienceDetail({ experience }) {
           <div className="detail-meta">
             <span>{experience.duration}</span>
             <span>{experience.group}</span>
+            <span>{experience.difficulty}</span>
+            <span>{experience.pickupDrop}</span>
             <span>{experience.price}</span>
             <span>{experience.rating} rating</span>
           </div>
@@ -558,23 +601,40 @@ function ExperienceDetail({ experience }) {
         <div className="detail-layout">
           <div className="detail-main">
             <p className="eyebrow">Detailed itinerary</p>
-            <h2>Daily rhythm and learning flow</h2>
-            <ol className="detail-itinerary">
-              {experience.itinerary.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ol>
+            <h2>Animated day-by-day route plan</h2>
+            <AnimatedItinerary items={experience.itinerary} />
           </div>
           <aside className="detail-aside">
+            <div className="detail-panel price-panel">
+              <p className="eyebrow">Package price</p>
+              <strong>{experience.price}</strong>
+              <p>{experience.duration} · {experience.group} · {experience.pickupDrop}</p>
+            </div>
             <div className="detail-panel">
-              <h3>KEAS support</h3>
+              <h3>Package highlights</h3>
+              <div className="highlight-row">
+                {(experience.highlights || []).map((highlight) => (
+                  <span key={highlight}>{highlight}</span>
+                ))}
+              </div>
+            </div>
+            <div className="detail-panel">
+              <h3>Inclusions</h3>
               <ul className="packing-list">
-                <li>Pre-program briefing and expectation setting.</li>
-                <li>Local coordination for stays, routes, meals, and activity windows.</li>
-                <li>Safety notes, gear guidance, and field debriefs.</li>
+                {(experience.inclusions || []).map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
               </ul>
             </div>
-            <a className="primary-button" href="/#contact">Send enquiry <ArrowIcon /></a>
+            <div className="detail-panel">
+              <h3>Exclusions</h3>
+              <ul className="packing-list">
+                {(experience.exclusions || []).map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+            <BookingForm program={experience} />
           </aside>
         </div>
       </section>
@@ -686,7 +746,7 @@ function TripCta() {
           <ArrowIcon />
         </a>
         <a className="primary-button ghost" href="#experiences">
-          Explore experiences
+          Explore packages
           <ArrowIcon />
         </a>
         <a className="primary-button whatsapp-offer" href={whatsappUrl(offerMessage)} target="_blank" rel="noreferrer">
@@ -860,7 +920,7 @@ function Footer() {
         <a href={isSubPage ? '/#about' : '#about'}>About</a>
         <a href={isSubPage ? '/#contact' : '#contact'}>Contact</a>
         <a href={isSubPage ? '/#journal' : '#journal'}>Blog</a>
-        <a href={isSubPage ? '/#experiences' : '#experiences'}>Our experiences</a>
+        <a href={isSubPage ? '/#experiences' : '#experiences'}>Packages</a>
       </div>
       <p>{site.domain}</p>
     </footer>

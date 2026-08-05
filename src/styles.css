@@ -961,6 +961,138 @@ li + li {
   font-size: 0.875rem;
 }
 
+.package-card {
+  min-height: 640px;
+}
+
+.package-card .experience-media {
+  height: 320px;
+}
+
+.package-card .experience-body > p {
+  min-height: 62px;
+  color: color-mix(in srgb, var(--muted) 92%, var(--ink));
+}
+
+.package-highlights {
+  margin-top: -2px;
+}
+
+.program-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.program-actions .primary-button,
+.booking-whatsapp {
+  width: 100%;
+  min-height: 42px;
+}
+
+.animated-itinerary {
+  position: relative;
+  display: grid;
+  gap: 14px;
+  margin: 30px 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--ink);
+}
+
+.animated-itinerary::before {
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: 17px;
+  width: 1px;
+  background: linear-gradient(180deg, var(--gold), var(--accent), transparent);
+  content: '';
+}
+
+.animated-itinerary li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 14px;
+  align-items: start;
+  margin: 0;
+  opacity: 0;
+  animation: itineraryStep 620ms ease forwards;
+  animation-delay: var(--step-delay);
+}
+
+.animated-itinerary li span {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--gold) 54%, var(--line));
+  border-radius: 50%;
+  background: var(--panel-2);
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.animated-itinerary li p {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: color-mix(in srgb, var(--panel-2) 72%, transparent);
+  color: var(--ink);
+  font-size: 0.84rem;
+}
+
+.animated-itinerary.compact {
+  gap: 8px;
+  margin-top: 0;
+}
+
+.animated-itinerary.compact::before {
+  display: none;
+}
+
+.animated-itinerary.compact li {
+  grid-template-columns: 28px 1fr;
+  gap: 8px;
+}
+
+.animated-itinerary.compact li span {
+  width: 28px;
+  height: 28px;
+  font-size: 0.66rem;
+}
+
+.animated-itinerary.compact li p {
+  padding: 8px 10px;
+  color: var(--muted);
+  font-size: 0.74rem;
+}
+
+.price-panel strong {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--ink);
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  line-height: 0.95;
+}
+
+@keyframes itineraryStep {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .trip-cta,
 .custom-block,
 .newsletter,
@@ -1748,6 +1880,11 @@ nav {
   gap: 14px;
 }
 
+.experience-grid {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
 .destination-card {
   padding: 8px;
 }
@@ -1850,6 +1987,10 @@ nav {
 
   .destination-card:nth-child(1) .image-wrap {
     height: 252px;
+  }
+
+  .experience-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -2014,7 +2155,43 @@ nav {
   .experience-grid,
   .expedition-grid,
   .journal-grid {
+    grid-template-columns: 1fr;
     gap: 12px;
+  }
+
+  .package-card {
+    min-height: 0;
+  }
+
+  .package-card .experience-media {
+    height: auto;
+  }
+
+  .package-card .experience-body > p {
+    min-height: 0;
+  }
+
+  .program-actions {
+    gap: 7px;
+  }
+
+  .animated-itinerary {
+    gap: 10px;
+  }
+
+  .animated-itinerary li {
+    grid-template-columns: 32px 1fr;
+    gap: 10px;
+  }
+
+  .animated-itinerary li span {
+    width: 32px;
+    height: 32px;
+  }
+
+  .animated-itinerary li p {
+    padding: 10px 12px;
+    font-size: 0.8rem;
   }
 
   .destination-card,

@@ -204,7 +204,33 @@ async function ensureDatabase() {
   if (!rows.length) {
     const initial = await readSeedContent();
     await dbPool.execute('INSERT INTO keas_content (id, data) VALUES (?, ?)', ['site', JSON.stringify(initial)]);
+  } else {
+    await migrateSeededContentIfNeeded();
   }
+}
+
+async function migrateSeededContentIfNeeded() {
+  const seed = await readSeedContent();
+  const seedVersion = seed?.site?.packageLaunchVersion;
+  if (!seedVersion) return;
+
+  const [rows] = await dbPool.execute('SELECT data FROM keas_content WHERE id = ?', ['site']);
+  const current = typeof rows[0]?.data === 'string' ? JSON.parse(rows[0].data) : rows[0]?.data;
+  if (current?.site?.packageLaunchVersion === seedVersion) return;
+
+  const merged = {
+    ...current,
+    site: {
+      ...current?.site,
+      ...seed.site
+    },
+    navigation: seed.navigation,
+    categories: seed.categories,
+    experiences: seed.experiences
+  };
+
+  await dbPool.execute('UPDATE keas_content SET data = ? WHERE id = ?', [JSON.stringify(merged), 'site']);
+  await syncContentFiles(merged);
 }
 
 async function readSeedContent() {
