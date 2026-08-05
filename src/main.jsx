@@ -55,18 +55,38 @@ function ThemeIcon({ theme }) {
   );
 }
 
+function MenuIcon({ open }) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24">
+      {open ? (
+        <>
+          <path d="M6 6L18 18" />
+          <path d="M18 6L6 18" />
+        </>
+      ) : (
+        <>
+          <path d="M4 7H20" />
+          <path d="M4 12H20" />
+          <path d="M4 17H20" />
+        </>
+      )}
+    </svg>
+  );
+}
+
 function Header({ theme, onToggleTheme }) {
   const isSubPage = window.location.pathname !== '/' || window.location.hash.startsWith('#/');
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="site-header">
-      <a className="brand" href={isSubPage ? '/' : '#top'} aria-label="KEAS India home">
+    <header className={`site-header${menuOpen ? ' menu-open' : ''}`}>
+      <a className="brand" href={isSubPage ? '/' : '#top'} aria-label="KEAS India home" onClick={() => setMenuOpen(false)}>
         <img className="brand-logo brand-icon" src="/brand/keas-icon.svg" alt="" />
         <span>KEAS India</span>
       </a>
       <nav aria-label="Main navigation">
         {navigation.map((item) => (
-          <a key={item.label} className="nav-link" href={isSubPage ? `/${item.href}` : item.href}>
+          <a key={item.label} className="nav-link" href={isSubPage ? `/${item.href}` : item.href} onClick={() => setMenuOpen(false)}>
             {item.label === 'Experiences' ? 'Experiences' : item.label === 'Journal' ? 'Blog' : item.label}
           </a>
         ))}
@@ -78,6 +98,9 @@ function Header({ theme, onToggleTheme }) {
         </a>
         <button className="theme-toggle" type="button" onClick={onToggleTheme} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}>
           <ThemeIcon theme={theme} />
+        </button>
+        <button className="menu-toggle" type="button" onClick={() => setMenuOpen((open) => !open)} aria-expanded={menuOpen} aria-label={menuOpen ? 'Close menu' : 'Open menu'}>
+          <MenuIcon open={menuOpen} />
         </button>
       </div>
     </header>
@@ -114,9 +137,9 @@ function Hero() {
         </div>
         <div className="hero-trust" aria-label="KEAS rating">
           <div className="avatar-row">
-            <img src="/images/drive-optimized/experience-rock.webp" alt="" />
-            <img src="/images/drive-optimized/experience-pottery.webp" alt="" />
-            <img src="/images/drive-optimized/destination-sainj.webp" alt="" />
+            <img src="/images/keas-real/img-20260619-wa0000.jpg" alt="" />
+            <img src="/images/keas-real/img-20260612-wa0011.jpg" alt="" />
+            <img src="/images/keas-real/img-20260619-wa0001.jpg" alt="" />
           </div>
           <strong>4.9 <span>/ 5</span></strong>
           <p>Trusted by adventure, creator, and learning cohorts</p>
@@ -214,7 +237,7 @@ function VideoTour() {
         <p>We balance route ambition with recovery, acclimatization, local culture, and decision-making in the field.</p>
       </div>
       <div className="video-frame">
-        <img src="/images/drive-optimized/hero-pin-parvati.webp" alt="KEAS India mountain route" loading="lazy" />
+        <img src="/images/keas-real/img-20260612-wa0049.jpg" alt="KEAS India mountain route" loading="lazy" />
         <a className="play-button" href="#expeditions" aria-label="View expedition programs">
           <ArrowIcon />
         </a>

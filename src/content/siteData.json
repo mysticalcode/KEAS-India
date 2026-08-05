@@ -7,8 +7,8 @@
       "support@keasindia.com",
       "sales@keasindia.com"
     ],
-    "heroImage": "/images/keas-hero-himalayan.webp",
-    "packageLaunchVersion": "2026-08-05-packages-v1"
+    "heroImage": "/images/keas-real/img-20260612-wa0054.jpg",
+    "packageLaunchVersion": "2026-08-05-mobile-real-images-v1"
   },
   "navigation": [
     {
@@ -36,7 +36,7 @@
     {
       "title": "Learning Workshops",
       "slug": "learning-workshops",
-      "image": "/images/drive-optimized/experience-culture.webp",
+      "image": "/images/keas-real/img-20260619-wa0000.jpg",
       "description": "Hands-on Sainj Valley field courses for navigation, wilderness awareness, survival systems, teamwork, and low-impact travel habits.",
       "details": [
         "Best for schools, colleges, creator cohorts, corporate learning groups, and beginners who want structured outdoor confidence before harder routes.",
@@ -47,7 +47,7 @@
     {
       "title": "Trekking Packages",
       "slug": "trekking-packages",
-      "image": "/images/drive-optimized/destination-alpine.webp",
+      "image": "/images/keas-real/img-20260612-wa0054.jpg",
       "description": "Post-monsoon Himalayan treks with clear pickup/drop logistics, team-size limits, priced departures, packing guidance, and field support.",
       "details": [
         "Built for groups who want a defined itinerary, transparent inclusions, and real mountain route support rather than vague brochure copy.",
@@ -58,7 +58,7 @@
     {
       "title": "Custom Experiences",
       "slug": "custom-experiences",
-      "image": "/images/drive-optimized/hero-pin-parvati.webp",
+      "image": "/images/keas-real/img-20260612-wa0044.jpg",
       "description": "Private programs built around your group profile, budget, dates, comfort level, learning goals, and terrain appetite.",
       "details": [
         "Good for family trips, WFH cohorts, corporate offsites, creator-led communities, wellness hosts, and outdoor learning retreats.",
@@ -71,25 +71,25 @@
     {
       "name": "Sainj Valley",
       "count": "Base hub",
-      "image": "/images/drive-optimized/destination-sainj.webp",
+      "image": "/images/keas-real/img-20260612-wa0054.jpg",
       "copy": "A quieter base for GHNP ecozone access, forest trails, village stays, rock craft, and slow travel programs."
     },
     {
       "name": "Kullu",
       "count": "Skill routes",
-      "image": "/images/drive-optimized/hero-pin-parvati.webp",
+      "image": "/images/keas-real/img-20260612-wa0011.jpg",
       "copy": "A practical valley hub for technical learning, roadhead logistics, river-valley access, and custom expedition support."
     },
     {
       "name": "Manali",
       "count": "Training gateway",
-      "image": "/images/drive-optimized/destination-manali.webp",
+      "image": "/images/keas-real/img-20260619-wa0000.jpg",
       "copy": "A gateway for acclimatization days, alpine preparation, training culture, and pre-expedition staging."
     },
     {
       "name": "Shimla",
       "count": "Heritage circuits",
-      "image": "/images/drive-optimized/destination-alpine.webp",
+      "image": "/images/keas-real/img-20260612-wa0044.jpg",
       "copy": "A good fit for heritage walks, forest immersion, mindful retreats, creator cohorts, and cultural workshop formats."
     }
   ],
@@ -106,7 +106,7 @@
       "difficulty": "Beginner to intermediate",
       "location": "Sainj Valley",
       "pickupDrop": "Aut to Aut",
-      "image": "/images/drive-optimized/experience-culture.webp",
+      "image": "/images/keas-real/img-20260612-wa0011.jpg",
       "summary": "A hands-on wilderness immersion in Sainj Valley designed to help participants disconnect from comfort and reconnect with nature while learning practical mountain survival skills.",
       "highlights": [
         "Shelter building",
@@ -148,7 +148,7 @@
       "difficulty": "Beginner to intermediate",
       "location": "Sainj Valley forest, meadow and open alpine terrain",
       "pickupDrop": "Aut to Aut",
-      "image": "/images/drive-optimized/destination-sainj.webp",
+      "image": "/images/keas-real/img-20260612-wa0052.jpg",
       "summary": "A map, compass, and route-planning workshop for participants who want confidence in independent wilderness navigation across forest, meadow, and alpine terrain.",
       "highlights": [
         "Topographic map reading",
@@ -191,7 +191,7 @@
       "difficulty": "Moderate to difficult",
       "location": "Shimla to Kinnaur crossover",
       "pickupDrop": "Shimla to Shimla",
-      "image": "/images/drive-optimized/destination-alpine.webp",
+      "image": "/images/keas-real/img-20260612-wa0049.jpg",
       "summary": "A post-monsoon crossover trek from the Shimla side toward Kinnaur, shaped for fit trekkers who want forests, meadows, high-pass drama, and a clean route plan.",
       "highlights": [
         "Janglik start",
@@ -235,7 +235,7 @@
       "difficulty": "Moderate to difficult",
       "location": "Great Himalayan National Park core zone",
       "pickupDrop": "Aut to Aut",
-      "image": "/images/drive-optimized/hero-pin-parvati.webp",
+      "image": "/images/keas-real/img-20260612-wa0042.jpg",
       "summary": "A deeper GHNP core-zone trek starting and ending from the KEAS base, built for teams who want a longer, quieter, field-supported mountain route.",
       "highlights": [
         "GHNP core zone",
@@ -282,7 +282,7 @@
       "difficulty": "Easy to moderate",
       "location": "Sainj Valley / KEAS base route",
       "pickupDrop": "Aut to Aut",
-      "image": "/images/drive-optimized/experience-rock-detail.webp",
+      "image": "/images/keas-real/img-20260619-wa0001.jpg",
       "summary": "A compact Sainj Valley trek starting and ending from the KEAS base, ideal for first-timers, families, and groups wanting a gentler post-monsoon mountain route.",
       "highlights": [
         "KEAS base start/end",
@@ -328,9 +328,9 @@
       "reviews": "21",
       "summary": "A Manali-side snow objective for fit trekkers ready to progress into crampon movement, rope-team discipline, snow-slope judgement, and a guided summit attempt.",
       "gallery": [
-        "https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?auto=format&fit=crop&w=1400&q=82",
-        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1400&q=82",
-        "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1400&q=82"
+        "/images/keas-real/img-20260612-wa0017.jpg",
+        "/images/keas-real/img-20260612-wa0019.jpg",
+        "/images/keas-real/img-20260612-wa0021.jpg"
       ],
       "highlights": [
         "Summit training",
@@ -370,9 +370,9 @@
       "reviews": "17",
       "summary": "A dramatic crossover from the green Bhaba Valley to the stark Pin Valley, built around Kafnu approach days, meadow camps, moraine travel, pass-day pacing, and the exit to Mudh.",
       "gallery": [
-        "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=82",
-        "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1400&q=82",
-        "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1400&q=82"
+        "/images/keas-real/img-20260612-wa0054.jpg",
+        "/images/keas-real/img-20260612-wa0046.jpg",
+        "/images/keas-real/img-20260612-wa0044.jpg"
       ],
       "highlights": [
         "Kafnu approach",
@@ -412,9 +412,9 @@
       "reviews": "8",
       "summary": "A serious pyramid-shaped alpine objective north-west of Manali, suitable only for trained climbers with snow, ice, rope, camp discipline, and altitude experience.",
       "gallery": [
-        "https://images.unsplash.com/photo-1542662565-7e4b66bae529?auto=format&fit=crop&w=1400&q=82",
-        "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1400&q=82",
-        "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1400&q=82"
+        "/images/keas-real/img-20260612-wa0039.jpg",
+        "/images/keas-real/img-20260612-wa0049.jpg",
+        "/images/keas-real/img-20260612-wa0042.jpg"
       ],
       "highlights": [
         "Beas Kund approach",
@@ -458,9 +458,9 @@
       "reviews": "11",
       "summary": "A 6,001 m snow-dome objective above Jagatsukh that demands glacier travel, moraine negotiation, load-ferry planning, fixed-line judgement, and strong acclimatization.",
       "gallery": [
-        "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1400&q=82",
-        "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1400&q=82",
-        "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?auto=format&fit=crop&w=1400&q=82"
+        "/images/keas-real/img-20260612-wa0021.jpg",
+        "/images/keas-real/img-20260612-wa0024.jpg",
+        "/images/keas-real/img-20260612-wa0052.jpg"
       ],
       "highlights": [
         "Jagatsukh approach",
@@ -504,7 +504,7 @@
       "title": "Why Sainj Valley works for slower, deeper adventure",
       "slug": "sainj-valley-slow-adventure",
       "date": "Field notes",
-      "image": "/images/drive-optimized/destination-sainj.webp",
+      "image": "/images/keas-real/img-20260612-wa0044.jpg",
       "excerpt": "Sainj rewards travellers who want forests, village rhythm, GHNP ecozone access, and enough quiet to actually notice the landscape.",
       "body": [
         "Sainj Valley is not designed for rushed checklist travel. That is exactly why it works for KEAS programs. The valley gives groups access to forest trails, village stays, rock craft, food systems, and slower conversations around ecology.",
@@ -516,7 +516,7 @@
       "title": "How KEAS builds safety briefings into every route",
       "slug": "keas-safety-briefings",
       "date": "Safety vault",
-      "image": "/images/drive-optimized/experience-rock-detail.webp",
+      "image": "/images/keas-real/img-20260619-wa0001.jpg",
       "excerpt": "Good safety is not a paragraph in a brochure. It is a repeated habit before, during, and after every mountain day.",
       "body": [
         "Every KEAS route starts with expectation-setting. We look at fitness, prior experience, weather, terrain, gear, road conditions, and the purpose of the group before finalising the day plan.",
@@ -528,7 +528,7 @@
       "title": "Designing Himalayan workations that still feel like travel",
       "slug": "himalayan-workations",
       "date": "Workation",
-      "image": "/images/drive-optimized/journal-culture.webp",
+      "image": "/images/keas-real/img-20260619-wa0000.jpg",
       "excerpt": "A good workation protects work hours and travel energy. The trick is not doing everything; it is designing the day well.",
       "body": [
         "Most workations fail when the itinerary ignores work. KEAS designs these programs around predictable work blocks, morning movement, evening recovery, and realistic expectations around connectivity.",
