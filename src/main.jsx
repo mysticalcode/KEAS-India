@@ -86,7 +86,7 @@ function Header({ theme, onToggleTheme }) {
       </a>
       <nav aria-label="Main navigation">
         {navigation.map((item) => (
-          <a key={item.label} className="nav-link" href={isSubPage ? `/${item.href}` : item.href} onClick={() => setMenuOpen(false)}>
+          <a key={item.label} className="nav-link" href={item.href.startsWith('/#/') ? item.href : isSubPage ? `/${item.href}` : item.href} onClick={() => setMenuOpen(false)}>
             {item.label === 'Experiences' ? 'Experiences' : item.label === 'Journal' ? 'Blog' : item.label}
           </a>
         ))}
@@ -808,6 +808,103 @@ function BlogDetail({ post }) {
   );
 }
 
+function AboutPage() {
+  const beliefs = [
+    ['Nature is not a backdrop.', 'It is a teacher, a responsibility and a place to which we belong.'],
+    ['Confidence is not created by motivational words.', 'It is built by attempting something difficult, learning carefully and discovering that you can do more than you assumed.'],
+    ['Skill matters more than spectacle.', 'The strongest experience is not always the most extreme; it is the one that leaves you more aware, capable and prepared.'],
+    ['Challenge and stillness belong together.', 'There are moments to climb, move and push, and moments to breathe, listen and recover.'],
+    ['Adventure should benefit the places that make it possible.', 'Local knowledge deserves respect, communities deserve meaningful participation, and natural environments deserve more than symbolic promises.']
+  ];
+
+  return (
+    <>
+      <section className="detail-hero about-page-hero">
+        <img src="/images/keas-real/img-20260612-wa0054.jpg" alt="KEAS India mountain landscape" />
+        <div className="hero-overlay" />
+        <div className="detail-hero-inner">
+          <a className="primary-button ghost back-link" href="/#top">
+            <ArrowIcon />
+            Back home
+          </a>
+          <p className="eyebrow">About KEAS India</p>
+          <h1>Adventure that leaves you more capable than it found you.</h1>
+          <p>At KEAS India, travel is designed to teach skill, build judgement, deepen self-awareness, and reconnect people with the natural world.</p>
+          <div className="detail-meta">
+            <span>Kinetic Earth Adventure Sports</span>
+            <span>Skill-led experiences</span>
+            <span>Find Your Equilibrium</span>
+          </div>
+        </div>
+      </section>
+      <section className="section about-page">
+        <article className="about-story detail-main">
+          <p className="eyebrow">Why KEAS exists</p>
+          <h2>Adventure that involves you, not merely entertains you.</h2>
+          <p>At KEAS India - Kinetic Earth Adventure Sports - we believe travel should do more than take you somewhere new. It should teach you a skill, reveal something about you and deepen your relationship with the natural world.</p>
+          <p>Modern life keeps us constantly connected, yet often disconnected from ourselves. Our days move between screens, schedules and familiar routines, leaving little room for uncertainty, movement or genuine discovery. Even travel can become another checklist: arrive, take a photograph and move on.</p>
+          <p>KEAS was created to offer something more meaningful.</p>
+          <p>We design skill-led outdoor experiences that bring together adventure, learning, reflection and responsible exploration. Whether you are handling a rope for the first time, navigating a mountain trail, learning to read changing terrain or simply sitting quietly beneath the trees after a demanding day, every KEAS experience is designed to involve you - not merely entertain you.</p>
+          <p>We do not believe adventure is about chasing danger or proving how fearless you are. Real adventure asks for preparation, humility, awareness and good judgement. It teaches you to remain present when something feels unfamiliar, to trust your growing ability and to recognise when the mountain - not the ego - must have the final word.</p>
+          <p>Beginning in Himachal Pradesh, KEAS is being built around the character of each landscape we enter. Our experiences are shaped by the terrain, local knowledge and the people who understand these places best. As we grow, we aim to work closely with local guides, communities and responsible partners while reducing waste and respecting the ecological limits of every destination.</p>
+          <p>Alongside dedicated outdoor programs, our Work & Wild experiences are designed for people who need to stay professionally connected without remaining personally disconnected. They create room for focused work, meaningful movement and time outdoors - without turning the wilderness into just another office.</p>
+          <p>This balance is what we call equilibrium: effort followed by recovery, courage guided by competence, and adventure grounded in respect.</p>
+        </article>
+        <div className="about-split">
+          <div className="about-image-stack">
+            <img src="/images/keas-real/img-20260619-wa0000.jpg" alt="KEAS India rock craft team" loading="lazy" />
+            <img src="/images/keas-real/img-20260612-wa0044.jpg" alt="Himalayan village landscape" loading="lazy" />
+          </div>
+          <aside className="detail-aside">
+            <div className="detail-panel price-panel">
+              <p className="eyebrow">The KEAS way</p>
+              <strong>Skill. Perspective. Connection.</strong>
+              <p>Every experience should return you with more capability than you arrived with.</p>
+            </div>
+            <div className="detail-panel">
+              <h3>Every KEAS experience should give you</h3>
+              <div className="highlight-row">
+                <span>A new skill</span>
+                <span>A deeper understanding of yourself</span>
+                <span>A stronger connection with nature</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+        <section className="manifesto-band">
+          <div>
+            <p className="eyebrow">Our manifesto</p>
+            <h2>Nature is teacher, responsibility, and belonging.</h2>
+          </div>
+          <div className="manifesto-grid">
+            {beliefs.map(([title, copy], index) => (
+              <article className="feature-card reveal" key={title}>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <h3>{title}</h3>
+                <p>{copy}</p>
+              </article>
+            ))}
+          </div>
+          <p className="about-emphasis">If an experience does none of these, it is not the KEAS way.</p>
+        </section>
+        <article className="about-vision detail-main">
+          <p className="eyebrow">Our vision</p>
+          <h2>A trusted network of skill-led outdoor experiences across India.</h2>
+          <p>Our vision is to grow KEAS into a trusted network of skill-led outdoor experiences across India - beginning in the mountains of Himachal Pradesh and expanding thoughtfully wherever there are landscapes to understand, communities to learn from and meaningful challenges to meet.</p>
+          <p>We want to make outdoor learning more approachable for beginners, more purposeful for experienced adventurers and more responsible toward the places in which it happens. We envision experiences led by capable teams, supported by clear safety systems and designed around honest difficulty levels, local participation and environmental care.</p>
+          <p>Our ambition is not simply to help people escape their everyday lives.</p>
+          <p>It is to help them return with greater confidence, clearer perspective and a renewed sense of connection - to themselves, to other people and to the living world around them.</p>
+          <blockquote>
+            We do not collect destinations. We build capability, perspective and connection - one experience at a time.
+          </blockquote>
+          <h3>KEAS India - Find Your Equilibrium.</h3>
+        </article>
+      </section>
+      <Footer />
+    </>
+  );
+}
+
 function Expeditions() {
   return (
     <section className="section expeditions" id="expeditions">
@@ -1008,7 +1105,7 @@ function Footer() {
         <span>KEAS India</span>
       </a>
       <div className="footer-links">
-        <a href={isSubPage ? '/#about' : '#about'}>About</a>
+        <a href="/#/about">About</a>
         <a href={isSubPage ? '/#contact' : '#contact'}>Contact</a>
         <a href={isSubPage ? '/#journal' : '#journal'}>Blog</a>
         <a href={isSubPage ? '/#experiences' : '#experiences'}>Packages</a>
@@ -1029,6 +1126,7 @@ function App() {
     route.pathname.match(/^\/expeditions\/([^/]+)/)?.[1];
   const destinationSlug = route.hash.match(/^#\/destinations\/([^/]+)/)?.[1];
   const blogSlug = route.hash.match(/^#\/blog\/([^/]+)/)?.[1];
+  const isAboutPage = route.hash === '#/about' || route.pathname === '/about';
   const selectedCategory = categories.find((category) => category.slug === categorySlug);
   const selectedExperience = experiences.find((experience) => experience.slug === experienceSlug);
   const selectedExpedition = expeditions.find((expedition) => expedition.slug === expeditionSlug);
@@ -1113,6 +1211,15 @@ function App() {
       <main data-theme={theme}>
         <Header theme={theme} onToggleTheme={toggleTheme} />
         <BlogDetail post={selectedPost} />
+      </main>
+    );
+  }
+
+  if (isAboutPage) {
+    return (
+      <main data-theme={theme}>
+        <Header theme={theme} onToggleTheme={toggleTheme} />
+        <AboutPage />
       </main>
     );
   }
