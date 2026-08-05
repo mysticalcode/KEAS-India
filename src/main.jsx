@@ -956,6 +956,127 @@ function AboutPage() {
   );
 }
 
+function CreatorPortalPage() {
+  const creatorServices = [
+    ['Route and itinerary backend', 'KEAS helps shape the route, difficulty level, day plan, safety expectations, and operational flow for your group.'],
+    ['Ground logistics', 'Transport coordination, stays, meals, local crew, equipment, permits where applicable, and field support can be handled by KEAS.'],
+    ['Creator-fronted experience', 'You lead the community, content, positioning, and relationship. KEAS operates quietly as the mountain backend.'],
+    ['Custom service menu', 'Choose trekking, workshops, rock craft, navigation, creator retreats, Work & Wild formats, or private community departures.']
+  ];
+
+  return (
+    <>
+      <section className="detail-hero creator-hero">
+        <img src="/images/keas-real/img-20260619-wa0000.jpg" alt="Creator-led KEAS India outdoor group support" />
+        <div className="hero-overlay" />
+        <div className="detail-hero-inner">
+          <a className="primary-button ghost back-link" href="/#top">
+            <ArrowIcon />
+            Back home
+          </a>
+          <p className="eyebrow">Creator Portal</p>
+          <h1>You stay the face of the trip. KEAS becomes the backend.</h1>
+          <p>For creators, influencers, educators, community leaders, and brands who want to lead their own group experiences while KEAS provides the logistics, safety systems, local support, and services behind the scenes.</p>
+          <div className="detail-meta">
+            <span>Creator-led groups</span>
+            <span>KEAS logistics backend</span>
+            <span>Custom service stack</span>
+          </div>
+        </div>
+      </section>
+      <section className="section creator-page">
+        <div className="creator-intro detail-main">
+          <p className="eyebrow">How it works</p>
+          <h2>Creators can be the frontend. KEAS can be the backend.</h2>
+          <p>You bring the audience, voice, community trust, content style, and group intent. KEAS supports the operational side: route planning, logistics, local coordination, safety expectations, field crew, stays, meals, activity support, and custom add-ons based on what you want to offer your group.</p>
+          <p>This is designed for creators who want to lead meaningful mountain experiences without personally managing every moving part on the ground.</p>
+          <div className="creator-actions">
+            <a className="primary-button" href={whatsappUrl('Hi KEAS India, I am a creator/influencer and want to lead my group with KEAS as logistics partner.')} target="_blank" rel="noreferrer">
+              Partner on WhatsApp
+              <ArrowIcon />
+            </a>
+            <a className="primary-button ghost" href="/#contact">Request partnership call</a>
+          </div>
+        </div>
+        <div className="creator-grid">
+          {creatorServices.map(([title, copy], index) => (
+            <article className="feature-card reveal" key={title}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{title}</h3>
+              <p>{copy}</p>
+            </article>
+          ))}
+        </div>
+        <div className="creator-model">
+          <img src="/images/keas-real/img-20260612-wa0044.jpg" alt="Himalayan base village for creator-led KEAS trips" loading="lazy" />
+          <div>
+            <p className="eyebrow">Partnership model</p>
+            <h2>You choose what your group receives.</h2>
+            <ul className="packing-list">
+              <li>Private trekking or learning departures under your community identity.</li>
+              <li>KEAS route, crew, safety, meals, stays, transport, and field operations.</li>
+              <li>Optional workshops: navigation, rock craft, wilderness skills, Work & Wild, recovery, and reflection circles.</li>
+              <li>Custom pricing, inclusions, and deliverables based on your group size and positioning.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <Footer />
+    </>
+  );
+}
+
+function PolicyPage({ type }) {
+  const isCancellation = type === 'cancellation';
+  const title = isCancellation ? 'Booking and Cancellation Policy' : 'Terms and Conditions';
+  const points = isCancellation
+    ? [
+        'Bookings are confirmed after KEAS accepts the selected date, route, group profile, and payment terms.',
+        'Advance payments reserve logistics, crew, stay, permits where applicable, and planning time.',
+        'Cancellations, date changes, and refunds depend on the package, season, supplier commitments, permit rules, and notice period.',
+        'Weather, road closures, safety concerns, medical issues, or government restrictions may require itinerary changes, postponement, or route adjustment.',
+        'For exact cancellation terms for your selected package, contact KEAS before payment confirmation.'
+      ]
+    : [
+        'All KEAS experiences require honest disclosure of fitness, medical conditions, prior experience, age, and emergency contact details.',
+        'Outdoor activities include inherent risks such as weather changes, altitude, terrain, road delays, and route changes.',
+        'Participants must follow safety briefings, guide instructions, equipment protocols, Leave No Trace practices, and local rules.',
+        'Package inclusions, exclusions, pricing, itinerary, and availability may vary by season, route condition, group profile, and logistics requirements.',
+        'KEAS may modify or cancel an activity when safety, weather, permissions, or local conditions require it.'
+      ];
+
+  return (
+    <>
+      <section className="detail-hero policy-hero">
+        <img src="/images/keas-real/img-20260612-wa0046.jpg" alt={`${title} KEAS India`} />
+        <div className="hero-overlay" />
+        <div className="detail-hero-inner">
+          <a className="primary-button ghost back-link" href="/#top">
+            <ArrowIcon />
+            Back home
+          </a>
+          <p className="eyebrow">KEAS India</p>
+          <h1>{title}</h1>
+          <p>Clear expectations help every trip feel professional, safe, and fair before anyone reaches the trailhead.</p>
+        </div>
+      </section>
+      <section className="section detail-page policy-page">
+        <article className="detail-main">
+          <p className="eyebrow">Policy summary</p>
+          <h2>{title}</h2>
+          <ol className="detail-itinerary">
+            {points.map((point) => (
+              <li key={point}>{point}</li>
+            ))}
+          </ol>
+          <p className="policy-note">For package-specific terms, call {site.phone} or email {site.emails[0]} before making payment.</p>
+        </article>
+      </section>
+      <Footer />
+    </>
+  );
+}
+
 function Expeditions() {
   return (
     <section className="section expeditions" id="expeditions">
@@ -1148,20 +1269,46 @@ function Contact() {
 
 function Footer() {
   const isSubPage = window.location.pathname !== '/' || window.location.hash.startsWith('#/');
+  const primaryEmail = site.emails[0];
+  const salesEmail = site.emails.find((email) => email.startsWith('sales')) || primaryEmail;
+  const instagramUrl = site.instagram || 'https://www.instagram.com/keasindia/';
 
   return (
     <footer className="footer">
-      <a className="brand" href={isSubPage ? '/' : '#top'} aria-label="KEAS India home">
-        <img className="brand-logo brand-icon" src="/brand/keas-icon.svg" alt="" />
-        <span>KEAS India</span>
-      </a>
-      <div className="footer-links">
-        <a href="/#/about">About</a>
-        <a href={isSubPage ? '/#contact' : '#contact'}>Contact</a>
-        <a href={isSubPage ? '/#journal' : '#journal'}>Blog</a>
-        <a href={isSubPage ? '/#experiences' : '#experiences'}>Packages</a>
+      <div className="footer-main">
+        <div className="footer-brand">
+          <a className="brand" href={isSubPage ? '/' : '#top'} aria-label="KEAS India home">
+            <img className="brand-logo brand-icon" src="/brand/keas-icon.svg" alt="" />
+            <span>KEAS India</span>
+          </a>
+          <p>Kinetic Earth Adventure Sports - skill-led Himalayan experiences, creator-led trips, workshops, treks, and expedition logistics.</p>
+        </div>
+        <div className="footer-column">
+          <h3>Explore</h3>
+          <a href={isSubPage ? '/#experiences' : '#experiences'}>Packages</a>
+          <a href="/#/creator-portal">Creator Portal</a>
+          <a href="/#/about">About KEAS</a>
+          <a href={isSubPage ? '/#journal' : '#journal'}>Blog</a>
+        </div>
+        <div className="footer-column">
+          <h3>Contact</h3>
+          <a href={`tel:+${site.phone.replace(/\D/g, '')}`}>{site.phone}</a>
+          <a href={`mailto:${primaryEmail}`}>{primaryEmail}</a>
+          <a href={`mailto:${salesEmail}`}>{salesEmail}</a>
+          <a href={instagramUrl} target="_blank" rel="noreferrer">Instagram</a>
+        </div>
+        <div className="footer-column">
+          <h3>Policies</h3>
+          <a href="/#/terms-and-conditions">Terms and Conditions</a>
+          <a href="/#/booking-and-cancellation-policy">Booking and Cancellation Policy</a>
+          <a href={isSubPage ? '/#contact' : '#contact'}>Support</a>
+          <a href={whatsappUrl('Hi KEAS India, I need help with booking terms or cancellation policy.')} target="_blank" rel="noreferrer">WhatsApp Support</a>
+        </div>
       </div>
-      <p>{site.domain}</p>
+      <div className="footer-bottom">
+        <p>Copyright 2026 KEAS India. All rights reserved.</p>
+        <p>{site.domain}</p>
+      </div>
     </footer>
   );
 }
@@ -1177,6 +1324,13 @@ function App() {
     route.pathname.match(/^\/expeditions\/([^/]+)/)?.[1];
   const blogSlug = route.hash.match(/^#\/blog\/([^/]+)/)?.[1];
   const isAboutPage = route.hash === '#/about' || route.pathname === '/about';
+  const isCreatorPage = route.hash === '#/creator-portal' || route.pathname === '/creator-portal';
+  const policyType =
+    route.hash === '#/terms-and-conditions' || route.pathname === '/terms-and-conditions'
+      ? 'terms'
+      : route.hash === '#/booking-and-cancellation-policy' || route.pathname === '/booking-and-cancellation-policy'
+        ? 'cancellation'
+        : null;
   const selectedCategory = categories.find((category) => category.slug === categorySlug);
   const selectedExperience = experiences.find((experience) => experience.slug === experienceSlug);
   const selectedExpedition = expeditions.find((expedition) => expedition.slug === expeditionSlug);
@@ -1260,6 +1414,24 @@ function App() {
       <main data-theme={theme}>
         <Header theme={theme} onToggleTheme={toggleTheme} />
         <AboutPage />
+      </main>
+    );
+  }
+
+  if (isCreatorPage) {
+    return (
+      <main data-theme={theme}>
+        <Header theme={theme} onToggleTheme={toggleTheme} />
+        <CreatorPortalPage />
+      </main>
+    );
+  }
+
+  if (policyType) {
+    return (
+      <main data-theme={theme}>
+        <Header theme={theme} onToggleTheme={toggleTheme} />
+        <PolicyPage type={policyType} />
       </main>
     );
   }
