@@ -1313,7 +1313,172 @@ function Footer() {
   );
 }
 
+const ROUTINE_START = new Date(2026, 7, 6);
+const ROUTINE_DAYS = Array.from({ length: 31 }, (_, index) => {
+  const date = new Date(ROUTINE_START);
+  date.setDate(date.getDate() + index);
+  return date;
+});
+
+const regularRoutine = [
+  ['09:00', 'Wake up', 'Start softly. Water, curtains open, one deep breath.'],
+  ['09:10', 'Breakfast + shower', 'Fuel up and get fresh for the day.'],
+  ['10:30–13:00', 'Study session 1', 'Your strongest focus block.'],
+  ['13:00', 'Lunch', 'Eat properly, honey — your brain needs it.'],
+  ['13:40', 'Rest', 'A real pause, without guilt.'],
+  ['15:30–17:30', 'Study session 2', 'Steady work, one topic at a time.'],
+  ['17:30', 'Break', 'Move, snack, breathe, reset.'],
+  ['18:30–20:00', 'Study session 3', 'A calm evening focus block.'],
+  ['20:00', 'Dinner', 'Close the books and enjoy your meal.'],
+  ['21:00–22:00', 'Study session 4', 'Light review and tidy notes.'],
+  ['22:00', 'Bedtime routine', 'Slow down, screens away, get cosy.'],
+  ['00:00', 'Sleep', 'Rest is part of the plan, baby.']
+];
+
+const easyRoutine = [
+  ['09:00', 'Wake up', 'No rush today, love.'],
+  ['09:10', 'Breakfast + shower', 'A gentle, fresh start.'],
+  ['10:30–12:00', 'Easy study session 1', 'Only the most important topic.'],
+  ['13:00', 'Lunch', 'Eat well and take your time.'],
+  ['13:40', 'Long rest', 'You have permission to truly rest.'],
+  ['15:30–16:30', 'Easy study session 2', 'One small win is enough.'],
+  ['16:30', 'Walk + break', 'Stretch, breathe, and be off-screen.'],
+  ['18:30–19:00', 'Gentle review', 'Flashcards or a quick recap only.'],
+  ['20:00', 'Dinner', 'The rest of the evening is yours.'],
+  ['22:00', 'Bedtime routine', 'Make the night soft and peaceful.'],
+  ['00:00', 'Sleep', 'Recharge fully, honey.']
+];
+
+function dateKey(date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+}
+
+function RoutineLogger() {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [checks, setChecks] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('mahak-routine-checks') || '{}'); } catch { return {}; }
+  });
+  const [notes, setNotes] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('mahak-routine-notes') || '{}'); } catch { return {}; }
+  });
+  const selectedDate = ROUTINE_DAYS[selectedIndex];
+  const key = dateKey(selectedDate);
+  const isEasy = selectedDate.getMonth() === 7 && [8, 9, 10, 11].includes(selectedDate.getDate());
+  const tasks = isEasy ? easyRoutine : regularRoutine;
+  const dayChecks = checks[key] || {};
+  const done = tasks.filter((_, index) => dayChecks[index]).length;
+  const percent = Math.round((done / tasks.length) * 100);
+  const totalChecks = Object.values(checks).reduce((sum, day) => sum + Object.values(day).filter(Boolean).length, 0);
+  const totalTasks = ROUTINE_DAYS.reduce((sum, date) => sum + (date.getMonth() === 7 && [8, 9, 10, 11].includes(date.getDate()) ? easyRoutine.length : regularRoutine.length), 0);
+
+  useEffect(() => {
+    document.title = "Mahak's 31-Day Study Log";
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('mahak-routine-checks', JSON.stringify(checks));
+  }, [checks]);
+
+  useEffect(() => {
+    localStorage.setItem('mahak-routine-notes', JSON.stringify(notes));
+  }, [notes]);
+
+  function toggleTask(index) {
+    setChecks((current) => ({
+      ...current,
+      [key]: { ...(current[key] || {}), [index]: !(current[key] || {})[index] }
+    }));
+  }
+
+  return (
+    <main className="routine-app">
+      <section className="routine-hero">
+        <img src="/routine/together-sunset.jpeg" alt="A loving sunset memory" />
+        <div className="routine-hero-shade" />
+        <div className="routine-hero-copy">
+          <span className="routine-mark">M × M</span>
+          <p className="routine-overline">31 days · 6 Aug — 5 Sep</p>
+          <h1>One gentle day<br />at a time.</h1>
+          <p className="routine-intro">For Mahak — show up, check it off, and remember I’m always cheering for you, love.</p>
+          <a href="#today" className="routine-start">Open today’s plan <span>↓</span></a>
+        </div>
+      </section>
+
+      <section className="routine-dashboard" id="today">
+        <header className="routine-topbar">
+          <div>
+            <span className="routine-eyebrow">Mahak’s monthly log</span>
+            <h2>{selectedDate.toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' })}</h2>
+          </div>
+          <div className="routine-ring" style={{ '--progress': `${percent * 3.6}deg` }} aria-label={`${percent}% complete`}>
+            <span>{percent}%</span>
+          </div>
+        </header>
+
+        <div className="routine-month-progress">
+          <span style={{ width: `${Math.round((totalChecks / totalTasks) * 100)}%` }} />
+        </div>
+        <p className="routine-month-label">Month progress · {totalChecks} little wins</p>
+
+        <div className="routine-date-strip" aria-label="Choose a date">
+          {ROUTINE_DAYS.map((date, index) => {
+            const dateIsEasy = date.getMonth() === 7 && [8, 9, 10, 11].includes(date.getDate());
+            const dateTasks = dateIsEasy ? easyRoutine : regularRoutine;
+            const finished = dateTasks.every((_, taskIndex) => checks[dateKey(date)]?.[taskIndex]);
+            return (
+              <button key={dateKey(date)} type="button" className={`${selectedIndex === index ? 'active ' : ''}${dateIsEasy ? 'easy ' : ''}${finished ? 'finished' : ''}`} onClick={() => setSelectedIndex(index)}>
+                <span>{date.toLocaleDateString('en-IN', { weekday: 'short' }).slice(0, 2)}</span>
+                <strong>{date.getDate()}</strong>
+                <small>{date.toLocaleDateString('en-IN', { month: 'short' })}</small>
+              </button>
+            );
+          })}
+        </div>
+
+        {isEasy && (
+          <div className="routine-easy-note">
+            <span>Soft day</span>
+            <p>Less pressure, more breathing room. Resting is productive too, baby.</p>
+          </div>
+        )}
+
+        <div className="routine-checklist">
+          {tasks.map(([time, title, description], index) => (
+            <label key={`${key}-${title}`} className={dayChecks[index] ? 'checked' : ''}>
+              <input type="checkbox" checked={Boolean(dayChecks[index])} onChange={() => toggleTask(index)} />
+              <span className="routine-box" aria-hidden="true">{dayChecks[index] ? '✓' : ''}</span>
+              <span className="routine-task-copy">
+                <time>{time}</time>
+                <strong>{title}</strong>
+                <small>{description}</small>
+              </span>
+            </label>
+          ))}
+        </div>
+
+        <div className="routine-note-card">
+          <label htmlFor="day-note">A note to myself</label>
+          <textarea id="day-note" value={notes[key] || ''} onChange={(event) => setNotes((current) => ({ ...current, [key]: event.target.value }))} placeholder="What felt good today? What can wait until tomorrow?" />
+          <span>Saved automatically on this device</span>
+        </div>
+
+        <div className="routine-love-card">
+          <img src="/routine/hug-sunset.jpeg" alt="A warm hug at sunset" />
+          <div>
+            <span>From M, with love</span>
+            <blockquote>“You don’t have to be perfect, honey. Just keep choosing yourself — one small promise at a time.”</blockquote>
+            <p>{done === tasks.length ? 'You did it, baby. I’m so proud of you.' : `${tasks.length - done} gentle step${tasks.length - done === 1 ? '' : 's'} left today. You’ve got this.`}</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
+
 function App() {
+  if (window.location.pathname === '/routine' || window.location.pathname === '/routine/') {
+    return <RoutineLogger />;
+  }
   const [theme, setTheme] = useState(() => localStorage.getItem('keas-theme') || 'dark');
   const [route, setRoute] = useState(() => ({ hash: window.location.hash, pathname: window.location.pathname }));
   const [, setContentVersion] = useState(0);

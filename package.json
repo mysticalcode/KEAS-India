@@ -10,7 +10,7 @@
     "dev": "vite --host 127.0.0.1",
     "cms": "node app.js",
     "start": "node app.js",
-    "build": "vite build",
+    "build": "vite build && node scripts/create-sites-worker.mjs",
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {
