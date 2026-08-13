@@ -1127,19 +1127,19 @@ function ExpeditionHealthFormPage() {
         <div className="detail-hero-inner">
           <p className="eyebrow">Guest onboarding</p>
           <h1>Expedition health information form.</h1>
-          <p>This private link helps KEAS understand medical history, altitude experience, emergency contacts, medication, allergies, and insurance before remote mountain travel.</p>
+          <p>Share the medical and emergency details KEAS needs to plan safer remote mountain travel for your selected expedition or trek.</p>
           <div className="detail-meta">
-            <span>Private guest link</span>
-            <span>Stored in CMS</span>
-            <span>JSON backup enabled</span>
+            <span>Medical disclosure</span>
+            <span>Emergency readiness</span>
+            <span>Altitude planning</span>
           </div>
         </div>
       </section>
       <section className="section health-form-page">
         <div className="detail-main health-intro">
           <p className="eyebrow">Before you begin</p>
-          <h2>Complete this honestly so the field team can plan better.</h2>
-          <p>This is not a diagnosis or medical clearance. It helps KEAS prepare for altitude, weather, terrain, emergency response, medications, allergies, and support needs. For high-altitude expeditions, recent illness, chronic disease, abnormal vitals, or any uncertainty, please consult a registered medical practitioner before travel.</p>
+          <h2>Complete this honestly so the field team can prepare responsibly.</h2>
+          <p>This form is not a diagnosis or medical clearance. It helps KEAS prepare for altitude, weather, terrain, emergency response, medications, allergies, and support needs. For high-altitude expeditions, recent illness, chronic disease, abnormal vitals, or any uncertainty, please consult a registered medical practitioner before travel.</p>
         </div>
         <form className="contact-form health-form" aria-label="Expedition health information form" onSubmit={handleSubmit}>
           <fieldset>

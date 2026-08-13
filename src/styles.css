@@ -1766,6 +1766,12 @@ textarea {
   backdrop-filter: blur(14px);
 }
 
+.health-form input,
+.health-form textarea,
+.health-form select {
+  min-width: 0;
+}
+
 .health-form legend {
   padding: 0 8px;
   color: var(--gold);
@@ -1785,12 +1791,17 @@ textarea {
   grid-template-columns: auto 1fr;
   gap: 10px;
   align-items: start;
+  min-width: 0;
   border: 1px solid rgba(255, 250, 242, 0.14);
   border-radius: 12px;
   padding: 11px 12px;
   background: rgba(255, 255, 255, 0.06);
   color: rgba(255, 250, 242, 0.86);
   line-height: 1.35;
+}
+
+.check-option span {
+  min-width: 0;
 }
 
 .check-option input {
@@ -3329,8 +3340,45 @@ main[data-theme='light'] .process-card {
     grid-template-columns: 1fr;
   }
 
+  .health-hero,
+  .health-hero .detail-hero-inner {
+    min-height: 560px;
+  }
+
+  .health-hero .detail-hero-inner {
+    padding-top: 112px;
+    padding-bottom: 34px;
+  }
+
+  .health-hero h1 {
+    font-size: clamp(2.65rem, 14vw, 4.1rem);
+    line-height: 0.96;
+  }
+
+  .health-hero p:not(.eyebrow) {
+    font-size: 0.92rem;
+  }
+
+  .health-form {
+    width: 100%;
+    border-radius: 14px;
+    padding: 10px;
+  }
+
   .health-form fieldset {
+    gap: 12px;
+    border-radius: 12px;
     padding: 14px;
+  }
+
+  .health-form legend {
+    font-size: 0.74rem;
+  }
+
+  .check-option {
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 0.82rem;
   }
 
   .creator-model img {
@@ -3362,6 +3410,11 @@ main[data-theme='light'] .process-card {
   .detail-hero,
   .detail-hero-inner {
     min-height: 640px;
+  }
+
+  .health-hero,
+  .health-hero .detail-hero-inner {
+    min-height: 560px;
   }
 
   .detail-meta span,
