@@ -1719,6 +1719,89 @@ textarea {
   color: var(--ink);
 }
 
+.health-form-page {
+  display: grid;
+  gap: 18px;
+}
+
+.health-intro {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.health-intro h2 {
+  color: var(--ink);
+  font-size: clamp(2.2rem, 5vw, 5rem);
+  line-height: 0.95;
+}
+
+.health-intro p:not(.eyebrow) {
+  margin-top: 16px;
+  color: color-mix(in srgb, var(--muted) 90%, var(--ink));
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.health-form {
+  max-width: 980px;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: clamp(18px, 3vw, 34px);
+  background:
+    linear-gradient(135deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.58)),
+    url('/images/keas-real/img-20260612-wa0042.jpg') center / cover;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.32);
+}
+
+.health-form fieldset {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+  border: 1px solid rgba(255, 250, 242, 0.16);
+  border-radius: 16px;
+  margin: 0;
+  padding: 18px;
+  background: rgba(8, 8, 8, 0.52);
+  backdrop-filter: blur(14px);
+}
+
+.health-form legend {
+  padding: 0 8px;
+  color: var(--gold);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.check-option {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: start;
+  border: 1px solid rgba(255, 250, 242, 0.14);
+  border-radius: 12px;
+  padding: 11px 12px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 250, 242, 0.86);
+  line-height: 1.35;
+}
+
+.check-option input {
+  margin-top: 2px;
+  accent-color: var(--gold);
+}
+
+.acknowledgements {
+  grid-template-columns: 1fr;
+}
+
 .reveal {
   animation: revealUp 680ms ease both;
 }
@@ -3240,6 +3323,14 @@ main[data-theme='light'] .process-card {
   .creator-model {
     grid-template-columns: 1fr;
     border-radius: 12px;
+  }
+
+  .checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .health-form fieldset {
+    padding: 14px;
   }
 
   .creator-model img {

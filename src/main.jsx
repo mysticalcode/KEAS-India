@@ -1077,6 +1077,162 @@ function PolicyPage({ type }) {
   );
 }
 
+function ExpeditionHealthFormPage() {
+  const [status, setStatus] = useState('');
+  const conditionOptions = [
+    'Heart condition / chest pain / fainting',
+    'High blood pressure',
+    'Asthma or respiratory illness',
+    'Diabetes',
+    'Epilepsy / seizures',
+    'Severe allergy / anaphylaxis',
+    'Recent surgery or hospitalisation',
+    'Back, knee, ankle, shoulder, or joint injury',
+    'Anxiety, panic attacks, depression, or mental health concern',
+    'Pregnancy',
+    'None of the above'
+  ];
+
+  const acknowledgementOptions = [
+    'I have disclosed all relevant health information truthfully.',
+    'I understand expedition, trekking, climbing, altitude, terrain, weather, and remoteness involve inherent risks.',
+    'I will carry prescribed medication and inform the KEAS leader where it is packed.',
+    'I will follow guide instructions, pace decisions, gear protocols, campsite discipline, and safety cut-off decisions.',
+    'I understand KEAS may request medical clearance from a registered doctor before confirming participation.'
+  ];
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+    payload.conditions = formData.getAll('conditions');
+    payload.acknowledgements = formData.getAll('acknowledgements');
+    payload.submittedFrom = 'expedition-health-form';
+
+    try {
+      await postJson('/api/expedition-health', payload);
+      form.reset();
+      setStatus('Thanks. Your expedition health information has been securely submitted to KEAS.');
+    } catch {
+      setStatus(`Please call ${site.phone} or email ${site.emails[0]}. The health form backend is not available on this host yet.`);
+    }
+  }
+
+  return (
+    <>
+      <section className="detail-hero health-hero">
+        <img src="/images/keas-real/img-20260612-wa0017.jpg" alt="KEAS India expedition health information form" />
+        <div className="hero-overlay" />
+        <div className="detail-hero-inner">
+          <p className="eyebrow">Guest onboarding</p>
+          <h1>Expedition health information form.</h1>
+          <p>This private link helps KEAS understand medical history, altitude experience, emergency contacts, medication, allergies, and insurance before remote mountain travel.</p>
+          <div className="detail-meta">
+            <span>Private guest link</span>
+            <span>Stored in CMS</span>
+            <span>JSON backup enabled</span>
+          </div>
+        </div>
+      </section>
+      <section className="section health-form-page">
+        <div className="detail-main health-intro">
+          <p className="eyebrow">Before you begin</p>
+          <h2>Complete this honestly so the field team can plan better.</h2>
+          <p>This is not a diagnosis or medical clearance. It helps KEAS prepare for altitude, weather, terrain, emergency response, medications, allergies, and support needs. For high-altitude expeditions, recent illness, chronic disease, abnormal vitals, or any uncertainty, please consult a registered medical practitioner before travel.</p>
+        </div>
+        <form className="contact-form health-form" aria-label="Expedition health information form" onSubmit={handleSubmit}>
+          <fieldset>
+            <legend>Trip and participant details</legend>
+            <div className="form-row">
+              <label>Full name<input name="fullName" type="text" placeholder="Participant name" required /></label>
+              <label>Date of birth<input name="dateOfBirth" type="date" required /></label>
+            </div>
+            <div className="form-row">
+              <label>Phone<input name="phone" type="tel" placeholder="+91" required /></label>
+              <label>Email<input name="email" type="email" placeholder="you@example.com" required /></label>
+            </div>
+            <div className="form-row">
+              <label>Program / expedition<input name="program" type="text" placeholder="Friendship Peak, Raktisar, custom expedition..." required /></label>
+              <label>Departure date<input name="departureDate" type="date" /></label>
+            </div>
+            <div className="form-row">
+              <label>Height<input name="height" type="text" placeholder="cm or ft/in" /></label>
+              <label>Weight<input name="weight" type="text" placeholder="kg" /></label>
+            </div>
+            <label>Blood group, if known<input name="bloodGroup" type="text" placeholder="Example: B+" /></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Emergency and physician contacts</legend>
+            <div className="form-row">
+              <label>Emergency contact name<input name="emergencyContactName" type="text" required /></label>
+              <label>Emergency contact phone<input name="emergencyContactPhone" type="tel" required /></label>
+            </div>
+            <label>Relationship to participant<input name="emergencyContactRelation" type="text" placeholder="Parent, spouse, friend..." /></label>
+            <div className="form-row">
+              <label>Physician name<input name="physicianName" type="text" placeholder="Doctor name, if available" /></label>
+              <label>Physician phone<input name="physicianPhone" type="tel" placeholder="Doctor phone" /></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Medical history</legend>
+            <div className="checkbox-grid">
+              {conditionOptions.map((condition) => (
+                <label className="check-option" key={condition}>
+                  <input name="conditions" type="checkbox" value={condition} />
+                  <span>{condition}</span>
+                </label>
+              ))}
+            </div>
+            <label>Explain any selected condition, past injury, surgery, or limitation<textarea name="conditionDetails" rows="4" placeholder="Include dates, current status, triggers, and restrictions." /></label>
+            <label>Allergies<textarea name="allergies" rows="3" placeholder="Food, medicine, insect sting, latex, etc. Mention severity and treatment." /></label>
+            <label>Current medications<textarea name="medications" rows="3" placeholder="Medicine name, dose, frequency, and where you will carry it." /></label>
+            <label>Recent illness or hospitalisation<textarea name="recentIllness" rows="3" placeholder="Fever, infection, injury, surgery, admission, COVID/flu, etc." /></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Altitude and fitness readiness</legend>
+            <div className="form-row">
+              <label>Highest altitude reached<input name="highestAltitude" type="text" placeholder="Example: 4,500 m / 14,700 ft" /></label>
+              <label>Last trek / expedition date<input name="lastTrekDate" type="text" placeholder="Month and year" /></label>
+            </div>
+            <label>Past altitude illness<textarea name="altitudeIllnessHistory" rows="3" placeholder="AMS, HAPE, HACE, severe headache, vomiting, breathlessness, medication used, descent required." /></label>
+            <label>Current fitness routine<textarea name="fitnessRoutine" rows="3" placeholder="Walking, running, strength training, stairs, sports, frequency per week." /></label>
+            <label>Any concern you want the KEAS leader to know<textarea name="leaderNotes" rows="3" placeholder="Sleep, anxiety, food restrictions, pace concern, previous bad experience, etc." /></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Insurance and consent</legend>
+            <div className="form-row">
+              <label>Travel / rescue insurance provider<input name="insuranceProvider" type="text" placeholder="Provider name, if available" /></label>
+              <label>Policy number<input name="insurancePolicy" type="text" placeholder="Policy number" /></label>
+            </div>
+            <label>Insurance coverage notes<textarea name="insuranceNotes" rows="3" placeholder="Mention whether trekking, high altitude, evacuation, rescue, hospitalisation, or repatriation is covered." /></label>
+            <div className="checkbox-grid acknowledgements">
+              {acknowledgementOptions.map((item) => (
+                <label className="check-option" key={item}>
+                  <input name="acknowledgements" type="checkbox" value={item} required />
+                  <span>{item}</span>
+                </label>
+              ))}
+            </div>
+            <div className="form-row">
+              <label>Digital signature<input name="signature" type="text" placeholder="Type your full name" required /></label>
+              <label>Date<input name="signedDate" type="date" required /></label>
+            </div>
+          </fieldset>
+
+          <button type="submit">Submit health information</button>
+          {status ? <p className="form-note dark-note">{status}</p> : null}
+        </form>
+      </section>
+      <Footer />
+    </>
+  );
+}
+
 function Expeditions() {
   return (
     <section className="section expeditions" id="expeditions">
@@ -1490,6 +1646,7 @@ function App() {
   const blogSlug = route.hash.match(/^#\/blog\/([^/]+)/)?.[1];
   const isAboutPage = route.hash === '#/about' || route.pathname === '/about';
   const isCreatorPage = route.hash === '#/creator-portal' || route.pathname === '/creator-portal';
+  const isHealthFormPage = route.hash === '#/expedition-health-form' || route.pathname === '/expedition-health-form';
   const policyType =
     route.hash === '#/terms-and-conditions' || route.pathname === '/terms-and-conditions'
       ? 'terms'
@@ -1597,6 +1754,15 @@ function App() {
       <main data-theme={theme}>
         <Header theme={theme} onToggleTheme={toggleTheme} />
         <PolicyPage type={policyType} />
+      </main>
+    );
+  }
+
+  if (isHealthFormPage) {
+    return (
+      <main data-theme={theme}>
+        <Header theme={theme} onToggleTheme={toggleTheme} />
+        <ExpeditionHealthFormPage />
       </main>
     );
   }

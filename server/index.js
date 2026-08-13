@@ -283,13 +283,6 @@ async function appendSubmission(type, payload) {
     status: 'new',
     ...payload
   };
-  if (dbPool) {
-    await dbPool.execute(
-      'INSERT INTO keas_submissions (id, type, status, payload, created_at) VALUES (?, ?, ?, ?, ?)',
-      [record.id, type, record.status, JSON.stringify(payload), new Date(record.createdAt)]
-    );
-    return record;
-  }
   const file = path.join(submissionsDir, `${type}.json`);
   let list = [];
   try {
@@ -299,6 +292,13 @@ async function appendSubmission(type, payload) {
   }
   list.unshift(record);
   await fs.writeFile(file, `${JSON.stringify(list, null, 2)}\n`, 'utf8');
+
+  if (dbPool) {
+    await dbPool.execute(
+      'INSERT INTO keas_submissions (id, type, status, payload, created_at) VALUES (?, ?, ?, ?, ?)',
+      [record.id, type, record.status, JSON.stringify(payload), new Date(record.createdAt)]
+    );
+  }
   return record;
 }
 
@@ -313,7 +313,7 @@ async function listSubmissions() {
       ...(typeof row.payload === 'string' ? JSON.parse(row.payload) : row.payload)
     }));
   }
-  const names = ['contact', 'booking', 'newsletter'];
+  const names = ['contact', 'booking', 'newsletter', 'expedition-health'];
   const entries = await Promise.all(
     names.map(async (name) => {
       try {
@@ -468,6 +468,12 @@ async function handleApi(request, response) {
 
   if (request.method === 'POST' && url.pathname === '/api/booking') {
     const record = await appendSubmission('booking', await readJson(request, 100_000));
+    sendJson(response, 201, { ok: true, id: record.id });
+    return;
+  }
+
+  if (request.method === 'POST' && url.pathname === '/api/expedition-health') {
+    const record = await appendSubmission('expedition-health', await readJson(request, 250_000));
     sendJson(response, 201, { ok: true, id: record.id });
     return;
   }
