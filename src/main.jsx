@@ -301,6 +301,235 @@ function RouteTimeline({ items, compact = false }) {
   );
 }
 
+function getDayLabel(item, index) {
+  return item.match(/^Day\s+\d+/i)?.[0] || `Day ${index + 1}`;
+}
+
+function getDayCopy(item) {
+  return item.replace(/^Day\s+\d+:\s*/i, '');
+}
+
+function getProgramAccess(program) {
+  const routeText = `${program.pickupDrop || ''} ${program.region || ''} ${program.startEnd || ''} ${program.location || ''}`.toLowerCase();
+
+  if (routeText.includes('shimla')) {
+    return {
+      title: 'How to reach Shimla',
+      note: 'Plan to arrive in Shimla one evening before pickup if you are travelling from outside Himachal.',
+      points: [
+        'By road: Overnight buses and taxis connect Delhi, Chandigarh and Shimla. Keep extra time for mountain-road traffic.',
+        'By train: Reach Kalka by rail, then continue to Shimla by toy train, taxi or road transfer.',
+        'By air: Chandigarh is the most practical airport for most travellers, followed by a road journey to Shimla.',
+        'KEAS pickup/drop follows the final itinerary and road condition confirmed before departure.'
+      ]
+    };
+  }
+
+  if (routeText.includes('manali') || routeText.includes('solang') || routeText.includes('dhundi') || routeText.includes('pir panjal')) {
+    return {
+      title: 'How to reach Manali',
+      note: 'Arrive in Manali before the briefing time. For expeditions, coming one day early is strongly recommended.',
+      points: [
+        'By road: Volvo buses and taxis connect Delhi and Chandigarh with Manali via Mandi and Kullu.',
+        'By air: Bhuntar / Kullu-Manali airport is the nearest airport, but flights are limited and weather-sensitive.',
+        'Local transfer: KEAS coordinates scheduled Manali, Solang and Dhundi transfers where listed in the itinerary.',
+        'Keep a buffer day after summit trips because weather, snow and road conditions can change plans.'
+      ]
+    };
+  }
+
+  if (routeText.includes('kafnu') || routeText.includes('spiti') || routeText.includes('kinnaur')) {
+    return {
+      title: 'How to reach the crossover start',
+      note: 'Crossover routes need flexible road planning because Kinnaur and Spiti conditions can change quickly.',
+      points: [
+        'Most teams begin with a road approach from Shimla / Rampur side toward the listed trailhead.',
+        'Chandigarh is the most practical major airport and railhead before continuing by road.',
+        'KEAS confirms the final pickup point, road timing and exit plan after checking current route conditions.',
+        'Keep onward travel flexible for landslides, road blocks, weather delays and acclimatization needs.'
+      ]
+    };
+  }
+
+  if (routeText.includes('aut')) {
+    return {
+      title: 'How to reach Aut',
+      note: 'Aut is the practical roadhead for many Sainj Valley programs. Share your bus or taxi timing before travel.',
+      points: [
+        'By road: Overnight buses and taxis from Delhi or Chandigarh toward Kullu/Manali usually pass Aut.',
+        'By air: Bhuntar / Kullu-Manali airport is the nearest airport, followed by a road transfer to Aut.',
+        'Pickup point: KEAS confirms the exact Aut meeting point before departure, usually based on bus timing and road conditions.',
+        'Keep a little buffer for mountain-road delays, especially during rain, holiday traffic and late-night arrivals.'
+      ]
+    };
+  }
+
+  return {
+    title: 'How to reach',
+    note: 'The final pickup point is confirmed after your dates, group profile and transport plan are reviewed.',
+    points: [
+      'Share your arrival city, transport mode and expected timing with KEAS before booking onward tickets.',
+      'Keep buffer time for mountain-road delays, weather and local route changes.',
+      'KEAS confirms pickup/drop details in writing before the trip.'
+    ]
+  };
+}
+
+function getProgramFaqs(program) {
+  const packing = program.thingsToPack || program.packing || [];
+  return [
+    {
+      question: `Who is ${program.title} best for?`,
+      answer: `${program.title} is best for guests who are comfortable with ${program.difficulty.toLowerCase()} conditions and want a guided KEAS experience with clear planning, honest pacing and direct field-team support.`
+    },
+    {
+      question: 'How fit do I need to be?',
+      answer: program.eligibility || `You should be able to walk for several hours with a daypack, manage uneven mountain terrain and follow the guide's pacing, hydration and safety instructions. Start regular walking, stairs or light cardio before the trip.`
+    },
+    {
+      question: 'What is included in the price?',
+      answer: `${program.inclusions?.slice(0, 4).join(', ') || 'Meals, stays, route support and safety briefings as mentioned in the package'}. Final inclusions are reconfirmed before payment.`
+    },
+    {
+      question: 'What should I pack?',
+      answer: packing.length ? packing.slice(0, 5).join(', ') + '.' : 'Carry broken-in footwear, layered clothing, rain protection, water bottles, personal medicines, sun protection and a small daypack.'
+    },
+    {
+      question: 'Can the itinerary change?',
+      answer: 'Yes. Mountain itineraries can change because of weather, trail condition, road access, participant health, permissions or guide judgement. KEAS keeps the route condition-led rather than forcing a fixed schedule.'
+    },
+    {
+      question: 'How do I book or check availability?',
+      answer: `Use the enquiry form or WhatsApp KEAS at ${site.phone}. Share your dates, group size, fitness level and prior trekking experience so the team can confirm suitability and next steps.`
+    }
+  ];
+}
+
+function ProgramNav() {
+  const sections = [
+    ['quick-view', 'Quick view'],
+    ['how-to-reach', 'Reach'],
+    ['short-itinerary', 'Short plan'],
+    ['detailed-itinerary', 'Full plan'],
+    ['essentials', 'Essentials'],
+    ['faqs', 'FAQs']
+  ];
+
+  function scrollToSection(id) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  return (
+    <div className="program-nav" aria-label="Package details">
+      {sections.map(([id, label]) => (
+        <button type="button" onClick={() => scrollToSection(id)} key={id}>{label}</button>
+      ))}
+    </div>
+  );
+}
+
+function QuickSummary({ program, kind = 'package' }) {
+  const facts = [
+    ['Duration', program.duration],
+    ['Price', program.price],
+    ['Difficulty', program.difficulty],
+    ['Group', program.group],
+    program.pickupDrop ? ['Pickup/drop', program.pickupDrop] : null,
+    program.altitude ? ['Altitude', program.altitude] : null,
+    program.totalDistance ? ['Distance', program.totalDistance] : null,
+    program.bestSeason ? ['Best season', program.bestSeason] : null,
+    program.startEnd ? ['Route', program.startEnd] : null
+  ].filter(Boolean);
+
+  return (
+    <section className="program-block" id="quick-view">
+      <div className="program-block-head">
+        <p className="eyebrow">Quick view</p>
+        <h2>Everything important at a glance</h2>
+      </div>
+      <div className="quick-summary-grid">
+        {facts.map(([label, value]) => (
+          <div key={label}>
+            <span>{label}</span>
+            <strong>{value}</strong>
+          </div>
+        ))}
+      </div>
+      <div className="quick-decision-card">
+        <div>
+          <p className="eyebrow">{kind === 'expedition' ? 'Before you commit' : 'Good to know'}</p>
+          <h3>Speak with KEAS before booking.</h3>
+          <p>Share your dates, group size, comfort level and prior mountain experience. The team will confirm whether this package is the right fit before payment.</p>
+        </div>
+        <a className="primary-button whatsapp-offer" href={whatsappUrl(`Hi KEAS India, I want to check availability and suitability for ${program.title}.`)} target="_blank" rel="noreferrer">
+          WhatsApp KEAS
+          <ArrowIcon />
+        </a>
+      </div>
+    </section>
+  );
+}
+
+function HowToReach({ program }) {
+  const access = getProgramAccess(program);
+
+  return (
+    <section className="program-block" id="how-to-reach">
+      <div className="program-block-head">
+        <p className="eyebrow">How to reach</p>
+        <h2>{access.title}</h2>
+        <p>{access.note}</p>
+      </div>
+      <div className="reach-grid">
+        {access.points.map((point, index) => (
+          <article className="reach-card" key={point}>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <p>{point}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ShortItinerary({ program }) {
+  return (
+    <section className="program-block" id="short-itinerary">
+      <div className="program-block-head">
+        <p className="eyebrow">Quick itinerary</p>
+        <h2>Scan the route in under a minute</h2>
+      </div>
+      <div className="short-itinerary-strip">
+        {program.itinerary.map((item, index) => (
+          <article key={item}>
+            <span>{getDayLabel(item, index)}</span>
+            <p>{getDayCopy(item)}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Faqs({ program }) {
+  return (
+    <section className="program-block" id="faqs">
+      <div className="program-block-head">
+        <p className="eyebrow">FAQs</p>
+        <h2>Answers before you message us</h2>
+      </div>
+      <div className="faq-list">
+        {getProgramFaqs(program).map((item) => (
+          <details key={item.question}>
+            <summary>{item.question}</summary>
+            <p>{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function ExperienceCard({ experience }) {
   const quickFacts = [
     experience.totalDistance ? ['Distance', experience.totalDistance] : null,
@@ -560,18 +789,22 @@ function ExpeditionDetail({ expedition }) {
         </div>
       </section>
       <section className="section detail-page">
+        <ProgramNav />
+        <QuickSummary program={expedition} kind="expedition" />
         <div className="detail-gallery">
           {expedition.gallery.map((image) => (
             <img src={image} alt={`${expedition.title} expedition view`} loading="lazy" key={image} />
           ))}
         </div>
+        <HowToReach program={expedition} />
+        <ShortItinerary program={expedition} />
         <div className="detail-layout">
-          <div className="detail-main">
+          <div className="detail-main" id="detailed-itinerary">
             <p className="eyebrow">Detailed itinerary</p>
             <h2>Route plan and summit rhythm</h2>
             <RouteTimeline items={expedition.itinerary} />
           </div>
-          <aside className="detail-aside">
+          <aside className="detail-aside" id="essentials">
             <div className="detail-panel price-panel">
               <p className="eyebrow">Expedition price</p>
               <strong>{expedition.price}</strong>
@@ -636,6 +869,7 @@ function ExpeditionDetail({ expedition }) {
             <BookingForm expedition={expedition} />
           </aside>
         </div>
+        <Faqs program={expedition} />
       </section>
       <Footer />
     </>
@@ -735,13 +969,17 @@ function ExperienceDetail({ experience }) {
         </div>
       </section>
       <section className="section detail-page">
+        <ProgramNav />
+        <QuickSummary program={experience} />
+        <HowToReach program={experience} />
+        <ShortItinerary program={experience} />
         <div className="detail-layout">
-          <div className="detail-main">
+          <div className="detail-main" id="detailed-itinerary">
             <p className="eyebrow">Detailed itinerary</p>
             <h2>Day-by-day route plan</h2>
             <RouteTimeline items={experience.itinerary} />
           </div>
-          <aside className="detail-aside">
+          <aside className="detail-aside" id="essentials">
             <div className="detail-panel price-panel">
               <p className="eyebrow">Package price</p>
               <strong>{experience.price}</strong>
@@ -825,6 +1063,7 @@ function ExperienceDetail({ experience }) {
             <BookingForm program={experience} />
           </aside>
         </div>
+        <Faqs program={experience} />
       </section>
       <Footer />
     </>
