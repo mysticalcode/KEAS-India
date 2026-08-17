@@ -130,7 +130,7 @@ function Hero() {
             </a>
           </div>
           <div className="hero-metrics" aria-label="KEAS India highlights">
-            <span><strong>10</strong> bookable journeys</span>
+            <span><strong>12</strong> bookable journeys</span>
             <span><strong>4-6</strong> guests per team</span>
             <span><strong>Aut</strong> pickup options</span>
           </div>

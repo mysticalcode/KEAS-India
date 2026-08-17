@@ -226,7 +226,11 @@ async function migrateSeededContentIfNeeded() {
     },
     navigation: seed.navigation,
     categories: seed.categories,
-    experiences: seed.experiences
+    experiences: seed.experiences,
+    expeditions: seed.expeditions,
+    customServices: seed.customServices,
+    journalPosts: seed.journalPosts,
+    destinations: seed.destinations
   };
 
   await dbPool.execute('UPDATE keas_content SET data = ? WHERE id = ?', [JSON.stringify(merged), 'site']);
