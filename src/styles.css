@@ -940,6 +940,24 @@ h4 {
   line-height: 1.75;
 }
 
+.blog-link-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.blog-gallery {
+  margin-top: 28px;
+}
+
+.story-panel p {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
 .about-page {
   display: grid;
   gap: 28px;
@@ -1239,7 +1257,7 @@ li + li {
   min-height: 42px;
 }
 
-.animated-itinerary {
+.route-timeline {
   position: relative;
   display: grid;
   gap: 14px;
@@ -1249,7 +1267,7 @@ li + li {
   color: var(--ink);
 }
 
-.animated-itinerary::before {
+.route-timeline::before {
   position: absolute;
   top: 18px;
   bottom: 18px;
@@ -1259,7 +1277,7 @@ li + li {
   content: '';
 }
 
-.animated-itinerary li {
+.route-timeline li {
   position: relative;
   display: grid;
   grid-template-columns: 36px 1fr;
@@ -1271,7 +1289,7 @@ li + li {
   animation-delay: var(--step-delay);
 }
 
-.animated-itinerary li span {
+.route-timeline li span {
   position: relative;
   z-index: 1;
   display: grid;
@@ -1286,7 +1304,7 @@ li + li {
   font-weight: 800;
 }
 
-.animated-itinerary li p {
+.route-timeline li p {
   border: 1px solid var(--line);
   border-radius: 10px;
   padding: 12px 14px;
@@ -1295,27 +1313,27 @@ li + li {
   font-size: 0.84rem;
 }
 
-.animated-itinerary.compact {
+.route-timeline.compact {
   gap: 8px;
   margin-top: 0;
 }
 
-.animated-itinerary.compact::before {
+.route-timeline.compact::before {
   display: none;
 }
 
-.animated-itinerary.compact li {
+.route-timeline.compact li {
   grid-template-columns: 28px 1fr;
   gap: 8px;
 }
 
-.animated-itinerary.compact li span {
+.route-timeline.compact li span {
   width: 28px;
   height: 28px;
   font-size: 0.66rem;
 }
 
-.animated-itinerary.compact li p {
+.route-timeline.compact li p {
   padding: 8px 10px;
   color: var(--muted);
   font-size: 0.74rem;
@@ -3166,21 +3184,21 @@ main[data-theme='light'] .process-card {
     gap: 7px;
   }
 
-  .animated-itinerary {
+  .route-timeline {
     gap: 10px;
   }
 
-  .animated-itinerary li {
+  .route-timeline li {
     grid-template-columns: 32px 1fr;
     gap: 10px;
   }
 
-  .animated-itinerary li span {
+  .route-timeline li span {
     width: 32px;
     height: 32px;
   }
 
-  .animated-itinerary li p {
+  .route-timeline li p {
     padding: 10px 12px;
     font-size: 0.8rem;
   }

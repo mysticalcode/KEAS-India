@@ -22,7 +22,7 @@ async function postJson(path, payload) {
     body: JSON.stringify(payload)
   });
   if (!response.ok) {
-    throw new Error('The CMS backend is not available yet.');
+    throw new Error('Online enquiry is not available yet.');
   }
   return response.json();
 }
@@ -130,7 +130,7 @@ function Hero() {
             </a>
           </div>
           <div className="hero-metrics" aria-label="KEAS India highlights">
-            <span><strong>5</strong> launch packages</span>
+            <span><strong>10</strong> bookable journeys</span>
             <span><strong>4-6</strong> guests per team</span>
             <span><strong>Aut</strong> pickup options</span>
           </div>
@@ -278,13 +278,19 @@ function ProgramActions({ program, kind = 'package' }) {
         Full itinerary
         <ArrowIcon />
       </a>
+      {program.blogSlug ? (
+        <a className="primary-button ghost story-link" href={`/#/blog/${program.blogSlug}`}>
+          Read the field story
+          <ArrowIcon />
+        </a>
+      ) : null}
     </div>
   );
 }
 
-function AnimatedItinerary({ items, compact = false }) {
+function RouteTimeline({ items, compact = false }) {
   return (
-    <ol className={`animated-itinerary${compact ? ' compact' : ''}`}>
+    <ol className={`route-timeline${compact ? ' compact' : ''}`}>
       {items.map((item, index) => (
         <li key={item} style={{ '--step-delay': `${index * 90}ms` }}>
           <span>{String(index + 1).padStart(2, '0')}</span>
@@ -364,7 +370,7 @@ function Experiences() {
 function TrustSection() {
   const trustPoints = [
     ['Talk before you pay', `Call or WhatsApp ${site.phone} to confirm dates, fitness, route fit, and available offers.`],
-    ['Small guided teams', 'Most launch packages are built around 4-6 participants so the guide can actually watch the group.'],
+    ['Small guided teams', 'Most KEAS programs are built around small teams so the guide can actually watch the group.'],
     ['Real mountain systems', 'Each booking includes route briefing, gear check, safety expectations, inclusions, exclusions, and packing guidance.']
   ];
 
@@ -490,7 +496,7 @@ function BookingForm({ expedition, program }) {
       form.reset();
       setStatus(`Thanks. Your ${selectedProgram.title} enquiry has been saved and the KEAS team will respond soon.`);
     } catch {
-      setStatus(`Please WhatsApp or call ${site.phone} for ${selectedProgram.title}. The enquiry backend is not running on this host yet.`);
+      setStatus(`Please WhatsApp or call ${site.phone} for ${selectedProgram.title}. The KEAS team will help you complete the enquiry directly.`);
     }
   }
 
@@ -563,11 +569,11 @@ function ExpeditionDetail({ expedition }) {
           <div className="detail-main">
             <p className="eyebrow">Detailed itinerary</p>
             <h2>Route plan and summit rhythm</h2>
-            <AnimatedItinerary items={expedition.itinerary} />
+            <RouteTimeline items={expedition.itinerary} />
           </div>
           <aside className="detail-aside">
             <div className="detail-panel price-panel">
-              <p className="eyebrow">Expedition quote</p>
+              <p className="eyebrow">Expedition price</p>
               <strong>{expedition.price}</strong>
               <p>{expedition.duration} · {expedition.group} · {expedition.bestSeason}</p>
             </div>
@@ -587,6 +593,36 @@ function ExpeditionDetail({ expedition }) {
                 ))}
               </div>
             </div>
+            {expedition.inclusions ? (
+              <div className="detail-panel">
+                <h3>Included</h3>
+                <ul className="packing-list">
+                  {expedition.inclusions.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+            {expedition.exclusions ? (
+              <div className="detail-panel">
+                <h3>Not included</h3>
+                <ul className="packing-list">
+                  {expedition.exclusions.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+            {expedition.blogSlug ? (
+              <div className="detail-panel story-panel">
+                <h3>Experience story</h3>
+                <p>Read how this journey feels on the mountain before you choose your dates.</p>
+                <a className="primary-button inverted" href={`/#/blog/${expedition.blogSlug}`}>
+                  Open blog
+                  <ArrowIcon />
+                </a>
+              </div>
+            ) : null}
             <div className="detail-panel">
               <h3>KEAS field support</h3>
               <ul className="packing-list">
@@ -702,8 +738,8 @@ function ExperienceDetail({ experience }) {
         <div className="detail-layout">
           <div className="detail-main">
             <p className="eyebrow">Detailed itinerary</p>
-            <h2>Animated day-by-day route plan</h2>
-            <AnimatedItinerary items={experience.itinerary} />
+            <h2>Day-by-day route plan</h2>
+            <RouteTimeline items={experience.itinerary} />
           </div>
           <aside className="detail-aside">
             <div className="detail-panel price-panel">
@@ -774,6 +810,16 @@ function ExperienceDetail({ experience }) {
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
+              </div>
+            ) : null}
+            {experience.blogSlug ? (
+              <div className="detail-panel story-panel">
+                <h3>Experience story</h3>
+                <p>Get a human view of the route, rhythm, and who this package fits.</p>
+                <a className="primary-button inverted" href={`/#/blog/${experience.blogSlug}`}>
+                  Open blog
+                  <ArrowIcon />
+                </a>
               </div>
             ) : null}
             <BookingForm program={experience} />
@@ -852,7 +898,24 @@ function BlogDetail({ post }) {
           {post.body.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
+          {post.links ? (
+            <div className="blog-link-panel">
+              {post.links.map((link) => (
+                <a className="primary-button inverted" href={link.href} key={link.href}>
+                  {link.label}
+                  <ArrowIcon />
+                </a>
+              ))}
+            </div>
+          ) : null}
         </article>
+        {post.gallery ? (
+          <div className="detail-gallery blog-gallery">
+            {post.gallery.map((image) => (
+              <img src={image} alt={`${post.title} view`} loading="lazy" key={image} />
+            ))}
+          </div>
+        ) : null}
       </section>
       <Footer />
     </>
@@ -958,9 +1021,9 @@ function AboutPage() {
 
 function CreatorPortalPage() {
   const creatorServices = [
-    ['Route and itinerary backend', 'KEAS helps shape the route, difficulty level, day plan, safety expectations, and operational flow for your group.'],
+    ['Route and itinerary support', 'KEAS helps shape the route, difficulty level, day plan, safety expectations, and operational flow for your group.'],
     ['Ground logistics', 'Transport coordination, stays, meals, local crew, equipment, permits where applicable, and field support can be handled by KEAS.'],
-    ['Creator-fronted experience', 'You lead the community, content, positioning, and relationship. KEAS operates quietly as the mountain backend.'],
+    ['Creator-led experience', 'You lead the community, content, positioning, and relationship. KEAS supports the mountain operations behind the scenes.'],
     ['Custom service menu', 'Choose trekking, workshops, rock craft, navigation, creator retreats, Work & Wild formats, or private community departures.']
   ];
 
@@ -975,11 +1038,11 @@ function CreatorPortalPage() {
             Back home
           </a>
           <p className="eyebrow">Creator Portal</p>
-          <h1>You stay the face of the trip. KEAS becomes the backend.</h1>
+          <h1>You lead the group. KEAS powers the ground experience.</h1>
           <p>For creators, influencers, educators, community leaders, and brands who want to lead their own group experiences while KEAS provides the logistics, safety systems, local support, and services behind the scenes.</p>
           <div className="detail-meta">
             <span>Creator-led groups</span>
-            <span>KEAS logistics backend</span>
+            <span>KEAS operations support</span>
             <span>Custom service stack</span>
           </div>
         </div>
@@ -987,7 +1050,7 @@ function CreatorPortalPage() {
       <section className="section creator-page">
         <div className="creator-intro detail-main">
           <p className="eyebrow">How it works</p>
-          <h2>Creators can be the frontend. KEAS can be the backend.</h2>
+          <h2>Creators host the community. KEAS handles the mountain logistics.</h2>
           <p>You bring the audience, voice, community trust, content style, and group intent. KEAS supports the operational side: route planning, logistics, local coordination, safety expectations, field crew, stays, meals, activity support, and custom add-ons based on what you want to offer your group.</p>
           <p>This is designed for creators who want to lead meaningful mountain experiences without personally managing every moving part on the ground.</p>
           <div className="creator-actions">
@@ -1115,7 +1178,7 @@ function ExpeditionHealthFormPage() {
       form.reset();
       setStatus('Thanks. Your expedition health information has been securely submitted to KEAS.');
     } catch {
-      setStatus(`Please call ${site.phone} or email ${site.emails[0]}. The health form backend is not available on this host yet.`);
+      setStatus(`Please call ${site.phone} or email ${site.emails[0]}. The KEAS team will help you complete this form directly.`);
     }
   }
 
@@ -1349,7 +1412,7 @@ function Newsletter() {
       form.reset();
       setStatus('Subscribed. You will receive KEAS route openings and field notes.');
     } catch {
-      setStatus(`Thanks. The CMS backend is not running on this host yet, so please also email ${site.emails[0]}.`);
+      setStatus(`Thanks. Please also email ${site.emails[0]} if you need immediate help from the KEAS team.`);
     }
   }
 
@@ -1381,7 +1444,7 @@ function Contact() {
       form.reset();
       setStatus('Thanks. Your enquiry has been saved and the KEAS team will respond soon.');
     } catch {
-      setStatus(`Please call ${site.phone} or email ${site.emails[0]}. The CMS backend is not running on this host yet.`);
+      setStatus(`Please call ${site.phone} or email ${site.emails[0]}. The KEAS team will help you directly.`);
     }
   }
 

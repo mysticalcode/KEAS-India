@@ -8,7 +8,7 @@
       "sales@keasindia.com"
     ],
     "heroImage": "/images/keas-real/img-20260612-wa0054.jpg",
-    "packageLaunchVersion": "2026-08-05-creator-footer-visual-v1",
+    "packageLaunchVersion": "2026-08-18-peak-expedition-blogs-v1",
     "instagram": "https://www.instagram.com/keasindia/"
   },
   "navigation": [
@@ -163,7 +163,8 @@
         "Notebook, pencil, phone, and power bank",
         "Personal medicines, toiletries, and reusable hygiene items",
         "Government ID and emergency contact details"
-      ]
+      ],
+      "blogSlug": "into-the-wild-sainj-experience"
     },
     {
       "title": "The Art of Navigation",
@@ -227,7 +228,8 @@
         "Notebook, pencil, phone, and power bank",
         "Personal medicines, toiletries, and reusable hygiene items",
         "Government ID and emergency contact details"
-      ]
+      ],
+      "blogSlug": "art-of-navigation-field-course"
     },
     {
       "title": "Buran Pass Trek",
@@ -284,7 +286,8 @@
         "Personal medicines, toiletries, towel, and basic hygiene kit",
         "Small daypack, dry bags, and personal snacks",
         "Government ID, emergency contacts, and any required medical notes"
-      ]
+      ],
+      "blogSlug": "buran-pass-trek-experience"
     },
     {
       "title": "Raktisar Trek",
@@ -344,7 +347,8 @@
         "Personal medicines, toiletries, towel, and basic hygiene kit",
         "Small daypack, dry bags, and personal snacks",
         "Government ID, emergency contacts, and any required medical notes"
-      ]
+      ],
+      "blogSlug": "raktisar-trek-ghnp-experience"
     },
     {
       "title": "Thini Top Trek",
@@ -396,50 +400,146 @@
         "Headlamp or torch with spare batteries",
         "Personal medicines, toiletries, and reusable hygiene items",
         "Government ID and emergency contact details"
-      ]
+      ],
+      "blogSlug": "thini-top-trek-sainj-experience"
     }
   ],
   "expeditions": [
     {
-      "title": "Friendship Peak",
+      "title": "Friendship Peak Expedition",
       "slug": "friendship-peak",
-      "region": "Pir Panjal / Manali",
-      "altitude": "5,287 m",
-      "duration": "7-8 days",
-      "difficulty": "Advanced beginner to intermediate alpine",
+      "region": "Pir Panjal / Manali to Manali",
+      "altitude": "5,289 m / 17,352 ft",
+      "duration": "7 days",
+      "difficulty": "Moderate to difficult",
       "bestSeason": "May-June and September-October",
-      "group": "6-10 climbers",
-      "price": "Custom",
+      "group": "Prepared trekkers, small guided team",
+      "price": "INR 35,000 per person",
       "rating": "4.9",
       "reviews": "21",
-      "summary": "A Manali-side snow objective for fit trekkers ready to progress into crampon movement, rope-team discipline, snow-slope judgement, and a guided summit attempt.",
+      "summary": "A true introduction to Himalayan mountaineering above Solang Valley, combining acclimatization, expedition camping, crampon movement, ice-axe handling, rope discipline, and a condition-led summit attempt on Friendship Peak.",
       "gallery": [
         "/images/keas-real/img-20260612-wa0017.jpg",
         "/images/keas-real/img-20260612-wa0019.jpg",
-        "/images/keas-real/img-20260612-wa0021.jpg"
+        "/images/keas-real/img-20260612-wa0021.jpg",
+        "/images/keas-real/img-20260612-wa0039.jpg"
       ],
       "highlights": [
-        "Summit training",
-        "Roped snow travel",
-        "Acclimatization hike",
-        "Midnight summit window"
+        "5,289 m summit objective",
+        "Snow and glacier movement",
+        "Crampon and ice-axe training",
+        "Manali to Manali logistics",
+        "Condition-led summit attempt"
+      ],
+      "inclusions": [
+        "Scheduled road transfers between Manali, Solang / Dhundi and Manali as listed in the itinerary",
+        "Expedition tents, sleeping bags and sleeping mats during field nights",
+        "Vegetarian expedition meals from the first field meal until return to the roadhead",
+        "Expedition leader / guide, local field support and campsite operations",
+        "Common technical and safety equipment, including ropes and group first-aid resources",
+        "Individual-use technical gear required for the planned climb, subject to sizing and availability",
+        "Forest, camping and route permissions ordinarily required for the listed itinerary",
+        "Pre-departure packing guidance, equipment check and technical preparation session"
+      ],
+      "exclusions": [
+        "Travel to and from Manali and accommodation in Manali before or after the field itinerary",
+        "Personal clothing, trekking footwear, backpack, eyewear, toiletries and personal medicines",
+        "Travel, medical, high-altitude, rescue or evacuation insurance",
+        "Porterage for personal luggage unless added in writing before departure",
+        "Personal expenses, tips, snacks, bottled drinks, laundry, calls or purchases not listed above",
+        "Emergency evacuation, hospitalization, extra transport or additional stay caused by illness, weather or route disruption",
+        "Applicable taxes, if shown separately on the final invoice",
+        "Any service not expressly listed under Included"
       ],
       "packing": [
-        "Insulated mountaineering boots",
-        "Crampons and ice axe",
-        "Helmet and harness",
-        "Down jacket and layered clothing",
+        "Waterproof trekking or mountaineering boots already broken in before arrival",
+        "40-60 L backpack with rain cover",
+        "Thermal base layers, fleece, insulated down jacket, and waterproof shell jacket and pants",
+        "Inner gloves, insulated waterproof gloves, warm cap, and balaclava",
+        "UV sunglasses, snow goggles, SPF 50+ sunscreen, and lip balm",
         "Headlamp with spare batteries",
-        "Personal medication and sun protection"
+        "Two 1 L water bottles or hydration system",
+        "Personal medicines, toiletries, trekking poles, government photo ID, and insurance copy"
       ],
+      "blogSlug": "friendship-peak-expedition-experience",
       "itinerary": [
-        "Day 1: Arrive Manali, equipment audit, medical screening, and expedition briefing.",
-        "Day 2: Acclimatization hike toward Solang / Patalsu side and snow craft orientation.",
-        "Day 3: Trek to approach camp via Dhundi and Bakarthach meadows.",
-        "Day 4: Move to Lady Leg / advance base; crampon, ice axe, and rope-team practice.",
-        "Day 5: Summit attempt on Friendship Peak and return to base camp.",
-        "Day 6: Reserve weather day for summit or recovery.",
-        "Day 7: Descend to roadhead, debrief, certificate, and depart Manali."
+        "Day 1: Arrive in Manali at 2,050 m, complete self-arranged check-in, meet the KEAS field team, finish documentation, disclose medical details, size equipment, and attend the expedition briefing.",
+        "Day 2: Drive about 21 km through Solang Valley to Dhundi at 2,850 m, then trek beside the upper Beas through forest and meadow terrain to Lahauli Camp / Rohali at about 3,300 m.",
+        "Day 3: Ascend beyond the treeline to Lady Leg at about 3,900 m, the operating base for Friendship Peak. The afternoon is kept for recovery, hydration, and an acclimatization walk.",
+        "Day 4: Train in crampon movement, ice-axe use, self-arrest, rope protocol, fixed-line awareness, and efficient pacing. Carry selected equipment toward Summit Camp at about 4,750 m, then descend to Lady Leg.",
+        "Day 5: Move deliberately over moraine, snow, and glacier terrain to Summit Camp at about 4,750 m. Establish camp, complete equipment and weather checks, hydrate, and rest for the summit push.",
+        "Day 6: Begin before dawn for Friendship Peak at 5,289 m. The leader sets turnaround time according to weather, snow, visibility, health, and pace. Descend through Summit Camp to Lady Leg.",
+        "Day 7: Descend through Lahauli Camp / Rohali to Dhundi, transfer by road to Manali, return issued equipment, and close with an operational debrief."
+      ]
+    },
+    {
+      "title": "Friendship + Shitidhar Dual-Peak Expedition",
+      "slug": "friendship-shitidhar-dual-peak",
+      "region": "Upper Beas Valley / Manali to Manali",
+      "altitude": "5,289 m + 5,294 m",
+      "duration": "10 days",
+      "difficulty": "Moderate to difficult",
+      "bestSeason": "May-June and September-October",
+      "group": "Private departure for 2 participants",
+      "price": "INR 50,000 per person",
+      "rating": "5.0",
+      "reviews": "9",
+      "summary": "A private two-person mountaineering journey through the upper Beas Valley, planned around acclimatization, technical preparation, Friendship Peak, Shitidhar Peak, and a realistic weather / operations buffer.",
+      "gallery": [
+        "/images/keas-real/img-20260612-wa0019.jpg",
+        "/images/keas-real/img-20260612-wa0021.jpg",
+        "/images/keas-real/img-20260612-wa0039.jpg",
+        "/images/keas-real/img-20260612-wa0042.jpg"
+      ],
+      "highlights": [
+        "Two 5,000 m summits",
+        "Private two-person team",
+        "Snow, rope, crampon and ice-axe preparation",
+        "Beas Kund transition",
+        "Built-in buffer day"
+      ],
+      "inclusions": [
+        "Scheduled road transfers between Manali, Solang / Dhundi and Manali as listed in the itinerary",
+        "Expedition tents, sleeping bags and sleeping mats during field nights",
+        "Vegetarian expedition meals from the first field meal until return to the roadhead",
+        "Expedition leader / guide, local field support and campsite operations",
+        "Common technical and safety equipment, including ropes and group first-aid resources",
+        "Individual-use technical gear required for the planned climb, subject to sizing and availability",
+        "Forest, camping and route permissions ordinarily required for the listed itinerary",
+        "Pre-departure packing guidance, equipment check and technical preparation session"
+      ],
+      "exclusions": [
+        "Travel to and from Manali and accommodation in Manali before or after the field itinerary",
+        "Personal clothing, trekking footwear, backpack, eyewear, toiletries and personal medicines",
+        "Travel, medical, high-altitude, rescue or evacuation insurance",
+        "Porterage for personal luggage unless added in writing before departure",
+        "Personal expenses, tips, snacks, bottled drinks, laundry, calls or purchases not listed above",
+        "Emergency evacuation, hospitalization, extra transport or additional stay caused by illness, weather or route disruption",
+        "Applicable taxes, if shown separately on the final invoice",
+        "Any service not expressly listed under Included"
+      ],
+      "packing": [
+        "Waterproof trekking or mountaineering boots already broken in before arrival",
+        "40-60 L backpack with rain cover",
+        "Thermal base layers, fleece, insulated down jacket, and waterproof shell jacket and pants",
+        "Inner gloves, insulated waterproof gloves, warm cap, and balaclava",
+        "UV sunglasses, snow goggles, SPF 50+ sunscreen, and lip balm",
+        "Headlamp with spare batteries",
+        "Two 1 L water bottles or hydration system",
+        "Personal medicines, toiletries, trekking poles, government photo ID, and insurance copy"
+      ],
+      "blogSlug": "friendship-shitidhar-dual-peak-experience",
+      "itinerary": [
+        "Day 1: Drive from Manali through Solang and Dhundi, then trek to Lohali / Rohali Camp. Settle into expedition rhythm and complete the first field briefing.",
+        "Day 2: Climb steadily into the alpine zone toward Lady Leg, the operating base for Friendship Peak. Hydrate, recover, and review the preparation plan.",
+        "Day 3: Use the day for acclimatization and practical instruction in crampon movement, ice-axe use, rope protocol, self-arrest, and efficient pacing.",
+        "Day 4: Begin early for the Friendship Peak summit attempt at 5,289 m. Turnaround, pace, and movement remain condition-led. Descend to Lady Leg.",
+        "Day 5: Move through high alpine terrain toward Beas Kund, the glacial source zone of the River Beas, supporting recovery and transition toward the second objective.",
+        "Day 6: Advance toward Shitidhar high camp, establish camp, complete equipment checks, review weather and snow, and rest for the early summit attempt.",
+        "Day 7: Attempt Shitidhar Peak at 5,294 m, then descend in control to camp. Technical movement and turnaround remain guided by conditions.",
+        "Day 8: Descend from high camp through snow, moraine, and alpine terrain to Bakkar Thach for recovery, hydration, and team debrief.",
+        "Day 9: Trek down to Dhundi and transfer by road to Manali. Return equipment and close with an operational debrief.",
+        "Day 10: Reserved for weather, snow conditions, route delays, or expedition requirements. If unused, departure plans are finalized with the field team."
       ]
     },
     {
@@ -482,7 +582,8 @@
         "Day 5: Cross Pin Bhaba Pass and descend toward Mangrungse / Baldar terrain.",
         "Day 6: Trek to Mudh village in Pin Valley and transfer toward Kaza.",
         "Day 7: Buffer / road contingency day for weather, roadblocks, or acclimatization."
-      ]
+      ],
+      "blogSlug": "pin-bhaba-pass-crossover-experience"
     },
     {
       "title": "Hanuman Tibba",
@@ -528,7 +629,8 @@
         "Day 9: Reserve summit / weather day.",
         "Day 10: Descend to base camp and clear route loads.",
         "Day 11: Trek out to roadhead and transfer to Manali for debrief."
-      ]
+      ],
+      "blogSlug": "hanuman-tibba-expedition-experience"
     },
     {
       "title": "Deo Tibba",
@@ -574,7 +676,8 @@
         "Day 9: Reserve summit / weather day.",
         "Day 10: Descend to base camp and clear all loads.",
         "Day 11: Trek out to roadhead and return to Manali."
-      ]
+      ],
+      "blogSlug": "deo-tibba-expedition-experience"
     }
   ],
   "customServices": [
@@ -587,39 +690,233 @@
   ],
   "journalPosts": [
     {
-      "title": "Why Sainj Valley works for slower, deeper adventure",
-      "slug": "sainj-valley-slow-adventure",
-      "date": "Field notes",
-      "image": "/images/keas-real/img-20260612-wa0044.jpg",
-      "excerpt": "Sainj rewards travellers who want forests, village rhythm, GHNP ecozone access, and enough quiet to actually notice the landscape.",
+      "title": "Into The Wild: what five days in Sainj can teach a beginner",
+      "slug": "into-the-wild-sainj-experience",
+      "date": "Package story",
+      "image": "/images/keas-real/img-20260612-wa0011.jpg",
+      "gallery": [
+        "/images/keas-real/img-20260612-wa0011.jpg",
+        "/images/keas-real/img-20260612-wa0054.jpg",
+        "/images/keas-real/img-20260619-wa0000.jpg"
+      ],
+      "excerpt": "A beginner-friendly wilderness workshop for people who want to feel calmer, more useful, and more capable outdoors.",
+      "links": [
+        {
+          "label": "View Into The Wild package",
+          "href": "/#/experiences/into-the-wild-sainj"
+        }
+      ],
       "body": [
-        "Sainj Valley is not designed for rushed checklist travel. That is exactly why it works for KEAS programs. The valley gives groups access to forest trails, village stays, rock craft, food systems, and slower conversations around ecology.",
-        "The operating advantage is rhythm. Groups can move in the morning, pause through the day, and use evenings for debrief, recovery, or community time. That makes Sainj especially strong for schools, creator retreats, WFH cohorts, and low-impact adventure programs.",
-        "KEAS treats Sainj as a base for learning and decompression rather than a backdrop. The route, stay, activity level, and cultural touchpoints are matched to the group."
+        "Into The Wild is designed for the person who likes the idea of the outdoors but does not want to be thrown into discomfort without support. The first win is simple: arrive, slow down, understand the camp rhythm, and begin noticing what the valley is asking of you.",
+        "Across five days, the experience moves from shelter systems and fire craft to water purification, signalling, river-crossing basics, and low-impact camping habits. The learning is practical, but it is also emotional. Guests usually discover that confidence outdoors is built one small decision at a time.",
+        "This package works well for friends, college groups, first-time outdoor learners, creator cohorts, and teams that want a memorable program with actual skills at the centre. The goal is not to perform wilderness toughness. It is to return home with steadier judgement and a clearer relationship with nature."
       ]
     },
     {
-      "title": "How KEAS builds safety briefings into every route",
-      "slug": "keas-safety-briefings",
-      "date": "Safety vault",
+      "title": "The Art of Navigation: learning to read terrain, not just follow a pin",
+      "slug": "art-of-navigation-field-course",
+      "date": "Package story",
+      "image": "/images/keas-real/img-20260612-wa0052.jpg",
+      "gallery": [
+        "/images/keas-real/img-20260612-wa0052.jpg",
+        "/images/keas-real/img-20260612-wa0046.jpg",
+        "/images/keas-real/img-20260612-wa0011.jpg"
+      ],
+      "excerpt": "A map, compass, and route-planning course for trekkers who want real confidence when phone signal is not enough.",
+      "links": [
+        {
+          "label": "View navigation course",
+          "href": "/#/experiences/art-of-navigation"
+        }
+      ],
+      "body": [
+        "Navigation changes the way a person walks in the mountains. Instead of moving as a passenger, you begin to understand contour lines, slopes, timings, handrails, catching features, and why one route choice feels safer than another.",
+        "KEAS keeps the course hands-on. Participants take bearings, estimate distance, compare terrain with the map, and learn how GPS and smartphone tools can help without replacing judgement. Mistakes are treated as part of learning, not as embarrassment.",
+        "This is a strong fit for new trek leaders, outdoor clubs, students, photographers, creators, and anyone who wants to become less dependent and more aware on a trail."
+      ]
+    },
+    {
+      "title": "Buran Pass: a crossover trek with big views and serious respect",
+      "slug": "buran-pass-trek-experience",
+      "date": "Package story",
+      "image": "/images/keas-real/img-20260612-wa0049.jpg",
+      "gallery": [
+        "/images/keas-real/img-20260612-wa0049.jpg",
+        "/images/keas-real/img-20260612-wa0042.jpg",
+        "/images/keas-real/img-20260612-wa0052.jpg"
+      ],
+      "excerpt": "A post-monsoon Himalayan trek for fit walkers who want forests, meadows, a high pass, and a dramatic exit toward Kinnaur.",
+      "links": [
+        {
+          "label": "View Buran Pass trek",
+          "href": "/#/experiences/buran-pass-trek"
+        }
+      ],
+      "body": [
+        "Buran Pass feels cinematic, but the route deserves more than excitement. It begins with village paths and meadow days, then builds toward a high crossing where timing, snow condition, group pace, and descent management matter.",
+        "The KEAS approach is to keep guests informed. You know why the day starts early, why layers are managed carefully, why the leader may slow the group, and why the descent can be the real test after the pass photograph is taken.",
+        "For trekkers who already walk regularly and want a memorable crossover, Buran Pass offers variety without losing seriousness: forests, camps, alpine views, and a finish that feels earned."
+      ]
+    },
+    {
+      "title": "Raktisar Trek: going deeper into the GHNP rhythm",
+      "slug": "raktisar-trek-ghnp-experience",
+      "date": "Package story",
+      "image": "/images/keas-real/img-20260612-wa0042.jpg",
+      "gallery": [
+        "/images/keas-real/img-20260612-wa0042.jpg",
+        "/images/keas-real/img-20260612-wa0049.jpg",
+        "/images/keas-real/img-20260612-wa0052.jpg"
+      ],
+      "excerpt": "A longer, quieter GHNP route for trekkers who want distance, remoteness, camps, and patient mountain days.",
+      "links": [
+        {
+          "label": "View Raktisar trek",
+          "href": "/#/experiences/raktisar-trek-ghnp"
+        }
+      ],
+      "body": [
+        "Raktisar is not a quick-hit trek. Its strength is the time it gives you to enter the valley rhythm, adjust to camp life, walk through forest and alpine transitions, and understand why remote routes ask for patience.",
+        "The KEAS version is intentionally small-team and permit-aware. The group moves with steady pacing, campsite care, waste discipline, health checks, and space for the route to adapt to conditions.",
+        "This is a good choice for trekkers who want a deeper GHNP experience rather than a crowded trail. You should be ready for long days, basic field comfort, changing weather, and the satisfaction of earning distance slowly."
+      ]
+    },
+    {
+      "title": "Thini Top: an easier Sainj trek that still feels like a mountain story",
+      "slug": "thini-top-trek-sainj-experience",
+      "date": "Package story",
       "image": "/images/keas-real/img-20260619-wa0001.jpg",
-      "excerpt": "Good safety is not a paragraph in a brochure. It is a repeated habit before, during, and after every mountain day.",
+      "gallery": [
+        "/images/keas-real/img-20260619-wa0001.jpg",
+        "/images/keas-real/img-20260619-wa0000.jpg",
+        "/images/keas-real/img-20260612-wa0044.jpg"
+      ],
+      "excerpt": "A compact easy-moderate route for first-timers, families, and small groups who want beauty without pressure.",
+      "links": [
+        {
+          "label": "View Thini Top trek",
+          "href": "/#/experiences/thini-top-trek"
+        }
+      ],
       "body": [
-        "Every KEAS route starts with expectation-setting. We look at fitness, prior experience, weather, terrain, gear, road conditions, and the purpose of the group before finalising the day plan.",
-        "In the field, safety is communicated in simple language: what the terrain asks of you, where the hazards are, how the group will move, and what changes if conditions shift. This is especially important for rock craft, high passes, and expedition approaches.",
-        "Post-activity debriefs help guests understand their own decision-making, recovery needs, hydration, and readiness for the next day."
+        "Thini Top is for the traveller who wants a gentle beginning. The walking is still real, the views still matter, and the group still learns mountain habits, but the rhythm is friendlier than a hard pass or long expedition.",
+        "The experience works because it gives people time to settle: a route briefing, a base-supported start, forest sections, viewpoint pauses, local food, and a closing debrief that helps guests understand what they enjoyed and what they can try next.",
+        "It is a natural fit for families, beginners, couples, small friend groups, and anyone who wants a short Sainj Valley escape with human support instead of a rushed checklist."
       ]
     },
     {
-      "title": "Designing Himalayan workations that still feel like travel",
-      "slug": "himalayan-workations",
-      "date": "Workation",
-      "image": "/images/keas-real/img-20260619-wa0000.jpg",
-      "excerpt": "A good workation protects work hours and travel energy. The trick is not doing everything; it is designing the day well.",
+      "title": "Friendship Peak: a first Himalayan summit with real preparation",
+      "slug": "friendship-peak-expedition-experience",
+      "date": "Expedition story",
+      "image": "/images/keas-real/img-20260612-wa0017.jpg",
+      "gallery": [
+        "/images/keas-real/img-20260612-wa0017.jpg",
+        "/images/keas-real/img-20260612-wa0019.jpg",
+        "/images/keas-real/img-20260612-wa0021.jpg"
+      ],
+      "excerpt": "A 7-day Manali-to-Manali expedition for prepared trekkers ready to learn snow craft, pacing, and summit judgement.",
+      "links": [
+        {
+          "label": "View Friendship Peak expedition",
+          "href": "/#/expeditions/friendship-peak"
+        }
+      ],
       "body": [
-        "Most workations fail when the itinerary ignores work. KEAS designs these programs around predictable work blocks, morning movement, evening recovery, and realistic expectations around connectivity.",
-        "A good day may include a short forest walk, a rock craft session, or a village experience before work begins. The afternoon stays protected, while evenings are used for decompression, food, or community time.",
-        "The goal is not to squeeze a vacation around calls. It is to create a mountain rhythm that lets people work clearly and still return home with a real sense of place."
+        "Friendship Peak is often described as an introductory mountaineering objective, but introductory does not mean casual. The mountain asks for fitness, humility, gear discipline, and a willingness to learn before chasing the summit photograph.",
+        "The KEAS expedition builds gradually: Manali briefing, Dhundi approach, Lahauli Camp, Lady Leg, technical practice, Summit Camp, and then the pre-dawn summit attempt. Crampons, ice axe, self-arrest, rope protocol, hydration, and turnaround decisions are part of the experience.",
+        "The right guest is a prepared trekker who wants to step into mountaineering with supervision. A summit is never promised. What KEAS can promise is a professional rhythm: honest screening, condition-led movement, and a mountain day where judgement matters as much as ambition."
+      ]
+    },
+    {
+      "title": "Friendship + Shitidhar: two summits, one private progression",
+      "slug": "friendship-shitidhar-dual-peak-experience",
+      "date": "Expedition story",
+      "image": "/images/keas-real/img-20260612-wa0019.jpg",
+      "gallery": [
+        "/images/keas-real/img-20260612-wa0019.jpg",
+        "/images/keas-real/img-20260612-wa0021.jpg",
+        "/images/keas-real/img-20260612-wa0039.jpg"
+      ],
+      "excerpt": "A private 10-day dual-peak expedition for two participants who want closer guide attention and a more complete snowline journey.",
+      "links": [
+        {
+          "label": "View dual-peak expedition",
+          "href": "/#/expeditions/friendship-shitidhar-dual-peak"
+        }
+      ],
+      "body": [
+        "The dual-peak expedition is built for two people who want more than a single summit push. Friendship Peak becomes the first objective and learning checkpoint; Shitidhar becomes the second test after the team has adapted to the snowline rhythm.",
+        "Because the departure is private, the pace, observation, equipment checks, and communication can be tighter. The route moves through Lohali, Lady Leg, Beas Kund, Shitidhar high camp, Bakkar Thach, and back to Manali with a planned buffer day for real mountain uncertainty.",
+        "This is a strong fit for prepared beginners or improving trekkers who want a guided, serious, and personal introduction to two 5,000-metre objectives without being lost in a large group."
+      ]
+    },
+    {
+      "title": "Pin Bhaba Pass: the feeling of crossing from green to stark",
+      "slug": "pin-bhaba-pass-crossover-experience",
+      "date": "Expedition story",
+      "image": "/images/keas-real/img-20260612-wa0054.jpg",
+      "gallery": [
+        "/images/keas-real/img-20260612-wa0054.jpg",
+        "/images/keas-real/img-20260612-wa0046.jpg",
+        "/images/keas-real/img-20260612-wa0044.jpg"
+      ],
+      "excerpt": "A crossover journey for trekkers who want the contrast of lush Kinnaur-side trails and the spare beauty of Spiti.",
+      "links": [
+        {
+          "label": "View Pin Bhaba Pass",
+          "href": "/#/expeditions/pin-bhaba-pass"
+        }
+      ],
+      "body": [
+        "Pin Bhaba is memorable because the landscape changes character so dramatically. One side feels green, river-fed, and generous; the other opens into the drier, sharper world of Spiti.",
+        "The route asks for reliable walking legs, comfort with altitude, and patience on pass day. KEAS focuses on pacing, weather calls, road realities, and clear briefings so guests understand the logic behind each movement.",
+        "It suits trekkers who want a crossover with story, contrast, and enough seriousness to feel like a real achievement rather than a simple holiday walk."
+      ]
+    },
+    {
+      "title": "Hanuman Tibba: when the mountain becomes a serious teacher",
+      "slug": "hanuman-tibba-expedition-experience",
+      "date": "Expedition story",
+      "image": "/images/keas-real/img-20260612-wa0039.jpg",
+      "gallery": [
+        "/images/keas-real/img-20260612-wa0039.jpg",
+        "/images/keas-real/img-20260612-wa0049.jpg",
+        "/images/keas-real/img-20260612-wa0042.jpg"
+      ],
+      "excerpt": "A technical alpine objective for trained climbers who understand that patience, systems, and descent matter.",
+      "links": [
+        {
+          "label": "View Hanuman Tibba expedition",
+          "href": "/#/expeditions/hanuman-tibba"
+        }
+      ],
+      "body": [
+        "Hanuman Tibba is not a beginner mountain. It is a bigger, more technical objective where camp systems, load movement, snow condition, route opening, fixed-rope judgement, and reserve days become central to the story.",
+        "For the right climber, the reward is not only altitude. It is the discipline of moving through an alpine system where every decision has weight: when to push, when to rest, when to turn, and how to keep the team intact.",
+        "KEAS positions this as a serious guided expedition for trained participants with prior snow, rope, camp, and altitude experience."
+      ]
+    },
+    {
+      "title": "Deo Tibba: a 6,001 m objective above the Jagatsukh side",
+      "slug": "deo-tibba-expedition-experience",
+      "date": "Expedition story",
+      "image": "/images/keas-real/img-20260612-wa0021.jpg",
+      "gallery": [
+        "/images/keas-real/img-20260612-wa0021.jpg",
+        "/images/keas-real/img-20260612-wa0024.jpg",
+        "/images/keas-real/img-20260612-wa0052.jpg"
+      ],
+      "excerpt": "A technical high-altitude expedition for climbers ready for glacier travel, moraine, advanced camps, and conservative summit planning.",
+      "links": [
+        {
+          "label": "View Deo Tibba expedition",
+          "href": "/#/expeditions/deo-tibba"
+        }
+      ],
+      "body": [
+        "Deo Tibba carries the attraction of a 6,001 m summit, but the mountain is not only a number. The approach, moraine, glacier, camp movement, and weather windows all shape the experience before summit day arrives.",
+        "A well-run Deo Tibba attempt gives participants a clear structure: acclimatization, technical refresh, base camp, load ferry, advanced camp, route assessment, summit window, reserve day, descent, and debrief.",
+        "This is for guests who already respect high-altitude systems and want a guided expedition where the mountain is approached with patience rather than noise."
       ]
     }
   ]
