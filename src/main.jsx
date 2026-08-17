@@ -32,6 +32,12 @@ function whatsappUrl(message) {
   return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 }
 
+function handleImageFallback(event) {
+  if (event.currentTarget.dataset.fallbackApplied) return;
+  event.currentTarget.dataset.fallbackApplied = 'true';
+  event.currentTarget.src = site.heroImage || '/images/keas-real/img-20260612-wa0054.jpg';
+}
+
 function ArrowIcon() {
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24">
@@ -651,7 +657,7 @@ function ExpeditionCard({ expedition }) {
   return (
     <article className="expedition-card reveal">
       <div className="expedition-visual">
-        <img src={expedition.gallery[0]} alt={`${expedition.title} mountain range`} loading="lazy" />
+        <img src={expedition.gallery[0]} alt={`${expedition.title} mountain range`} loading="lazy" onError={handleImageFallback} />
         <div className="experience-top">
           <span>{expedition.altitude}</span>
           <a className="round-action" href={`/#/expeditions/${expedition.slug}`} aria-label={`View ${expedition.title} details`}>
@@ -690,7 +696,7 @@ function ExpeditionCard({ expedition }) {
             </div>
             <div className="thumb-row" aria-label={`${expedition.title} image previews`}>
               {expedition.gallery.slice(1).map((image) => (
-                <img src={image} alt="" loading="lazy" key={image} />
+                <img src={image} alt="" loading="lazy" onError={handleImageFallback} key={image} />
               ))}
             </div>
             <a className="primary-button inverted detail-link" href={`/#/expeditions/${expedition.slug}`}>
@@ -768,7 +774,7 @@ function ExpeditionDetail({ expedition }) {
   return (
     <>
       <section className="detail-hero">
-        <img src={expedition.gallery[0]} alt={`${expedition.title} mountain range`} />
+        <img src={expedition.gallery[0]} alt={`${expedition.title} mountain range`} onError={handleImageFallback} />
         <div className="hero-overlay" />
         <div className="detail-hero-inner">
           <a className="primary-button ghost back-link" href="/#expeditions">
@@ -793,7 +799,7 @@ function ExpeditionDetail({ expedition }) {
         <QuickSummary program={expedition} kind="expedition" />
         <div className="detail-gallery">
           {expedition.gallery.map((image) => (
-            <img src={image} alt={`${expedition.title} expedition view`} loading="lazy" key={image} />
+            <img src={image} alt={`${expedition.title} expedition view`} loading="lazy" onError={handleImageFallback} key={image} />
           ))}
         </div>
         <HowToReach program={expedition} />

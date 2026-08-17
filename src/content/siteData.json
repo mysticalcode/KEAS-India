@@ -8,7 +8,7 @@
       "sales@keasindia.com"
     ],
     "heroImage": "/images/keas-real/img-20260612-wa0054.jpg",
-    "packageLaunchVersion": "2026-08-18-sainj-signature-experiences-v1",
+    "packageLaunchVersion": "2026-08-18-dual-peak-image-fix-v1",
     "instagram": "https://www.instagram.com/keasindia/"
   },
   "navigation": [
@@ -600,8 +600,8 @@
       "reviews": "9",
       "summary": "A private two-person mountaineering journey through the upper Beas Valley, planned around acclimatization, technical preparation, Friendship Peak, Shitidhar Peak, and a realistic weather / operations buffer.",
       "gallery": [
-        "/images/keas-real/img-20260612-wa0019.jpg",
         "/images/keas-real/img-20260612-wa0021.jpg",
+        "/images/keas-real/img-20260612-wa0019.jpg",
         "/images/keas-real/img-20260612-wa0039.jpg",
         "/images/keas-real/img-20260612-wa0042.jpg"
       ],
@@ -945,10 +945,10 @@
       "title": "Friendship + Shitidhar: two summits, one private progression",
       "slug": "friendship-shitidhar-dual-peak-experience",
       "date": "Expedition story",
-      "image": "/images/keas-real/img-20260612-wa0019.jpg",
+      "image": "/images/keas-real/img-20260612-wa0021.jpg",
       "gallery": [
-        "/images/keas-real/img-20260612-wa0019.jpg",
         "/images/keas-real/img-20260612-wa0021.jpg",
+        "/images/keas-real/img-20260612-wa0019.jpg",
         "/images/keas-real/img-20260612-wa0039.jpg"
       ],
       "excerpt": "A private 10-day dual-peak expedition for two participants who want closer guide attention and a more complete snowline journey.",
