@@ -38,6 +38,65 @@ function handleImageFallback(event) {
   event.currentTarget.src = site.heroImage || '/images/keas-real/img-20260612-wa0054.jpg';
 }
 
+function absoluteUrl(path = '/') {
+  if (/^https?:\/\//i.test(path)) return path;
+  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  return `https://${site.domain}${cleanPath}`;
+}
+
+function setMetaAttribute(attribute, key, content) {
+  if (!content) return;
+  let element = document.head.querySelector(`meta[${attribute}="${key}"]`);
+  if (!element) {
+    element = document.createElement('meta');
+    element.setAttribute(attribute, key);
+    document.head.appendChild(element);
+  }
+  element.setAttribute('content', content);
+}
+
+function updateSeo({ title, description, path = '/', image = site.heroImage, type = 'website', keywords = [], structuredData = null }) {
+  document.title = title;
+  setMetaAttribute('name', 'description', description);
+  setMetaAttribute('name', 'keywords', keywords.join(', '));
+  setMetaAttribute('property', 'og:title', title);
+  setMetaAttribute('property', 'og:description', description);
+  setMetaAttribute('property', 'og:type', type);
+  setMetaAttribute('property', 'og:url', absoluteUrl(path));
+  setMetaAttribute('property', 'og:image', absoluteUrl(image));
+  setMetaAttribute('name', 'twitter:card', 'summary_large_image');
+  setMetaAttribute('name', 'twitter:title', title);
+  setMetaAttribute('name', 'twitter:description', description);
+  setMetaAttribute('name', 'twitter:image', absoluteUrl(image));
+
+  let canonical = document.head.querySelector('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement('link');
+    canonical.setAttribute('rel', 'canonical');
+    document.head.appendChild(canonical);
+  }
+  canonical.setAttribute('href', absoluteUrl(path));
+
+  let script = document.getElementById('keas-structured-data');
+  if (!script) {
+    script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = 'keas-structured-data';
+    document.head.appendChild(script);
+  }
+  script.textContent = JSON.stringify(structuredData || {
+    '@context': 'https://schema.org',
+    '@type': 'TravelAgency',
+    name: 'KEAS India',
+    alternateName: 'Kinetic Earth Adventure Sports',
+    url: `https://${site.domain}`,
+    telephone: site.phone,
+    email: site.emails[0],
+    areaServed: ['Sainj Valley', 'Shangarh', 'Great Himalayan National Park', 'Kullu', 'Himachal Pradesh'],
+    sameAs: site.instagram ? [site.instagram] : []
+  });
+}
+
 function ArrowIcon() {
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24">
@@ -546,7 +605,7 @@ function ExperienceCard({ experience }) {
   return (
     <article className="experience-card package-card reveal">
       <div className="experience-media">
-        <img src={experience.image} alt="" loading="lazy" />
+        <img src={experience.image} alt="" loading="lazy" onError={handleImageFallback} />
         <div className="experience-top">
           <span>{experience.duration}</span>
           <a className="round-action" href={`/#/experiences/${experience.slug}`} aria-label={`View ${experience.title} itinerary`}><ArrowIcon /></a>
@@ -952,7 +1011,7 @@ function ExperienceDetail({ experience }) {
   return (
     <>
       <section className="detail-hero">
-        <img src={experience.image} alt={experience.title} />
+        <img src={experience.image} alt={experience.title} onError={handleImageFallback} />
         <div className="hero-overlay" />
         <div className="detail-hero-inner">
           <a className="primary-button ghost back-link" href="/#experiences">
@@ -977,6 +1036,13 @@ function ExperienceDetail({ experience }) {
       <section className="section detail-page">
         <ProgramNav />
         <QuickSummary program={experience} />
+        {experience.gallery ? (
+          <div className="detail-gallery">
+            {experience.gallery.map((image) => (
+              <img src={image} alt={`${experience.title} route view`} loading="lazy" onError={handleImageFallback} key={image} />
+            ))}
+          </div>
+        ) : null}
         <HowToReach program={experience} />
         <ShortItinerary program={experience} />
         <div className="detail-layout">
@@ -1161,6 +1227,99 @@ function BlogDetail({ post }) {
             ))}
           </div>
         ) : null}
+      </section>
+      <Footer />
+    </>
+  );
+}
+
+function SainjValleySeoPage() {
+  const sainjPrograms = experiences.filter((experience) => {
+    const text = `${experience.title} ${experience.location} ${experience.summary} ${experience.startEnd || ''} ${(experience.highlights || []).join(' ')}`.toLowerCase();
+    return text.includes('sainj') || text.includes('shangarh') || text.includes('ghnp') || text.includes('great himalayan national park');
+  });
+  const sainjStories = journalPosts.filter((post) => {
+    const text = `${post.title} ${post.excerpt} ${(post.body || []).join(' ')}`.toLowerCase();
+    return text.includes('sainj') || text.includes('shangarh') || text.includes('ghnp') || text.includes('great himalayan national park');
+  });
+
+  return (
+    <>
+      <section className="detail-hero about-page-hero">
+        <img src="/images/keas-real/img-20260612-wa0044.jpg" alt="Sainj Valley and Shangarh village landscape" onError={handleImageFallback} />
+        <div className="hero-overlay" />
+        <div className="detail-hero-inner">
+          <a className="primary-button ghost back-link" href="/#experiences">
+            <ArrowIcon />
+            Back to packages
+          </a>
+          <p className="eyebrow">Sainj Valley, Shangarh & GHNP</p>
+          <h1>Sainj Valley treks, Shangarh meadows, and GHNP-side journeys with KEAS India.</h1>
+          <p>Plan a quieter Himachal trip through Sainj Valley, Shangarh, Sarikanda, hidden hamlets, and the Great Himalayan National Park landscape with small teams, direct field support, and honest difficulty guidance.</p>
+          <div className="detail-meta">
+            <span>Aut pickup options</span>
+            <span>Shangarh meadow routes</span>
+            <span>GHNP-side treks</span>
+            <span>Small guided teams</span>
+          </div>
+        </div>
+      </section>
+      <section className="section detail-page">
+        <div className="detail-layout">
+          <div className="detail-main">
+            <p className="eyebrow">Why this valley</p>
+            <h2>A slower, more local way to experience Himachal.</h2>
+            <p>Sainj Valley sits on the quieter side of Kullu, close to the Great Himalayan National Park landscape and village routes that still feel personal. It works beautifully for travellers who want forest walks, meadow time, homestays, local food, and guided outdoor learning without the pressure of a crowded tourist circuit.</p>
+            <p>Shangarh is one of the most loved meadow and village experiences in this region. KEAS uses it as part of custom Sainj Valley planning when the route, road timing, weather, and guest profile fit the journey. For guests seeking something deeper, Raktisar moves into a longer GHNP core-zone rhythm with remote camps and serious field discipline.</p>
+            <div className="highlight-row">
+              <span>Sainj Valley trek planning</span>
+              <span>Shangarh meadow visit</span>
+              <span>Great Himalayan National Park route support</span>
+              <span>Aut to Aut logistics</span>
+              <span>Homestay and camp options</span>
+            </div>
+          </div>
+          <aside className="detail-aside">
+            <div className="detail-panel price-panel">
+              <p className="eyebrow">Best first enquiry</p>
+              <strong>Tell us your dates.</strong>
+              <p>Share group size, comfort level, walking experience, and whether you want Shangarh, hidden hamlets, Sarikanda, or a GHNP-side trek.</p>
+              <a className="primary-button whatsapp-offer" href={whatsappUrl('Hi KEAS India, I want to plan a Sainj Valley / Shangarh / GHNP trip. Please suggest packages and dates.')} target="_blank" rel="noreferrer">
+                Enquire on WhatsApp
+                <ArrowIcon />
+              </a>
+            </div>
+          </aside>
+        </div>
+        <div className="program-block">
+          <div className="program-block-head">
+            <p className="eyebrow">Related packages</p>
+            <h2>Bookable Sainj Valley and GHNP-side experiences</h2>
+          </div>
+          <div className="experience-grid">
+            {sainjPrograms.map((experience) => (
+              <ExperienceCard experience={experience} key={experience.slug} />
+            ))}
+          </div>
+        </div>
+        <div className="program-block">
+          <div className="program-block-head">
+            <p className="eyebrow">Field stories</p>
+            <h2>Read before you choose your route</h2>
+          </div>
+          <div className="journal-grid">
+            {sainjStories.slice(0, 4).map((post) => (
+              <a className="journal-card reveal" href={`/#/blog/${post.slug}`} key={post.slug}>
+                <img src={post.image} alt="" loading="lazy" onError={handleImageFallback} />
+                <div>
+                  <span>{post.date}</span>
+                  <h3>{post.title}</h3>
+                  <p>{post.excerpt}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
       </section>
       <Footer />
     </>
@@ -1750,6 +1909,7 @@ function Footer() {
         <div className="footer-column">
           <h3>Explore</h3>
           <a href={isSubPage ? '/#experiences' : '#experiences'}>Packages</a>
+          <a href="/sainj-valley-trek-shangarh-ghnp">Sainj Valley & Shangarh</a>
           <a href="/#/creator-portal">Creator Portal</a>
           <a href="/#/about">About KEAS</a>
           <a href={isSubPage ? '/#journal' : '#journal'}>Blog</a>
@@ -1947,11 +2107,19 @@ function App() {
   const [route, setRoute] = useState(() => ({ hash: window.location.hash, pathname: window.location.pathname }));
   const [, setContentVersion] = useState(0);
   const categorySlug = route.hash.match(/^#\/categories\/([^/]+)/)?.[1];
-  const experienceSlug = route.hash.match(/^#\/experiences\/([^/]+)/)?.[1];
+  const pathExperienceSlug = route.pathname.match(/^\/experiences\/([^/]+)/)?.[1];
+  const directExperienceSlug =
+    route.pathname === '/raktisar-trek-ghnp' || route.pathname === '/raktisar-trek' ? 'raktisar-trek-ghnp' : null;
+  const experienceSlug = route.hash.match(/^#\/experiences\/([^/]+)/)?.[1] || pathExperienceSlug || directExperienceSlug;
   const expeditionSlug =
     route.hash.match(/^#\/expeditions\/([^/]+)/)?.[1] ||
     route.pathname.match(/^\/expeditions\/([^/]+)/)?.[1];
   const blogSlug = route.hash.match(/^#\/blog\/([^/]+)/)?.[1];
+  const isSainjSeoPage =
+    route.hash === '#/sainj-valley-shangarh-ghnp' ||
+    route.pathname === '/sainj-valley-trek-shangarh-ghnp' ||
+    route.pathname === '/sainj-valley-shangarh-ghnp' ||
+    route.pathname === '/sainjh-valley-trek-shangarh-ghnp';
   const isAboutPage = route.hash === '#/about' || route.pathname === '/about';
   const isCreatorPage = route.hash === '#/creator-portal' || route.pathname === '/creator-portal';
   const isHealthFormPage = route.hash === '#/expedition-health-form' || route.pathname === '/expedition-health-form';
@@ -2003,6 +2171,126 @@ function App() {
       .catch(() => {});
   }, []);
 
+  useEffect(() => {
+    if (selectedExperience) {
+      updateSeo({
+        title: `${selectedExperience.title} | KEAS India`,
+        description: selectedExperience.summary,
+        path: directExperienceSlug ? `/${directExperienceSlug}` : `/experiences/${selectedExperience.slug}`,
+        image: selectedExperience.image,
+        keywords: [
+          selectedExperience.title,
+          selectedExperience.location,
+          'KEAS India',
+          'Himachal trek',
+          'Sainj Valley trek',
+          'Shangarh trek',
+          'GHNP trek',
+          'Great Himalayan National Park trek'
+        ],
+        structuredData: {
+          '@context': 'https://schema.org',
+          '@type': 'TouristTrip',
+          name: selectedExperience.title,
+          description: selectedExperience.summary,
+          image: absoluteUrl(selectedExperience.image),
+          touristType: selectedExperience.difficulty,
+          provider: {
+            '@type': 'TravelAgency',
+            name: 'KEAS India',
+            telephone: site.phone,
+            url: `https://${site.domain}`
+          },
+          itinerary: selectedExperience.itinerary?.map((item, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            name: getDayLabel(item, index),
+            description: getDayCopy(item)
+          })),
+          offers: {
+            '@type': 'Offer',
+            priceCurrency: 'INR',
+            price: selectedExperience.price.replace(/[^\d]/g, '') || undefined,
+            availability: 'https://schema.org/InStock'
+          }
+        }
+      });
+      return;
+    }
+
+    if (isSainjSeoPage) {
+      updateSeo({
+        title: 'Sainj Valley, Shangarh & GHNP Treks | KEAS India',
+        description: 'Plan Sainj Valley treks, Shangarh meadow trips, Sarikanda camps, hidden hamlets, and Great Himalayan National Park side journeys with KEAS India.',
+        path: '/sainj-valley-trek-shangarh-ghnp',
+        image: '/images/keas-real/img-20260612-wa0044.jpg',
+        keywords: [
+          'Sainj Valley trek',
+          'Sainjh Valley trek',
+          'Shangarh trek',
+          'Shangarh meadow',
+          'GHNP trek',
+          'Great Himalayan National Park trek',
+          'Sainj Valley packages',
+          'KEAS India'
+        ],
+        structuredData: {
+          '@context': 'https://schema.org',
+          '@type': 'TravelAgency',
+          name: 'KEAS India Sainj Valley and Shangarh Treks',
+          url: absoluteUrl('/sainj-valley-trek-shangarh-ghnp'),
+          telephone: site.phone,
+          email: site.emails[0],
+          image: absoluteUrl('/images/keas-real/img-20260612-wa0044.jpg'),
+          areaServed: ['Sainj Valley', 'Sainjh Valley', 'Shangarh', 'Great Himalayan National Park', 'Kullu', 'Himachal Pradesh'],
+          makesOffer: experiences
+            .filter((experience) => `${experience.location} ${experience.summary}`.toLowerCase().match(/sainj|shangarh|ghnp|great himalayan national park/))
+            .map((experience) => ({
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'TouristTrip',
+                name: experience.title,
+                description: experience.summary,
+                image: absoluteUrl(experience.image)
+              }
+            }))
+        }
+      });
+      return;
+    }
+
+    if (selectedExpedition) {
+      updateSeo({
+        title: `${selectedExpedition.title} | KEAS India Expedition`,
+        description: selectedExpedition.overview,
+        path: `/expeditions/${selectedExpedition.slug}`,
+        image: selectedExpedition.gallery?.[0] || site.heroImage,
+        keywords: [selectedExpedition.title, 'KEAS India expedition', 'Himalayan expedition', 'Manali expedition']
+      });
+      return;
+    }
+
+    if (selectedPost) {
+      updateSeo({
+        title: `${selectedPost.title} | KEAS India Blog`,
+        description: selectedPost.excerpt,
+        path: `/blog/${selectedPost.slug}`,
+        image: selectedPost.image,
+        type: 'article',
+        keywords: [selectedPost.title, 'KEAS India blog', 'Himachal travel', 'mountain experience']
+      });
+      return;
+    }
+
+    updateSeo({
+      title: 'KEAS India | Sainj Valley, Shangarh, GHNP Treks & Himalayan Experiences',
+      description: 'Book skill-led Himalayan treks, Sainj Valley and Shangarh experiences, GHNP-side routes, workshops, and guided expeditions with KEAS India.',
+      path: '/',
+      image: site.heroImage,
+      keywords: ['KEAS India', 'Sainj Valley trek', 'Shangarh trek', 'GHNP trek', 'Himachal trekking packages', 'Raktisar Trek']
+    });
+  }, [route, selectedExperience, selectedExpedition, selectedPost, isSainjSeoPage, directExperienceSlug]);
+
   if (selectedExpedition) {
     return (
       <main data-theme={theme}>
@@ -2035,6 +2323,15 @@ function App() {
       <main data-theme={theme}>
         <Header theme={theme} onToggleTheme={toggleTheme} />
         <BlogDetail post={selectedPost} />
+      </main>
+    );
+  }
+
+  if (isSainjSeoPage) {
+    return (
+      <main data-theme={theme}>
+        <Header theme={theme} onToggleTheme={toggleTheme} />
+        <SainjValleySeoPage />
       </main>
     );
   }

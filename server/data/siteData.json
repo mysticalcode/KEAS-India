@@ -8,7 +8,7 @@
       "sales@keasindia.com"
     ],
     "heroImage": "/images/keas-real/img-20260612-wa0054.jpg",
-    "packageLaunchVersion": "2026-08-18-dual-peak-image-fix-v1",
+    "packageLaunchVersion": "2026-08-19-sainj-raktisar-seo-v1",
     "instagram": "https://www.instagram.com/keasindia/"
   },
   "navigation": [
@@ -53,11 +53,11 @@
       "title": "Trekking Packages",
       "slug": "trekking-packages",
       "image": "/images/keas-real/img-20260612-wa0054.jpg",
-      "description": "Post-monsoon Himalayan treks with clear pickup/drop logistics, team-size limits, priced departures, packing guidance, and field support.",
+      "description": "Post-monsoon Himalayan treks in Sainj Valley, Shangarh, GHNP, Kullu and high Himalayan terrain with clear pickup/drop logistics, team-size limits, priced departures, packing guidance, and field support.",
       "details": [
         "Built for groups who want a defined itinerary, transparent inclusions, and real mountain route support rather than vague brochure copy.",
         "Packages include route briefings, stay planning, meals on trek, local crew coordination, safety checks, and weather-aware pacing.",
-        "Difficulty ranges from easy-moderate Sainj Valley walks to moderate-difficult crossover and GHNP core-zone objectives."
+        "Difficulty ranges from easy-moderate Sainj Valley and Shangarh walks to moderate-difficult crossover and Great Himalayan National Park core-zone objectives."
       ]
     },
     {
@@ -77,7 +77,7 @@
       "name": "Sainj Valley",
       "count": "Base hub",
       "image": "/images/keas-real/img-20260612-wa0054.jpg",
-      "copy": "A quieter base for GHNP ecozone access, forest trails, village stays, rock craft, and slow travel programs."
+      "copy": "A quieter base for Shangarh meadows, GHNP ecozone access, forest trails, village stays, rock craft, and slow travel programs."
     },
     {
       "name": "Kullu",
@@ -112,6 +112,11 @@
       "location": "Sainj Valley wilderness learning zone",
       "pickupDrop": "Aut to Aut",
       "image": "/images/keas-real/img-20260612-wa0011.jpg",
+      "gallery": [
+        "/images/keas-real/img-20260612-wa0011.jpg",
+        "/images/keas-real/img-20260619-wa0000.jpg",
+        "/images/keas-real/img-20260619-wa0001.jpg"
+      ],
       "summary": "A hands-on wilderness workshop in Sainj Valley where participants spend 4 nights and 5 days living with minimal excess while learning mountain survival, camp systems, teamwork, and Leave No Trace habits.",
       "highlights": [
         "Wilderness survival",
@@ -295,16 +300,23 @@
       "category": "Trekking Packages",
       "duration": "9N / 10D",
       "group": "6 guests per team",
-      "price": "INR 25,999",
+      "price": "INR 65,000 per person",
       "rating": "5.0",
       "reviews": "16",
       "difficulty": "Moderate to difficult",
       "location": "Great Himalayan National Park core zone",
       "pickupDrop": "Aut to Aut",
       "image": "/images/keas-real/img-20260612-wa0042.jpg",
-      "summary": "A longer GHNP core-zone trek toward Raktisar, shaped around the KEAS base route noted at roughly 70 km with remote camps, forest-to-alpine transitions, permit-aware movement, and slower pacing for a small six-person team.",
+      "gallery": [
+        "/images/keas-real/img-20260612-wa0042.jpg",
+        "/images/keas-real/img-20260612-wa0049.jpg",
+        "/images/keas-real/img-20260612-wa0052.jpg",
+        "/images/keas-real/img-20260612-wa0046.jpg"
+      ],
+      "summary": "A longer Great Himalayan National Park core-zone trek toward Raktisar from the Sainj Valley side, shaped around the KEAS base route noted at roughly 70 km with remote camps, forest-to-alpine transitions, permit-aware movement, and slower pacing for a small six-person team.",
       "highlights": [
-        "GHNP core zone",
+        "Great Himalayan National Park core zone",
+        "Sainj Valley approach",
         "Raktisar objective",
         "70 km KEAS route",
         "Remote camps",
@@ -324,9 +336,9 @@
         "Insurance, rescue, or evacuation costs"
       ],
       "itinerary": [
-        "Day 1: Pickup from Aut, arrival at KEAS base, permit and safety briefing, medical disclosure, gear audit, and route overview.",
-        "Day 2: Begin the approach from KEAS base into forested Sainj Valley trails. Practice steady pacing, hydration discipline, and camp routines.",
-        "Day 3: Continue through GHNP valley terrain toward remote camp. Expect forest, stream sections, and a clear Leave No Trace campsite system.",
+        "Day 1: Pickup from Aut, arrival at KEAS base in the Sainj Valley region, permit and safety briefing, medical disclosure, gear audit, and route overview.",
+        "Day 2: Begin the approach from KEAS base into forested Sainj Valley trails connected with the Great Himalayan National Park landscape. Practice steady pacing, hydration discipline, and camp routines.",
+        "Day 3: Continue through GHNP valley terrain toward remote camp. Expect forest, stream sections, quiet campsites, and a clear Leave No Trace campsite system.",
         "Day 4: Gain altitude gradually through mixed forest and meadow terrain. Review weather, route options, and team health before upper camps.",
         "Day 5: Move toward higher alpine approach terrain with slower pacing, terrain-awareness drills, and early rest for the objective section.",
         "Day 6: Raktisar / Rakti Sar objective day as permitted by weather, trail, and team condition. Explore the high basin and return to camp safely.",
@@ -363,6 +375,11 @@
       "location": "Sainj Valley / KEAS base route",
       "pickupDrop": "Aut to Aut",
       "image": "/images/keas-real/img-20260619-wa0001.jpg",
+      "gallery": [
+        "/images/keas-real/img-20260619-wa0001.jpg",
+        "/images/keas-real/img-20260619-wa0000.jpg",
+        "/images/keas-real/img-20260612-wa0044.jpg"
+      ],
       "summary": "A compact Sainj Valley trek for first-timers, families, and small groups who want a gentler mountain route with KEAS base support, viewpoint walking, forest sections, and enough time to move slowly.",
       "highlights": [
         "KEAS base start/end",
@@ -413,11 +430,17 @@
       "rating": "4.9",
       "reviews": "18",
       "difficulty": "Easy to moderate village trail",
-      "location": "Sainj Valley hidden hamlets",
+      "location": "Sainj Valley, Shangarh meadows, and hidden hamlets",
       "pickupDrop": "Aut to Aut",
       "image": "/images/keas-real/img-20260612-wa0044.jpg",
-      "summary": "A seven-day offbeat Sainj Valley village journey for travellers who want peace, slow travel, homestays, forest paths, river-side settlements, and a human-paced relationship with the valley.",
+      "gallery": [
+        "/images/keas-real/img-20260612-wa0044.jpg",
+        "/images/keas-real/img-20260612-wa0054.jpg",
+        "/images/keas-real/img-20260612-wa0011.jpg"
+      ],
+      "summary": "A seven-day offbeat Sainj Valley and Shangarh-side village journey for travellers who want meadows, peace, slow travel, homestays, forest paths, river-side settlements, and a human-paced relationship with the valley.",
       "highlights": [
+        "Shangarh meadow extension",
         "Barshangarh and Lapah trail",
         "Maror and Sugad village stays",
         "Homestay-led travel",
@@ -441,7 +464,7 @@
         "Anything not listed under inclusions"
       ],
       "itinerary": [
-        "Day 1: Meet the KEAS team at Aut and transfer into Sainj Valley. Check in at the Sarahan / Upper Neuli basecamp, settle into lunch, complete the route, safety and equipment briefing, then take a peaceful village and meadow walk.",
+        "Day 1: Meet the KEAS team at Aut and transfer into Sainj Valley. Check in at the Sarahan / Upper Neuli basecamp, settle into lunch, complete the route, safety and equipment briefing, then take a peaceful village and meadow walk. If the road and timing allow, the plan can include a Shangarh meadow visit or an additional Shangarh-side extension.",
         "Day 2: Walk from Sarahan / Upper Neuli toward Barshangarh on village paths and forest tracks. The pace allows for photography, water breaks and interpretation of the valley landscape before settling into the host village.",
         "Day 3: Continue from Barshangarh to Lapah through pine and deodar forest. Expect sustained walking, uneven trail and occasional steeper sections, followed by an evening briefing for the remote section ahead.",
         "Day 4: Leave Lapah for Maror after an early breakfast and enter a quieter trail system associated with the Sainj Wildlife Sanctuary landscape. Expect uneven footing and a full day outdoors before a simple local stay.",
@@ -450,7 +473,7 @@
         "Day 7: Review the journey over breakfast, complete the closing debrief and depart for Aut after the scheduled meal. Keep onward travel flexible for mountain-road conditions."
       ],
       "totalDistance": "Five trail days, 4-8 km daily range",
-      "startEnd": "Aut - Sarahan / Upper Neuli - Barshangarh - Lapah - Maror - Sugad - Niharni - Aut",
+      "startEnd": "Aut - Sainj Valley - Shangarh / Sarahan / Upper Neuli - Barshangarh - Lapah - Maror - Sugad - Niharni - Aut",
       "thingsToPack": [
         "Broken-in hiking shoes with good grip",
         "Quick-dry layers, fleece, waterproof shell, warm cap and gloves",
@@ -474,7 +497,12 @@
       "location": "Sainj Valley / Sarikanda meadow and Bunga Top",
       "pickupDrop": "Aut to Aut",
       "image": "/images/keas-real/img-20260612-wa0054.jpg",
-      "summary": "A compact alpine escape above Sainj Valley with an offbeat village arrival, deodar forest ascent, secluded Sarikanda meadow camp, and a weather-led viewpoint day toward Bunga Top.",
+      "gallery": [
+        "/images/keas-real/img-20260612-wa0054.jpg",
+        "/images/keas-real/img-20260612-wa0011.jpg",
+        "/images/keas-real/img-20260619-wa0000.jpg"
+      ],
+      "summary": "A compact alpine escape above Sainj Valley with an offbeat village arrival, deodar forest ascent, secluded Sarikanda meadow camp, and a weather-led viewpoint day toward Bunga Top, suited for travellers who are also exploring Shangarh and GHNP-side valleys.",
       "highlights": [
         "Sarikanda alpine meadow camp",
         "Bunga Top viewpoint day",
@@ -500,7 +528,7 @@
         "Anything not listed under inclusions"
       ],
       "itinerary": [
-        "Day 1: Meet at Aut and transfer into Sainj Valley. Check in at Sarahan / Upper Neuli basecamp, enjoy a welcome meal, complete the trek briefing and equipment review, then take a gentle village walk before dinner.",
+        "Day 1: Meet at Aut and transfer into Sainj Valley, with route context for Shangarh, GHNP-side valleys and the upper village landscape. Check in at Sarahan / Upper Neuli basecamp, enjoy a welcome meal, complete the trek briefing and equipment review, then take a gentle village walk before dinner.",
         "Day 2: Begin the ascent from Sarahan / Upper Neuli to Sarikanda after breakfast. The trail climbs through deodar and mixed conifer forest, with steeper and rockier sections near the meadow. Reach camp by afternoon and settle into tents.",
         "Day 3: Carry a light daypack for the Bunga Top viewpoint excursion. The trek leader manages turnaround time according to cloud, wind and trail conditions. Return to Sarikanda camp for recovery and a hot meal.",
         "Day 4: Break camp responsibly and retrace the forest trail to Sarahan / Upper Neuli. After lunch and a short closing debrief, transfer by vehicle to Aut with onward travel kept flexible for mountain-road conditions."
