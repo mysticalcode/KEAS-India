@@ -181,10 +181,10 @@ function Hero() {
         <div className="hero-title">
           <p className="hero-kicker">Kinetic Earth Adventure Sports</p>
           <h1>
-            <span>Himalayan</span>
-            <span>field craft.</span>
+            <span>More than</span>
+            <span>a trip.</span>
           </h1>
-          <p>Book skill-led Himalayan packages with clear prices, real KEAS field support, small teams, and WhatsApp-first planning before you commit.</p>
+          <p>Leave the rushed itinerary behind. Travel into the Himalayas with a small team, thoughtful support, and experiences that let you learn, move, and come home with a story that is entirely your own.</p>
           <div className="hero-actions">
             <a className="primary-button" href="#experiences">
               View packages
@@ -195,9 +195,9 @@ function Hero() {
             </a>
           </div>
           <div className="hero-metrics" aria-label="KEAS India highlights">
-            <span><strong>12</strong> bookable journeys</span>
-            <span><strong>4-6</strong> guests per team</span>
-            <span><strong>Aut</strong> pickup options</span>
+            <span><strong>Small</strong> team sizes</span>
+            <span><strong>Complete</strong> travel support</span>
+            <span><strong>Learn</strong> while travelling</span>
           </div>
         </div>
         <div className="hero-trust" aria-label="KEAS rating">
@@ -207,7 +207,7 @@ function Hero() {
             <img src="/images/keas-real/img-20260619-wa0001.jpg" alt="" />
           </div>
           <strong>4.9 <span>/ 5</span></strong>
-          <p>Real field teams, transparent itineraries, and direct booking support</p>
+          <p>Real field teams, thoughtful planning, and attentive support</p>
         </div>
         <h2 className="hero-script">
           <span>move with</span>
@@ -230,7 +230,7 @@ function About() {
     <section className="section about" id="about">
       <div>
         <p className="eyebrow">About us</p>
-        <h2>Mountain journeys designed with craft, culture, safety, and care.</h2>
+        <h2>Himalayan experiences shaped with craft, culture, safety, and care.</h2>
         <a className="primary-button inverted" href="#contact">
           Start your trip
           <ArrowIcon />
@@ -650,7 +650,7 @@ function ExperienceCard({ experience }) {
 function Experiences() {
   return (
     <section className="section experiences" id="experiences">
-      <SectionHeading eyebrow="Bookable packages" title="Choose your KEAS experience, then speak directly with the field team" />
+      <SectionHeading eyebrow="Packages" title="Find the Himalayan experience that feels made for you." />
       <CategoryTabs />
       <div className="experience-grid">
         {experiences.map((experience) => (
@@ -663,17 +663,17 @@ function Experiences() {
 
 function TrustSection() {
   const trustPoints = [
-    ['Talk before you pay', `Call or WhatsApp ${site.phone} to confirm dates, fitness, route fit, and available offers.`],
-    ['Small guided teams', 'Most KEAS programs are built around small teams so the guide can actually watch the group.'],
-    ['Real mountain systems', 'Each booking includes route briefing, gear check, safety expectations, inclusions, exclusions, and packing guidance.']
+    ['Your plan, your pace', `Call or WhatsApp ${site.phone} for honest guidance on dates, fitness, route fit, and current offers before you decide.`],
+    ['Small teams, real attention', 'Our small groups leave room for personal guidance, better pacing, and a team that knows the people it is looking after.'],
+    ['Support that stays close', 'From your first question to the journey home, we coordinate the details and keep you clear on briefings, gear, packing, and changing mountain conditions.']
   ];
 
   return (
     <section className="section trust-section">
       <div className="trust-copy">
         <p className="eyebrow">Why people book KEAS</p>
-        <h2>Human planning before the mountain day begins.</h2>
-        <p>KEAS is not a faceless checkout page. You can speak with the team, understand difficulty honestly, ask what to pack, and choose the package that fits your group instead of guessing from a brochure.</p>
+        <h2>You should feel looked after long before you reach the mountains.</h2>
+        <p>At KEAS, the customer comes first. Your comfort, clarity, and confidence shape the experience from the first conversation. We go the extra distance to understand your group, tailor the practical details, answer the questions that matter, and stay responsive when mountain plans need to change.</p>
         <div className="trust-actions">
           <a className="primary-button" href={whatsappUrl('Hi KEAS India, I want help choosing the right package and current offers.')} target="_blank" rel="noreferrer">
             Ask on WhatsApp
@@ -696,7 +696,7 @@ function TrustSection() {
             <img src="/images/keas-real/img-20260619-wa0001.jpg" alt="" />
           </div>
           <strong>Small teams. Clear calls. Real routes.</strong>
-          <p>Before booking, KEAS helps you match the route to your experience level, comfort, dates, and group profile.</p>
+          <p>We help you choose a route that fits your experience, comfort, dates, and the kind of time you want to have together.</p>
         </div>
       </div>
       <div className="trust-grid">
@@ -1294,7 +1294,7 @@ function SainjValleySeoPage() {
         <div className="program-block">
           <div className="program-block-head">
             <p className="eyebrow">Related packages</p>
-            <h2>Bookable Sainj Valley and GHNP-side experiences</h2>
+            <h2>Sainj Valley and GHNP-side packages</h2>
           </div>
           <div className="experience-grid">
             {sainjPrograms.map((experience) => (
