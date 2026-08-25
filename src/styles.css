@@ -98,6 +98,16 @@ p {
   margin: 0;
 }
 
+h1,
+h2,
+h3,
+p,
+dt,
+dd,
+label {
+  overflow-wrap: anywhere;
+}
+
 .site-header {
   position: fixed;
   top: 24px;
@@ -807,6 +817,30 @@ h4 {
   padding-top: 16px;
 }
 
+.selected-program {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+  background: color-mix(in srgb, var(--panel-2) 84%, transparent);
+}
+
+.selected-program span {
+  color: var(--gold);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.selected-program strong {
+  color: var(--ink);
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
 .detail-link {
   width: max-content;
 }
@@ -831,6 +865,7 @@ h4 {
   z-index: 2;
   display: flex;
   width: min(var(--page), calc(100% - 48px));
+  min-width: 0;
   min-height: 760px;
   flex-direction: column;
   justify-content: flex-end;
@@ -841,6 +876,7 @@ h4 {
 .detail-hero h1 {
   width: min(820px, 100%);
   margin-bottom: 22px;
+  text-wrap: balance;
 }
 
 .detail-hero p:not(.eyebrow) {
@@ -870,6 +906,7 @@ h4 {
   display: inline-flex;
   min-height: 36px;
   align-items: center;
+  line-height: 1.25;
   border-radius: 999px;
   padding: 0 14px;
   border: 1px solid rgba(255, 255, 255, 0.24);
@@ -899,6 +936,7 @@ h4 {
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.24);
   backdrop-filter: blur(18px);
   scrollbar-width: none;
+  scroll-snap-type: x proximity;
 }
 
 .program-nav::-webkit-scrollbar {
@@ -907,6 +945,7 @@ h4 {
 
 .program-nav button {
   flex: 0 0 auto;
+  scroll-snap-align: start;
   min-height: 38px;
   border: 1px solid color-mix(in srgb, var(--line) 82%, transparent);
   border-radius: 999px;
@@ -3854,5 +3893,43 @@ main[data-theme='light'] .process-card {
   .expedition-meta span,
   .highlight-row span {
     font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .detail-hero h1 {
+    font-size: clamp(2.35rem, 11vw, 3.15rem);
+    line-height: 0.94;
+  }
+
+  .detail-hero p:not(.eyebrow) {
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .detail-meta {
+    gap: 7px;
+    margin-top: 22px;
+  }
+
+  .detail-meta span {
+    min-height: 30px;
+    padding: 6px 10px;
+  }
+
+  .policy-page .detail-hero h1,
+  .creator-hero h1,
+  .health-hero h1 {
+    max-width: 11ch;
+  }
+
+  .form-row,
+  .checkbox-grid,
+  .quick-summary-grid,
+  .reach-grid,
+  .detail-gallery,
+  .instructor-grid,
+  .institution-grid {
+    min-width: 0;
   }
 }

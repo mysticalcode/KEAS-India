@@ -811,10 +811,11 @@ function BookingForm({ expedition, program }) {
         Email
         <input name="email" type="email" placeholder="you@example.com" />
       </label>
-      <label>
-        Program
-        <input name="program" type="text" value={selectedProgram.title} readOnly />
-      </label>
+      <input name="program" type="hidden" value={selectedProgram.title} />
+      <div className="selected-program" aria-label={`Selected ${programType}: ${selectedProgram.title}`}>
+        <span>Selected {programType}</span>
+        <strong>{selectedProgram.title}</strong>
+      </div>
       <label>
         Message
         <textarea name="message" rows="5" placeholder="Preferred dates, group size, experience level, and questions." />
