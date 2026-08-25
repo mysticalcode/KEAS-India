@@ -1250,6 +1250,132 @@ h4 {
   font-size: clamp(1.5rem, 2.4vw, 2.5rem);
 }
 
+.instructors-section {
+  display: grid;
+  gap: 24px;
+  padding: clamp(22px, 4vw, 48px);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--panel) 92%, transparent);
+}
+
+.instructors-intro {
+  max-width: 780px;
+}
+
+.instructors-intro h2 {
+  margin: 8px 0 16px;
+  color: var(--ink);
+  font-size: clamp(2rem, 4vw, 3.8rem);
+  line-height: 1;
+}
+
+.instructors-intro > p:last-child,
+.instructor-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.institution-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.institution-card {
+  display: flex;
+  align-items: center;
+  min-height: 84px;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--surface) 86%, transparent);
+}
+
+.institution-card img {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  object-fit: contain;
+}
+
+.institution-card div {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.institution-card strong {
+  color: var(--ink);
+  font-size: 0.82rem;
+}
+
+.institution-card span {
+  color: var(--muted);
+  font-size: 0.69rem;
+  line-height: 1.25;
+}
+
+.instructor-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.instructor-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+}
+
+.instructor-art {
+  display: block;
+  width: 100%;
+  aspect-ratio: 0.8;
+  object-fit: cover;
+  object-position: top;
+}
+
+.instructor-copy {
+  padding: 18px;
+}
+
+.instructor-copy h3 {
+  margin: 4px 0 16px;
+  color: var(--ink);
+  font-size: 1.5rem;
+}
+
+.instructor-copy dl {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+}
+
+.instructor-copy dl > div {
+  display: grid;
+  gap: 4px;
+}
+
+.instructor-copy dt {
+  color: var(--gold);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.instructor-copy dd {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.87rem;
+  line-height: 1.5;
+}
+
 .category-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -2076,6 +2202,25 @@ textarea {
 
   .manifesto-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .institution-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .instructor-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .instructor-card {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.72fr) minmax(0, 1fr);
+  }
+
+  .instructor-art {
+    height: 100%;
+    min-height: 330px;
+    aspect-ratio: auto;
   }
 
   .trust-grid {
@@ -3568,6 +3713,39 @@ main[data-theme='light'] .process-card {
   .manifesto-grid,
   .creator-grid {
     grid-template-columns: 1fr;
+  }
+
+  .instructors-section {
+    gap: 18px;
+    padding: 18px 12px;
+    border-radius: 14px;
+  }
+
+  .institution-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .institution-card {
+    min-height: 68px;
+  }
+
+  .institution-card span {
+    font-size: 0.74rem;
+  }
+
+  .instructor-card {
+    grid-template-columns: 1fr;
+  }
+
+  .instructor-art {
+    min-height: 0;
+    height: auto;
+    aspect-ratio: 0.9;
+    object-position: top;
+  }
+
+  .instructor-copy {
+    padding: 16px;
   }
 
   .about-image-stack img,

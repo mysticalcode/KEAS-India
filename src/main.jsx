@@ -1334,6 +1334,49 @@ function AboutPage() {
     ['Challenge and stillness belong together.', 'There are moments to climb, move and push, and moments to breathe, listen and recover.'],
     ['Adventure should benefit the places that make it possible.', 'Local knowledge deserves respect, communities deserve meaningful participation, and natural environments deserve more than symbolic promises.']
   ];
+  const institutions = [
+    ['ABVIMAS', 'Atal Bihari Vajpayee Institute of Mountaineering & Allied Sports, Manali', '/images/team/abvimas.png'],
+    ['IMF', 'Indian Mountaineering Foundation', '/images/team/imf.png'],
+    ['NIM', 'Nehru Institute of Mountaineering, Uttarkashi', '/images/team/nim.png'],
+    ['NIMAS', 'National Institute of Mountaineering & Adventure Sports', '/images/team/nimas.png'],
+    ['JIM & WS', 'Jawahar Institute of Mountaineering & Winter Sports, Pahalgam', '/images/team/jim-ws.png'],
+    ['IISM', 'Indian Institute of Skiing & Mountaineering, Gulmarg', '/images/team/iism.png'],
+    ['SVIM', 'Swami Vivekanand Institute of Mountaineering', '/images/team/svim.png']
+  ];
+  const instructors = [
+    {
+      name: 'Paras Sharma',
+      image: '/images/team/Artboard 5.png',
+      alt: 'Paras Sharma certifications',
+      disciplines: [
+        ['Mountaineering', 'Basic Mountaineering Course, Advanced Mountaineering Course and Method of Instruction at ABVIMAS; Search & Rescue at JIM & WS.'],
+        ['Skiing', 'Basic and Intermediate Ski at ABVIMAS; Advanced Ski and Method of Instruction Ski at JIM & WS.'],
+        ['Watercraft', 'Basic Rafting and River Guide at ABVIMAS.'],
+        ['Safety & response', 'First Aid with Red Cross; Apda Mitra and Master Trainer courses with NDMA.']
+      ]
+    },
+    {
+      name: 'Anant Singh',
+      image: '/images/team/Artboard 6.png',
+      alt: 'Anant Singh certifications',
+      disciplines: [
+        ['Mountaineering', 'Basic Mountaineering at ABVIMAS and Advanced Mountaineering at NIMAS.'],
+        ['Search & rescue', 'Search and Rescue and Method of Instruction at NIM.'],
+        ['Skiing', 'Basic Skiing at ABVIMAS; Intermediate and Advanced Skiing at IISM; Method of Instruction Skiing at JIM.'],
+        ['Rock climbing & leadership', 'Basic and Advanced Rock Climbing at SVIM; Liaison Officer training with IMF.']
+      ]
+    },
+    {
+      name: 'Aman Sharma',
+      image: '/images/team/Artboard-7.png',
+      alt: 'Aman Sharma certifications',
+      disciplines: [
+        ['Skiing', 'Basic and Intermediate Ski at ABVIMAS; Advanced Ski and MOI Ski with JIM & WS.'],
+        ['River rafting', 'Basic River Rafting at ABVIMAS.'],
+        ['Mountaineering', 'Basic Mountaineering Course at ABVIMAS.']
+      ]
+    }
+  ];
 
   return (
     <>
@@ -1417,6 +1460,44 @@ function AboutPage() {
           </blockquote>
           <h3>KEAS India - Find Your Equilibrium.</h3>
         </article>
+        <section className="instructors-section" aria-labelledby="instructors-title">
+          <div className="instructors-intro">
+            <p className="eyebrow">Meet our certified instructors</p>
+            <h2 id="instructors-title">Training that shows up in the way we plan, teach, and look after a team.</h2>
+            <p>KEAS programs are led by trained outdoor educators. Their listed qualifications span mountaineering, skiing, rivercraft, rescue, first aid, rock climbing, and mountain leadership.</p>
+          </div>
+          <div className="institution-grid" aria-label="Training institutions">
+            {institutions.map(([shortName, fullName, logo]) => (
+              <article className="institution-card" key={shortName} title={fullName}>
+                <img src={logo} alt={`${shortName} emblem`} loading="lazy" />
+                <div>
+                  <strong>{shortName}</strong>
+                  <span>{fullName}</span>
+                </div>
+              </article>
+            ))}
+          </div>
+          <p className="instructor-note">Additional safety and response qualifications listed below include training with the Indian Red Cross Society and the National Disaster Management Authority (NDMA).</p>
+          <div className="instructor-grid">
+            {instructors.map((instructor) => (
+              <article className="instructor-card" key={instructor.name}>
+                <img className="instructor-art" src={instructor.image} alt={instructor.alt} loading="lazy" />
+                <div className="instructor-copy">
+                  <p className="eyebrow">Certified instructor</p>
+                  <h3>{instructor.name}</h3>
+                  <dl>
+                    {instructor.disciplines.map(([discipline, qualification]) => (
+                      <div key={discipline}>
+                        <dt>{discipline}</dt>
+                        <dd>{qualification}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
       </section>
       <Footer />
     </>
